@@ -189,6 +189,30 @@ footer p:first-child{
     margin-top: 50px;
 }
 
+.about_us {
+    text-align: center;
+    font-size: 64px;
+    display: block;
+    color: #fff;
+    padding-top: 80px;
+}
+
+.content{
+    width: 80%;
+    margin: 0 auto;
+    text-align: left;
+    color: #333;
+    padding: 15px;
+    background: rgb(255, 255, 255);
+    line-height: 25px;
+    opacity: .8;
+   margin-top: 30px;
+    margin-bottom: 100px;
+}
+
+.content p{
+    margin-top: 10px;
+}
 
 
 
