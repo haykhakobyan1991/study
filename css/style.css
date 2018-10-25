@@ -215,6 +215,24 @@ footer p:first-child{
 }
 
 
+.row{
+    display: inline-block;
+    width: 30%;
+}
+
+.row .container_cube {
+    min-height: 100px;
+    vertical-align: middle;
+}
+
+.row .container_cube a {
+    padding-top: 15%;
+    display: block;
+    color: #333;
+}
+
+
+
 
 
 
