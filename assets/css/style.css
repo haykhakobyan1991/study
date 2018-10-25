@@ -23,7 +23,7 @@ a {
 }
 
 header {
-    height: 75px;
+    height: auto;
     background-color: #202124;
     box-shadow: 0 2px 4px rgba(0, 0, 0, .5);
     overflow: hidden;
@@ -219,6 +219,24 @@ li.active > a {
     opacity: 1;
     color: #ff852e;
 }
+
+
+.row{
+    display: inline-block;
+    width: 30%;
+}
+
+.row .container_cube {
+    min-height: 100px;
+    vertical-align: middle;
+}
+
+.row .container_cube a {
+    padding-top: 15%;
+    display: block;
+    color: #333;
+}
+
 
 
 
