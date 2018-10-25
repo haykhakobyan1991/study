@@ -6,7 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <?= (isset($meta_tags) ? $meta_tags : '') ?>
-    <title>HOME</title>
+    <title><?=lang('Home')?></title>
     <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url('assets/css/all.min.css') ?>">
