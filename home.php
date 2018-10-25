@@ -30,7 +30,7 @@
             <nav>
                 <li><a href="home.php">Home</a></li>
                 <li><a href="about.php">About Us</a></li>
-                <li><a href="partner.php">Partner University</a></li>
+                <li><a href="partner_university.php">Partner University</a></li>
                 <li><a href="courses.php">Courses</a></li>
                 <li><a href="requirements.php">Requirements</a></li>
                 <li><a href="testimonials.php">Testimonials</a></li>
