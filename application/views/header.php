@@ -54,7 +54,7 @@
                     <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/requirements') ?>"><?=lang('Requirements')?></a>
                 </li>
                 <li <?=($this->router->fetch_method() == 'testimonials' ? 'class="active"' : '')?>>
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/testimonials') ?>"><?=lang('Testimonials')?>'</a>
+                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/testimonials') ?>"><?=lang('Testimonials')?></a>
                 </li>
                 <li <?=($this->router->fetch_method() == 'events' ? 'class="active"' : '')?> >
                     <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/events') ?>"><?=lang('Events')?></a>

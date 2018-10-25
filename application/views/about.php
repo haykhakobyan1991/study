@@ -1,6 +1,6 @@
 <div class="container">
     <div class="center" style="overflow: hidden;">
-        <h2 class="about_us">About us</h2>
+        <h2 class="about_us"><?=lang('AboutUs')?></h2>
 
         <div class="content">
             Global Study UK are a London based educational consultancy specialising in student recruitment and support

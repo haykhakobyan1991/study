@@ -2,7 +2,7 @@
     <div class="center" style="overflow: hidden;">
 
         <div class="center container_cube" style="overflow: hidden;">
-            <h2 class="about_us">Partner University</h2>
+            <h2 class="about_us"><?=lang('PartnerUniversity')?></h2>
         </div>
 
         <div class="content" style="text-align: center;">
