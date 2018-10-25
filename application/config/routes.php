@@ -66,6 +66,7 @@ $route['default_controller'] = 'Main';
 
 //First
 $route['^(en|fr|hy)/about$'] = "Main/about/";
+$route['^(en|fr|hy)/partner_university'] = "Main/partner_university/";
 
 
 $route['^(en|fr|hy)/video_list/(.+)$'] = "Main/video_list/$1";

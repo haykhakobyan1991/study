@@ -160,6 +160,26 @@ class Main extends CI_Controller {
 
     }
 
+    public function partner_university() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('partner_university', $data, 'deff');
+
+
+
+    }
+
 
     /**
      * @return bool
