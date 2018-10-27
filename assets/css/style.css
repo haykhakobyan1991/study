@@ -4,6 +4,8 @@ body {
 
 nav {
     list-style: none;
+    display: inline-block;
+    padding-bottom: 10px;
 }
 
 a {
@@ -34,25 +36,29 @@ header {
     margin: 0 auto;
 }
 
-.logo {
-    float: left;
-}
-
 .logo a img {
     width: 150px;
 }
 
 .nav_soc_wrapper {
-    float: right;
-    padding-top: 18px;
+    padding-top: 15px;
 }
 
-nav {
-    float: left;
+.langs li {
+    display: inline-block;
+}
+
+.langs {
+    margin: 10px auto 0 auto;
+}
+
+.nav-link {
+    color: #fff;
+    padding: 0 10px;
 }
 
 nav li {
-    float: left;
+    display: inline-block;
 }
 
 nav li a {
@@ -76,10 +82,6 @@ nav li:first-child a {
 nav li a:hover {
     opacity: 1;
     color: #ff852e;
-}
-
-.social {
-    float: right;
 }
 
 .social a {
@@ -220,8 +222,7 @@ li.active > a {
     color: #ff852e;
 }
 
-
-.row{
+.row {
     display: inline-block;
     width: 30%;
 }

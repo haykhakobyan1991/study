@@ -17,69 +17,70 @@
     <script src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
 
-
-    <style>
-        header {
-            height: 150px;
-        }
-    </style>
-
 </head>
 
 <body>
 
 <header>
-    <div class="center">
+    <div class="center" style="text-align: center;">
         <div class="logo pt_15">
             <a href="<?= base_url() ?>">
                 <img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" title="logo"/>
             </a>
         </div>
 
-        <div class="nav_soc_wrapper">
-            <nav>
-                <li <?=($this->router->fetch_method() == 'index' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy')) ?>"><?=lang('Home')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'about' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/about') ?>"><?=lang('AboutUs')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'partner_university' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/partner_university') ?>"><?=lang('PartnerUniversity')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'courses' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/courses') ?>"><?=lang('Courses')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'requirements' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/requirements') ?>"><?=lang('Requirements')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'testimonials' ? 'class="active"' : '')?>>
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/testimonials') ?>"><?=lang('Testimonials')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'events' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/events') ?>"><?=lang('Events')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'register' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/register') ?>"><?=lang('Register')?></a>
-                </li>
-                <li <?=($this->router->fetch_method() == 'contact' ? 'class="active"' : '')?> >
-                    <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/contact') ?>"><?=lang('Contact')?></a>
-                </li>
+        <div class="center" style="text-emphasis: center;">
 
-                <li class="langs" >
-                    <ul class="">
-                        <li class=" <?=(($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '')?>" data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
-                        <li class=" <?=($this->uri->segment(1) == 'fr' ? 'active' : '')?>" data-lang="fr"><a class="nav-link" href="javascript:void(0)">Fra</a></li>
-                        <li class=" <?=($this->uri->segment(1) == 'en' ? 'active' : '')?>" data-lang="en"><a class="nav-link" href="javascript:void(0)">Eng</a></li>
-                    </ul>
+            <ul class="langs">
+                <li class=" <?= (($this->uri->segment(1) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
+                    data-lang="hy"><a class="nav-link" href="javascript:void(0)">Հայ</a></li>
+                <li class=" <?= ($this->uri->segment(1) == 'fr' ? 'active' : '') ?>" data-lang="fr"><a class="nav-link"
+                                                                                                       href="javascript:void(0)">Fra</a>
                 </li>
-            </nav>
+                <li class=" <?= ($this->uri->segment(1) == 'en' ? 'active' : '') ?>" data-lang="en"><a class="nav-link"
+                                                                                                       href="javascript:void(0)">Eng</a>
+                </li>
+                <li style="color: #fff;">|</li>
 
-            <div class="social">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-google-plus"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
+                <li class="social"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li class="social"><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                <li class="social"><a href="#"><i class="fab fa-youtube"></i></a></li>
+            </ul>
+
         </div>
+
+
+        <nav>
+            <li <?= ($this->router->fetch_method() == 'index' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy')) ?>"><?= lang('Home') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'about' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/about') ?>"><?= lang('AboutUs') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'partner_university' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/partner_university') ?>"><?= lang('PartnerUniversity') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'courses' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/courses') ?>"><?= lang('Courses') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'requirements' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/requirements') ?>"><?= lang('Requirements') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'testimonials' ? 'class="active"' : '') ?>>
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/testimonials') ?>"><?= lang('Testimonials') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'events' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/events') ?>"><?= lang('Events') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'register' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/register') ?>"><?= lang('Register') ?></a>
+            </li>
+            <li <?= ($this->router->fetch_method() == 'contact' ? 'class="active"' : '') ?> >
+                <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/contact') ?>"><?= lang('Contact') ?></a>
+            </li>
+
+
+        </nav>
+
     </div>
 </header>

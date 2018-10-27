@@ -18,7 +18,7 @@
 
 
 <script>
-    $(document).on('click', '.langs > ul > li:not(.active)', function () {
+    $(document).on('click', '.langs > li:not(.active)', function () {
         var lang = $(this).data('lang');
         var current_url = '<?=current_url()?>';
         $.ajax({
