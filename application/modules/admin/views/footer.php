@@ -56,6 +56,7 @@
 
                 reader.onload = function(e) {
                     $('.img-preview').attr('src', e.target.result);
+                    console.log(e)
                 };
                 reader.readAsDataURL(input.files[0]);
             }

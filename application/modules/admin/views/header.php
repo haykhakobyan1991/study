@@ -106,7 +106,7 @@ $account = $query->row_array();
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <a class="navbar-brand" href="index.html">
+                <a class="navbar-brand" href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')) ?>">
                     <!-- Logo icon -->
                     <b class="logo-icon p-l-10">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
