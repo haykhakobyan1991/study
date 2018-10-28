@@ -249,6 +249,14 @@ $account = $query->row_array();
                         </a>
                     </li>
 
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/partner_university') ?>" aria-expanded="false">
+                            <i class="fas fa-university"></i>
+                            <span class="hide-menu">Partner University</span>
+                        </a>
+                    </li>
+
 
                 </ul>
             </nav>
