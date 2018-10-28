@@ -152,6 +152,25 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $sql = "
+            SELECT
+                `about_".$lng."` AS `about`,
+                `why_apply_".$lng."` AS `why_apply`,
+                `why_recruit_".$lng."` AS `why_recruit`
+            FROM
+               `about_us`
+            WHERE `status` = '1'
+            LIMIT 1
+         ";
+
+        $result = $this->db->query($sql);
+
+        $row = $result->row_array();
+
+        $data['about'] = $row['about'];
+        $data['why_apply'] = $row['why_apply'];
+        $data['why_recruit'] = $row['why_recruit'];
+
 
         //view
         $this->layout->view('about', $data, 'deff');

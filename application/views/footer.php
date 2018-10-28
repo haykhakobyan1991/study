@@ -7,7 +7,7 @@
         </ul>
         <div class="soc_footer">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-google-plus"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
             <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
         <p style="margin-top: 50px;">©2018 GLOBAL STUDY AM LTD</p>

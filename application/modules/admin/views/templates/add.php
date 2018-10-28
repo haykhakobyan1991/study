@@ -1,589 +1,322 @@
- 
+<?
 
- <?
+$controller = $this->router->fetch_class();
 
- $controller = $this->router->fetch_class();
+$page = $this->router->fetch_method();
 
- $page =  $this->router->fetch_method();
+//$url=base_url().'admin/'.$controller.'/'.substr($this->uri->segment(3), 4);
+$url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . $page;
 
- $url=base_url().'admin/'.$controller.'/'.substr($this->uri->segment(3), 4);
+?>
 
- ?>
 
-	
-
-	
-
-<script src="<?=base_url()?>application/jquery/jquery.min.js"></script>
-
-<script src="<?=base_url()?>application/jquery/choosen/chosen.jquery.js" type="text/javascript"></script>
-
-<script src="<?=base_url()?>application/jquery/choosen/docsupport/prism.js" type="text/javascript" charset="utf-8"></script>
-
-<script src="<?=base_url()?>application/jquery/choosen/docsupport/init.js" type="text/javascript" charset="utf-8"></script>
-
-<script type="text/javascript" src="<?=base_url()?>application/jquery/jquery.dragsort-0.5.2.min.js"></script>
-
-<script src="<?=base_url()?>application/js/base.js"></script> 
-
-<script src="<?=base_url()?>assets/ckeditor/ckeditor.js"></script> 
-
-<script src="<?=base_url()?>assets/ckfinder/ckfinder.js"></script> 
-
-<script src="<?=base_url()?>assets/jquery-ui/jquery-ui.min.js"></script>
-
-<!--todo-->
-<script type="text/javascript"
-         src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js">
-</script>
-<!--end-->
-
-<script src="<?=base_url()?>assets/bootstrap_datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
-
+<script src="<?= base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js') ?>"></script>
+<!-- Bootstrap tether Core JavaScript -->
+<script src="<?= base_url('assets/admin/assets/libs/popper.js/dist/umd/popper.min.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/extra-libs/sparkline/sparkline.js') ?>"></script>
+<!--Wave Effects -->
+<script src="<?= base_url('assets/admin/dist/js/waves.js') ?>"></script>
+<!--Menu sidebar -->
+<script src="<?= base_url('assets/admin/dist/js/sidebarmenu.js') ?>"></script>
+<!--Custom JavaScript -->
+<script src="<?= base_url('assets/admin/dist/js/custom.min.js') ?>"></script>
+<!--This page JavaScript -->
+<!-- <script src="../../dist/js/pages/dashboards/dashboard1.js"></script> -->
+<!-- Charts js Files -->
+<script src="<?= base_url('assets/admin/assets/libs/flot/excanvas.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.pie.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.time.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.stack.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.crosshair.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') ?>"></script>
+<script src="<?= base_url('assets/admin/dist/js/pages/chart/chart-page-init.js') ?>"></script>
+<script src="<?= base_url('assets/admin/assets/libs/quill/dist/quill.min.js') ?>"></script>
 
 <script>
+    var options = {
+        placeholder: 'Waiting for your precious content',
+        theme: 'snow'
+    };
 
-    $(document).ready(function(){
+    var editor = new Quill('#about_us', options);
 
-          var editor = CKEDITOR.replace('text');
+    editor.on('text-change', function () {
+        var justHtml = editor.root.innerHTML;
+        $('#about_us_text').text(justHtml);
+    });
 
-          CKFinder.setupCKEditor( editor );
+    var why_apply = new Quill('#why_apply', options);
 
-          // datapicker
-
-          $("#datepicker").datepicker({
-
-              buttonImage:"<?=base_url()?>icons/datePicker.gif",
-
-              showOn:"button",
-
-              dateFormat:"dd.mm.yy",
-
-
-
-              buttonImageOnly:true,
-
-              changeMonth: true,
-
-              changeYear: true
-
-          });
-
-
-        $(function() {
-            $('#datetimepicker1').datetimepicker({
-                language: 'pt-BR'
-            });
-        });
-
-
-
+    why_apply.on('text-change', function () {
+        var why_apply_text = why_apply.root.innerHTML;
+        $('#why_apply_text').text(why_apply_text);
     });
 
 
+    var why_recruit = new Quill('#why_recruit', options);
+
+    why_recruit.on('text-change', function () {
+        var why_recruit_text = why_recruit.root.innerHTML;
+        $('#why_recruit_text').text(why_recruit_text);
+    });
+
 
 </script>
 
-
-
-
-
-
-
-<script type="text/javascript">
-
-	$(document).ready(function() {
-
-		
-
-		 $(".chosen-select").chosen({allow_single_deselect: true}); 
-
-	});
-
-
-
-	// Function for alias
-
-	function alias() {
-
-		
-
-		var alias = $('input[name="alias"]');
-
-		if (alias.val() == false) {
-
-			var title = $('input[name="title"]').val();
-
-			var name = $('input[name="name"]').val();
-
-		
-
-			if(title !== undefined) {
-
-				$(alias).val(convert(title));
-
-
-
-			}else if(name !== undefined) {
-
-				$(alias).val(convert(name));
-
-			}
-
-		}
-
-	}
-
-
-
-	
-
-	function convert(unsafe) {
-
-			var unsafe = unsafe.toLowerCase();
-
-			return unsafe
-
-		  // Rus
-
-		  .replace(/а/g, "a")
-
-		  .replace(/б/g, "b")
-
-		  .replace(/в/g, "v")
-
-		  .replace(/г/g, "g")
-
-		  .replace(/д/g, "d")
-
-		  .replace(/е/g, "e")
-
-		  .replace(/ё/g, "yo")
-
-		  .replace(/ж/g, "zh")
-
-		  .replace(/з/g, "z")
-
-		  .replace(/и/g, "i")
-
-		  .replace(/й/g, "i")
-
-		  .replace(/к/g, "k")
-
-		  .replace(/л/g, "l")
-
-		  .replace(/м/g, "m")
-
-		  .replace(/н/g, "n")
-
-		  .replace(/о/g, "o")
-
-		  .replace(/п/g, "p")
-
-		  .replace(/р/g, "r")
-
-		  .replace(/с/g, "s")
-
-		  .replace(/т/g, "t")
-
-		  .replace(/у/g, "u")
-
-		  .replace(/ф/g, "f")
-
-		  .replace(/х/g, "kh")
-
-		  .replace(/ц/g, "tc")
-
-		  .replace(/ч/g, "ch")
-
-		  .replace(/ш/g, "sh")
-
-		  .replace(/щ/g, "shch")
-
-		  .replace(/ы/g, "y")
-
-		  .replace(/э/g, "e")
-
-		  .replace(/ю/g, "yu")
-
-		  .replace(/я/g, "ya")
-
-		  // Hy
-
-		  .replace(/ա/g, "a")
-
-		  .replace(/բ/g, "b")
-
-		  .replace(/գ/g, "g")
-
-		  .replace(/դ/g, "d")
-
-		  .replace(/ե/g, "e")
-
-		  .replace(/զ/g, "z")
-
-		  .replace(/է/g, "e")
-
-		  .replace(/ը/g, "y")
-
-		  .replace(/թ/g, "t")
-
-		  .replace(/ժ/g, "zh")
-
-		  .replace(/ի/g, "i")
-
-		  .replace(/լ/g, "l")
-
-		  .replace(/խ/g, "kh")
-
-		  .replace(/ծ/g, "ts")
-
-		  .replace(/կ/g, "k")
-
-		  .replace(/հ/g, "h")
-
-		  .replace(/ձ/g, "dz")
-
-		  .replace(/ղ/g, "gh")
-
-		  .replace(/ճ/g, "ch")
-
-		  .replace(/մ/g, "m")
-
-		  .replace(/յ/g, "y")
-
-		  .replace(/ն/g, "n")
-
-		  .replace(/շ/g, "sh")
-
-		  .replace(/չ/g, "ch")
-
-		  .replace(/պ/g, "p")
-
-		  .replace(/ջ/g, "j")
-
-		  .replace(/ռ/g, "r")
-
-		  .replace(/ս/g, "s")
-
-		  .replace(/վ/g, "v")
-
-		  .replace(/տ/g, "t")
-
-		  .replace(/ր/g, "r")
-
-		  .replace(/ց/g, "c")
-
-		  .replace(/ու/g, "u")
-
-		  .replace(/ո/g, "vo")
-
-		  .replace(/փ/g, "p")
-
-		  .replace(/ք/g, "q")
-
-		  .replace(/և/g, "ev")
-
-		  .replace(/օ/g, "o")
-
-		  .replace(/ֆ/g, "f")
-
-			//Glob
-
-		  .replace(/\s\s+/g, ' ')
-
-		  .replace(/ /g, "_")
-
-		  .replace(/[^\w.-]+/g, "_")
-
-		  .replace(/[^a-z0-9_-]+/g, '')
-
-		  .replace(/_+/g, "_")
-
-	
-
-	} 
-
+<script>
+    $(document).on('click', '.langs > li.lang:not(.active)', function () {
+        var lang = $(this).data('lang');
+        var current_url = '<?=current_url()?>';
+        $.ajax({
+            type: 'POST',
+            url: '<?=base_url('admin/Sysadmin/change_lang')?>',
+            data: {lang: lang, current_url: current_url},
+            success: function (url) {
+                if (url != '') {
+                    $(location).attr('href', url);
+                }
+            }
+        });
+    });
 </script>
 
-	
 
-		<script type='text/javascript'>
+<script type='text/javascript'>
 
-			var n = 0;
+    var n = 0;
 
-			var loadText = 'Loading';
+    var loadText = 'Loading';
 
-			var interval = null;
+    var interval = null;
 
-			function start_load() {
+    function start_load() {
 
-				if(n!=3) {
+        if (n != 3) {
 
-					$('#loading').append('.');
+            $('#loading').append('.');
 
-					n++;
+            n++;
 
-				} else {
+        } else {
 
-					n=0;
+            n = 0;
 
-					$('#loading').html(loadText);				
+            $('#loading').html(loadText);
 
-				}
+        }
 
-			}
+    }
 
-			
 
-			function close_message() {
+    function close_message() {
 
-				setTimeout(function(){ $('.success, .error').addClass('d_none'); }, 3000);
+        setTimeout(function () {
+            $('.success, .error').addClass('d_none');
+        }, 3000);
 
-			}
+    }
 
-			
 
-			function scroll_top(){
+    function scroll_top() {
 
-				$('html, body').animate({scrollTop:0},700);
+        $('html, body').animate({scrollTop: 0}, 700);
 
-			}
+    }
 
-			
 
-			function loading(e='start'){
+    function loading(e = 'start') {
 
-				if (e=='start') {
+        if (e == 'start') {
 
-					$('#submit').addClass('d_none');
+            $('#submit').addClass('d_none');
 
-					$('#loading, #head_load').removeClass('d_none');
+            $('#loading, #head_load').removeClass('d_none');
 
-					interval = setInterval('start_load()',1000);
+            interval = setInterval('start_load()', 1000);
 
-				} else {
+        } else {
 
-					$('#loading').addClass('d_none');
+            $('#loading').addClass('d_none');
 
-					$('#loading').html(loadText);
+            $('#loading').html(loadText);
 
-					$('#submit').removeClass('d_none');
+            $('#submit').removeClass('d_none');
 
-					$('#head_load').addClass('d_none');
+            $('#head_load').addClass('d_none');
 
-					clearInterval(interval); 
+            clearInterval(interval);
 
-				}
+        }
 
-			}
+    }
 
-			
 
-			function progressHandlingFunction(e){
+    function progressHandlingFunction(e) {
 
-				if(e.lengthComputable){
+        if (e.lengthComputable) {
 
-					var percentComplete = e.loaded/e.total*100;
+            var percentComplete = e.loaded / e.total * 100;
 
-					$('#head_load').css('width', percentComplete+'%');
+            $('#head_load').css('width', percentComplete + '%');
 
-				}
+        }
 
-			}
+    }
 
-			
 
-			function beforeSendHandler(e){
+    function beforeSendHandler(e) {
 
-				$('.success, .error').addClass('d_none');
+        $('.success, .error').addClass('d_none');
 
-				loading();
+        loading();
 
-			}
+    }
 
-			
 
-			function completeHandler(e){
+    function completeHandler(e) {
 
-				var error = '';
+        var error = '';
 
-				$('.fe_err').removeClass('fe_err');
+        $('.fe_err').removeClass('fe_err');
 
 
+        if ($.isArray(e.error.elements)) {
 
-				if ($.isArray(e.error.elements)) {
 
+            scroll_top();
 
+            $.each(e.error.elements, function (index) {
 
-					scroll_top();
+                $.each(e.error.elements[index], function (index, value) {
 
-					$.each(e.error.elements, function( index ) {
+                    if (value != '') {
 
-						$.each(e.error.elements[index], function( index, value  ) {
+                        $("input[name='" + index + "']").addClass('fe_err');
 
-							if(value != '') {
+                        $("select[name='" + index + "']").parent('label').children('div').addClass('fe_err');
 
-								$("input[name='" + index + "']").addClass('fe_err');
+                        error += value + ' ';
 
-								$("select[name='" + index + "']").parent('label').children('div').addClass('fe_err');
+                    }
 
-								error += value + ' ';
+                });
 
-							}					
 
-						});
+            });
 
-						
+        } else {
 
-					});
+            scroll_top();
 
-				} else {
+            error = e.error;
 
-					scroll_top();
+        }
 
-					error = e.error;
 
-				}
+        if (e.success == '1') {
 
-				
+            scroll_top();
 
-				
+            $('.error').addClass('d_none');
 
-				
+            $('.success').removeClass('d_none');
 
-				if (e.success == '1') {
+            $('.success').html(e.message);
 
-					scroll_top();
+            var url = "<?=$url?>";
 
-					$('.error').addClass('d_none');
+            $(location).attr('href', url);
 
-					$('.success').removeClass('d_none');
+            loading('stop');
 
-					$('.success').html(e.message);
+            close_message();
 
-					var url = "<?=$url?>";
+        } else {
 
-					$(location).attr('href',url);
+            scroll_top();
 
-					loading('stop');
+            $('.success').addClass('d_none');
 
-					close_message();					
+            $('.error').removeClass('d_none');
 
-				} else {
+            $('.error').html(error);
 
-					scroll_top();
+            loading('stop');
 
-					$('.success').addClass('d_none');
+        }
 
-					$('.error').removeClass('d_none');
+    }
 
-					$('.error').html(error);
 
-					loading('stop');
+    function errorHandler(e) {
 
-				}
+        scroll_top();
 
-			}
+        $('.error').removeClass('d_none');
 
-						
+        $('.error').html(e);
 
-			function errorHandler(e){
+        loading('stop');
 
-				scroll_top();
+    }
 
-				$('.error').removeClass('d_none');
 
-				$('.error').html(e);
+    $(document).ready(function () {
 
-				loading('stop');
 
-			}
+        $('#submit').click(function () {
 
 
+            var url = "<?=base_url() . 'admin/' . $controller . '/' . $this->router->fetch_method() . '_ax'?>";
 
+            var formData = new FormData($('form.<?=$this->router->fetch_method()?>')[0]);
+            // var formData = new $('form').serialize();
 
+            $.ajax({
 
+                url: url,
 
+                type: 'POST',
 
-			
+                dataType: 'json',
 
+                xhr: function () {
 
+                    var myXhr = $.ajaxSettings.xhr();
 
-		
+                    if (myXhr.upload) {
 
-			$(document).ready(function() {
+                        myXhr.upload.addEventListener('progress', progressHandlingFunction, false);
 
-				
+                    }
 
-				$('#submit').click(function() {
+                    return myXhr;
 
+                },
 
+                beforeSend: beforeSendHandler,
 
-				<? if($page == 'add_video' or $page == 'add_video_list' or $page == 'add_news') :?>
+                success: completeHandler,
 
-					var text = CKEDITOR.instances.text.getData();
+                error: errorHandler,
 
+                data: formData,
 
+                cache: false,
 
-					$('.text').text(text);
+                contentType: false,
 
-                <?endif;?>
+                processData: false
 
-					// Call alais
+            });
 
-					alias();
+        });
 
+    });
 
-
-					var url = "<?=base_url().'admin/'.$controller.'/'.$this->uri->segment(3).'_ax'?>";
-
-					var formData = new FormData($('form')[0]);
-
-						
-
-					$.ajax({
-
-						url: url,  
-
-						type: 'POST',
-
-						dataType: 'json',
-
-						xhr: function() {  
-
-							var myXhr = $.ajaxSettings.xhr();
-
-							if(myXhr.upload){
-
-								myXhr.upload.addEventListener('progress', progressHandlingFunction, false); 						
-
-							}
-
-							return myXhr;
-
-						},
-
-							beforeSend: beforeSendHandler,
-
-							success: completeHandler,					
-
-							error: errorHandler,					
-
-							data: formData,
-
-							cache: false,
-
-							contentType: false,
-
-							processData: false
-
-					});	
-
-				});			
-
-			});
-
-	</script>
+</script>
 
 </body>

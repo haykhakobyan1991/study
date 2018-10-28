@@ -3,61 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 //start
 
 
-//index
-$route['admin'] = 'admin/User/index';
-$route['admin/dashboard'] = 'admin/User/dashboard';
 
-
-//user
-$route['admin/sysadmin/user'] = 'admin/Sysadmin/user/';
-$route['admin/sysadmin/add_user'] = 'admin/Sysadmin/add_user/';
-$route['admin/sysadmin/edit_user'] = 'admin/Sysadmin/edit_user/';
-$route['admin/sysadmin/user_details'] = 'admin/Sysadmin/user_details/';
-
-//permission
-$route['admin/sysadmin/permission'] = 'admin/Sysadmin/permission/';
-$route['admin/sysadmin/add_permission'] = 'admin/Sysadmin/add_permission/';
-$route['admin/sysadmin/edit_permission'] = 'admin/Sysadmin/edit_permission/';
-$route['admin/sysadmin/permission_details'] = 'admin/Sysadmin/permission_details/';
-
-//role
-$route['admin/sysadmin/role'] = 'admin/Sysadmin/role/';
-$route['admin/sysadmin/add_role'] = 'admin/Sysadmin/add_role/';
-$route['admin/sysadmin/edit_role'] = 'admin/Sysadmin/edit_role/';
-$route['admin/sysadmin/role_details'] = 'admin/Sysadmin/role_details/';
-
-//video
-$route['admin/sysadmin/video'] = 'admin/Sysadmin/video/';
-$route['admin/sysadmin/video/(:num)'] = 'admin/Sysadmin/video/$1';
-$route['admin/sysadmin/add_video'] = 'admin/Sysadmin/add_video/';
-$route['admin/sysadmin/edit_video'] = 'admin/Sysadmin/edit_video/';
-$route['admin/sysadmin/edit_video/(:num)'] = 'admin/Sysadmin/edit_video/$1';
-$route['admin/sysadmin/video_details'] = 'admin/Sysadmin/video_details/';
-
-//video_list
-$route['admin/sysadmin/video_list'] = 'admin/Sysadmin/video_list/';
-$route['admin/sysadmin/add_video_list'] = 'admin/Sysadmin/add_video_list/';
-$route['admin/sysadmin/edit_video_list'] = 'admin/Sysadmin/edit_video_list/$1';
-$route['admin/sysadmin/video_list_details'] = 'admin/Sysadmin/video_list_details/';
-
-
-//news
-$route['admin/sysadmin/news'] = 'admin/Sysadmin/news/';
-$route['admin/sysadmin/add_news'] = 'admin/Sysadmin/add_news/';
-$route['admin/sysadmin/edit_news'] = 'admin/Sysadmin/edit_news/$1';
-$route['admin/sysadmin/news_details'] = 'admin/Sysadmin/news_details/';
-
-//menu
-$route['admin/sysadmin/edit_menu'] = 'admin/Sysadmin/edit_menu/';
-
-//config
-$route['admin/sysadmin/config'] = 'admin/Sysadmin/config/';
-
-// login
-$route['admin/login'] = 'admin/User/login';
-
-//logout
-$route['admin/logout'] = 'admin/User/logout';
 
 
 // front
@@ -70,9 +16,25 @@ $route['^(en|fr|hy)/partner_university'] = "Main/partner_university/";
 $route['^(en|fr|hy)/courses'] = "Main/courses/";
 $route['^(en|fr|hy)/requirements'] = "Main/requirements/";
 
+//admin
 
-$route['^(en|fr|hy)/video_list/(.+)$'] = "Main/video_list/$1";
-//$route['^(en|ru|hy)/results$']     = "fetch/results$2";
+//index
+$route['^admin$'] = 'admin/User/index/';
+$route['^admin/(en|fr|hy)$'] = 'admin/User/index/';
+
+
+
+//about_us
+$route['^admin/(en|fr|hy)/about_us$'] = 'admin/Sysadmin/about_us/';
+
+
+// login
+$route['admin/login'] = 'admin/User/login';
+
+//logout
+$route['admin/logout'] = 'admin/User/logout';
+
+
 //Second
 $route['^(en|fr|hy)/(.+)$']        = "$2";
 $route['^(en|fr|hy)$'] = $route['default_controller'];

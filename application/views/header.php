@@ -24,7 +24,7 @@
 <header>
     <div class="center" style="text-align: center;">
         <div class="logo pt_15">
-            <a href="<?= base_url() ?>">
+            <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy')) ?>">
                 <img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" title="logo"/>
             </a>
         </div>
@@ -43,7 +43,7 @@
                 <li style="color: #fff;">|</li>
 
                 <li class="social"><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li class="social"><a href="#"><i class="fab fa-google-plus"></i></a></li>
+                <li class="social"><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                 <li class="social"><a href="#"><i class="fab fa-youtube"></i></a></li>
             </ul>
 
