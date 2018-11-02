@@ -1,11 +1,8 @@
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Aboust us</h4>
+                <h4 class="page-title">About us</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -58,9 +55,10 @@
                     <textarea hidden name="why_recruit" id="why_recruit_text" cols="30" rows="10"><?=$why_recruit?></textarea>
                 </form>
             </div>
-            <div class="border-top">
-                <div class="card-body">
-                    <button id="submit" type="button" class="btn btn-primary">Submit</button>
+
+            <div class="border-top col-12">
+                <div class="card-body ">
+                    <button id="submit" type="button" class="btn btn-primary float-right">Submit</button>
                 </div>
             </div>
 
@@ -68,23 +66,9 @@
 
     </div>
 
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
+
     <footer class="footer text-center">
         All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
     </footer>
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
+
 </div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->

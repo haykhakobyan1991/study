@@ -384,6 +384,106 @@ class Sysadmin extends CI_Controller {
 	}
 
 
+    public function partner_university() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('partner_university', $data, 'add');
+
+    }
+
+    public function grade_converter() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('grade_converter', $data, 'add');
+
+    }
+
+
+    public function courses() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('courses', $data, 'add');
+
+    }
+
+    public function requirements() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('requirements', $data, 'add');
+
+    }
+
+    public function testimonials() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('testimonials', $data, 'add');
+
+    }
+
+    public function events() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('events', $data, 'add');
+
+    }
+
+    public function contact() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('contact', $data, 'add');
+
+    }
+
+
 
     /**
      * @return bool

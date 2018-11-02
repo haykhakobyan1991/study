@@ -26,6 +26,13 @@ $route['^admin/(en|fr|hy)$'] = 'admin/User/index/';
 
 //about_us
 $route['^admin/(en|fr|hy)/about_us$'] = 'admin/Sysadmin/about_us/';
+$route['^admin/(en|fr|hy)/partner_university'] = 'admin/Sysadmin/partner_university/';
+$route['^admin/(en|fr|hy)/grade_converter'] = 'admin/Sysadmin/grade_converter/';
+$route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
+$route['^admin/(en|fr|hy)/requirements'] = 'admin/Sysadmin/requirements/';
+$route['^admin/(en|fr|hy)/testimonials'] = 'admin/Sysadmin/testimonials/';
+$route['^admin/(en|fr|hy)/events'] = 'admin/Sysadmin/events/';
+$route['^admin/(en|fr|hy)/contact'] = 'admin/Sysadmin/contact/';
 
 
 // login
