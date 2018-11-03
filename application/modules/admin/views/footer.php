@@ -1,7 +1,3 @@
-<!-- ============================================================== -->
-<!-- All Jquery -->
-<!-- ============================================================== -->
-<script src="<?=base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js')?>"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?=base_url('assets/admin/assets/libs/popper.js/dist/umd/popper.min.js')?>"></script>
 <script src="<?=base_url('assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js')?>"></script>
