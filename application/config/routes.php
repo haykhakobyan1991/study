@@ -33,6 +33,7 @@ $route['^admin/(en|fr|hy)/requirements'] = 'admin/Sysadmin/requirements/';
 $route['^admin/(en|fr|hy)/testimonials'] = 'admin/Sysadmin/testimonials/';
 $route['^admin/(en|fr|hy)/events'] = 'admin/Sysadmin/events/';
 $route['^admin/(en|fr|hy)/contact'] = 'admin/Sysadmin/contact/';
+$route['^admin/(en|fr|hy)/basic_settings'] = 'admin/Sysadmin/basic_settings/';
 
 
 // login

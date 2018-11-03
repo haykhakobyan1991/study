@@ -246,6 +246,15 @@ $account = $query->row_array();
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link <?= ($page == 'index' ? 'active' : '') ?>"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/basic_settings') ?>" aria-expanded="false">
+                            <i class="fas fa-sliders-h"></i>
+                            <span class="hide-menu">Basic Settings</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
                            href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/about_us') ?>" aria-expanded="false">
