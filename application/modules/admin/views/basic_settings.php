@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="col-12">
-                        <img class="radius shadow p-3 bg-info border border-info" style="width: 200px; height: auto"
+                        <img class="radius shadow p-3 bg-gray border" style="width: 200px; height: auto"
                              src="<?= base_url('assets/img/logo.png') ?>" alt="" id="logo_image">
                     </div>
                 </div>

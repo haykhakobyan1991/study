@@ -13,14 +13,16 @@
     <title>Admin template</title>
 
     <!-- Font Awesome  -->
-    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.css')?>" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.css') ?>" crossorigin="anonymous">
+
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/assets/extra-libs/multicheck/multicheck.css')?>">
+    <link rel="stylesheet" type="text/css"
+          href="<?= base_url('assets/admin/assets/extra-libs/multicheck/multicheck.css') ?>">
     <link href="<?= base_url('assets/admin/assets/libs/flot/css/float-chart.css') ?>" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/assets/libs/quill/dist/quill.snow.css') ?>">
     <link href="<?= base_url('assets/admin/dist/css/style.min.css') ?>" rel="stylesheet">
-    <link href="<?= base_url('assets/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>"
+          rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,6 +35,7 @@
         .form-control, .thumbnail {
             border-radius: 2px;
         }
+
         .btn-danger {
             background-color: #B73333;
         }
@@ -41,10 +44,12 @@
         .fake-shadow {
             box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
         }
+
         .fileUpload {
             position: relative;
             overflow: hidden;
         }
+
         .fileUpload #logo-id {
             position: absolute;
             top: 0;
@@ -56,6 +61,7 @@
             opacity: 0;
             filter: alpha(opacity=0);
         }
+
         .img-preview {
             max-width: 100%;
         }
@@ -70,9 +76,15 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+    <style>
+        .bg-gray {
+            background: #82828296 !important;
+        }
+    </style>
+
     <!-- All Jquery -->
     <!-- ============================================================== -->
-    <script src="<?=base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js')?>"></script>
+    <script src="<?= base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js') ?>"></script>
     <!-- Quill -->
     <script src="<?= base_url('assets/admin/assets/libs/quill/dist/quill.min.js') ?>"></script>
 </head>
@@ -83,8 +95,8 @@ $sql = "SELECT
 					CONCAT_WS(' ', `user`.`first_name`, `user`.`last_name`) AS `name`
 				FROM 
 					`user`				
-				WHERE (`username` = '".$this->session->username."' 
-					OR `email` = '".$this->session->username."')
+				WHERE (`username` = '" . $this->session->username . "' 
+					OR `email` = '" . $this->session->username . "')
 				LIMIT 1
 				";
 
@@ -120,7 +132,8 @@ $account = $query->row_array();
                 <!-- ============================================================== -->
                 <!-- Logo -->
                 <!-- ============================================================== -->
-                <a class="navbar-brand" href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')) ?>">
+                <a class="navbar-brand"
+                   href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')) ?>">
                     <!-- Logo icon -->
                     <b class="logo-icon p-l-10">
                         <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
@@ -176,7 +189,8 @@ $account = $query->row_array();
                     <!-- ============================================================== -->
                     <!-- language -->
                     <!-- ============================================================== -->
-                    <li class="nav-item lang <?= (($this->uri->segment(2) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>" data-lang="hy">
+                    <li class="nav-item lang <?= (($this->uri->segment(2) == 'hy' or $this->uri->segment(1) == '') ? 'active' : '') ?>"
+                        data-lang="hy">
                         <a class="nav-link" href="javascript:void(0)">Հայ</a></li>
                     <li class="nav-item lang <?= ($this->uri->segment(2) == 'fr' ? 'active' : '') ?>" data-lang="fr">
                         <a class="nav-link" href="javascript:void(0)">Fra</a>
@@ -208,17 +222,18 @@ $account = $query->row_array();
                     <!-- ============================================================== -->
                     <li class="nav-item dropdown">
                         <span class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
+                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img
                                     src="<?= base_url('assets/admin/assets/images/users/1.jpg') ?>" alt="user"
                                     class="rounded-circle m-3" width="31"></span>
                         <div class="dropdown-menu dropdown-menu-right user-dd animated">
-                            <a  href="javascript:void(0)" class="dropdown-item"> <i class="ti-user m-r-5 m-l-5"></i> <?=$account['name']?>
+                            <a href="javascript:void(0)" class="dropdown-item"> <i
+                                        class="ti-user m-r-5 m-l-5"></i> <?= $account['name'] ?>
                             </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="<?=base_url('admin/logout')?>"><i
+                            <a class="dropdown-item" href="<?= base_url('admin/logout') ?>"><i
                                         class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
                             <div class="dropdown-divider"></div>
-                            <div class="p-l-30 p-10"><a target="_blank" href="<?=base_url()?>"
+                            <div class="p-l-30 p-10"><a target="_blank" href="<?= base_url() ?>"
                                                         class="btn btn-sm btn-success btn-rounded">Web site</a>
                             </div>
                         </div>
@@ -250,7 +265,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item <?= ($page == 'index' ? 'selected' : '') ?>">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link <?= ($page == 'index' ? 'active' : '') ?>"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')) ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')) ?>"
+                           aria-expanded="false">
                             <i class="mdi mdi-view-dashboard"></i>
                             <span class="hide-menu">Dashboard</span>
                         </a>
@@ -258,7 +274,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item ">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link <?= ($page == 'index' ? 'active' : '') ?>"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/basic_settings') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/basic_settings') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-sliders-h"></i>
                             <span class="hide-menu">Basic Settings</span>
                         </a>
@@ -266,7 +283,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/about_us') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/about_us') ?>"
+                           aria-expanded="false">
                             <i class="mdi mdi-face"></i>
                             <span class="hide-menu">About us</span>
                         </a>
@@ -274,7 +292,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/partner_university') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/partner_university') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-university"></i>
                             <span class="hide-menu">Partner University</span>
                         </a>
@@ -282,7 +301,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/grade_converter') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/grade_converter') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-user-graduate "></i>
                             <span class="hide-menu">Grade Converter</span>
                         </a>
@@ -290,7 +310,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/courses') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/courses') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-graduation-cap"></i>
                             <span class="hide-menu">Courses</span>
                         </a>
@@ -298,7 +319,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/requirements') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/requirements') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-clipboard-list"></i>
                             <span class="hide-menu">Requirements</span>
                         </a>
@@ -306,7 +328,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/testimonials') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/testimonials') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-comments"></i>
                             <span class="hide-menu">Testimonials</span>
                         </a>
@@ -314,7 +337,8 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/events') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/events') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-calendar-alt"></i>
                             <span class="hide-menu">Events</span>
                         </a>
@@ -322,13 +346,12 @@ $account = $query->row_array();
 
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
-                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/contact') ?>" aria-expanded="false">
+                           href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/contact') ?>"
+                           aria-expanded="false">
                             <i class="fas fa-phone-square"></i>
                             <span class="hide-menu">Contact</span>
                         </a>
                     </li>
-
-
 
 
                 </ul>
