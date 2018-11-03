@@ -11,11 +11,16 @@
     <!-- Favicon icon -->
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/admin/assets/images/favicon.png') ?>">
     <title>Admin template</title>
+
+    <!-- Font Awesome  -->
+    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.css')?>" crossorigin="anonymous">
+    
     <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/assets/extra-libs/multicheck/multicheck.css')?>">
     <link href="<?= base_url('assets/admin/assets/libs/flot/css/float-chart.css') ?>" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('assets/admin/assets/libs/quill/dist/quill.snow.css') ?>">
     <link href="<?= base_url('assets/admin/dist/css/style.min.css') ?>" rel="stylesheet">
+    <link href="<?= base_url('assets/admin/assets/libs/datatables.net-bs4/css/dataTables.bootstrap4.css') ?>" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -58,9 +63,18 @@
 
     </style>
 
+
+
+
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+
+    <!-- All Jquery -->
+    <!-- ============================================================== -->
+    <script src="<?=base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js')?>"></script>
+    <!-- Quill -->
+    <script src="<?= base_url('assets/admin/assets/libs/quill/dist/quill.min.js') ?>"></script>
 </head>
 
 <?
@@ -241,6 +255,15 @@ $account = $query->row_array();
                             <span class="hide-menu">Dashboard</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link <?= ($page == 'index' ? 'active' : '') ?>"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/basic_settings') ?>" aria-expanded="false">
+                            <i class="fas fa-sliders-h"></i>
+                            <span class="hide-menu">Basic Settings</span>
+                        </a>
+                    </li>
+
                     <li class="sidebar-item">
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
                            href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/about_us') ?>" aria-expanded="false">
@@ -256,6 +279,56 @@ $account = $query->row_array();
                             <span class="hide-menu">Partner University</span>
                         </a>
                     </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/grade_converter') ?>" aria-expanded="false">
+                            <i class="fas fa-user-graduate "></i>
+                            <span class="hide-menu">Grade Converter</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/courses') ?>" aria-expanded="false">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span class="hide-menu">Courses</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/requirements') ?>" aria-expanded="false">
+                            <i class="fas fa-clipboard-list"></i>
+                            <span class="hide-menu">Requirements</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/testimonials') ?>" aria-expanded="false">
+                            <i class="fas fa-comments"></i>
+                            <span class="hide-menu">Testimonials</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/events') ?>" aria-expanded="false">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span class="hide-menu">Events</span>
+                        </a>
+                    </li>
+
+                    <li class="sidebar-item">
+                        <a class="sidebar-link waves-effect waves-dark sidebar-link"
+                           href="<?= base_url('admin/'.($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy').'/contact') ?>" aria-expanded="false">
+                            <i class="fas fa-phone-square"></i>
+                            <span class="hide-menu">Contact</span>
+                        </a>
+                    </li>
+
+
 
 
                 </ul>

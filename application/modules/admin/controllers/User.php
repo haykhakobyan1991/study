@@ -128,50 +128,13 @@ class User extends CI_Controller {
 
 	public function index() {
 
-		$this->authorisation();
+		//$this->authorisation();
 		$this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('session');
-        
-        
-         $sql = '
-    	    SELECT
-                `video`.`title_hy` AS `video`,
-                SEC_TO_TIME(
-                    SUM(
-                        TIME_TO_SEC(`video_viewer`.`time`)
-                    )
-                ) AS `time`
-            FROM
-                `video_viewer`
-            LEFT JOIN `video` ON `video_viewer`.`video_id` = `video`.`id`
-            WHERE
-                DATE_FORMAT(`video_viewer`.`date`, "%Y-%m-%d") <> "0000-00-00" AND `video_viewer`.`status` = "1"
-            GROUP BY
-              `video`.`title_hy`
-            ORDER BY
-                DATE_FORMAT(`video_viewer`.`date`, "%Y-%m-%d")
-        ';
-    
-        $query = $this->db->query($sql);
-        $result = $query->result_array();
         $array = array();
-        $date = '';
-        $total = 0;
-       
         
-   
-        foreach($result AS $key => $row) {
-           
-            $time = explode(':', $row['time']);
-    
-            $total += $minute = round(($time[0] * 60 + $time[1] + $time[2] / 60), 2);
-            
-            $array['video'][] =  array('name' => $row['video'], 'data' => array($minute), 'stack' => 'male');
-          
-        }
-        
-        $array['total'] = $total;
+
   
         $this->layout->view('dashboard', $array);
         
@@ -298,46 +261,7 @@ class User extends CI_Controller {
 	
 		return true;
 	}
-	
-	
-    public function	visitdata() {
-        
-        $sql = '
-                SELECT
-                    COUNT(id) AS `count`,
-                    DATE_FORMAT(`date`, "%Y-%m-%d") AS `date`
-                FROM
-                    video_viewer
-                WHERE
-                    DATE_FORMAT(`date`, "%Y-%m-%d") <> "0000-00-00"
-                    AND `status` = "1"
-                GROUP BY
-                    DATE_FORMAT(`date`, "%Y-%m-%d")
-                ORDER BY
-                    DATE_FORMAT(`date`, "%Y-%m-%d")
-        
-        ';
 
-
-        $query = $this->db->query($sql);
-        $result = $query->result_array();
-        $data = array();
-
-        foreach($result as $val){
-        
-           $data['date'][] = date($val['date']);
-           $data['count'][] = intval($val['count']);
-        }
-        
-        
-        
-        
-
-
-        
-       echo json_encode($data);
-        return true;
-    }
 
 }
 //end of class

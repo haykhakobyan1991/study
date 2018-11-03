@@ -1,11 +1,8 @@
 <div class="page-wrapper">
-    <!-- ============================================================== -->
-    <!-- Bread crumb and right sidebar toggle -->
-    <!-- ============================================================== -->
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Aboust us</h4>
+                <h4 class="page-title">About us</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -58,9 +55,10 @@
                     <textarea hidden name="why_recruit" id="why_recruit_text" cols="30" rows="10"><?=$why_recruit?></textarea>
                 </form>
             </div>
-            <div class="border-top">
-                <div class="card-body">
-                    <button id="submit" type="button" class="btn btn-primary">Submit</button>
+
+            <div class="border-top col-12">
+                <div class="card-body ">
+                    <button id="submit" type="button" class="btn btn-primary float-right">Submit</button>
                 </div>
             </div>
 
@@ -68,23 +66,41 @@
 
     </div>
 
-    <!-- ============================================================== -->
-    <!-- End Container fluid  -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
+
     <footer class="footer text-center">
         All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
     </footer>
-    <!-- ============================================================== -->
-    <!-- End footer -->
-    <!-- ============================================================== -->
+
 </div>
-<!-- ============================================================== -->
-<!-- End Page wrapper  -->
-<!-- ============================================================== -->
-</div>
-<!-- ============================================================== -->
-<!-- End Wrapper -->
-<!-- ============================================================== -->
+
+
+<script>
+    var options = {
+        placeholder: 'Waiting for your precious content',
+        theme: 'snow'
+    };
+
+    var editor = new Quill('#about_us', options);
+
+    editor.on('text-change', function () {
+        var justHtml = editor.root.innerHTML;
+        $('#about_us_text').text(justHtml);
+    });
+
+    var why_apply = new Quill('#why_apply', options);
+
+    why_apply.on('text-change', function () {
+        var why_apply_text = why_apply.root.innerHTML;
+        $('#why_apply_text').text(why_apply_text);
+    });
+
+
+    var why_recruit = new Quill('#why_recruit', options);
+
+    why_recruit.on('text-change', function () {
+        var why_recruit_text = why_recruit.root.innerHTML;
+        $('#why_recruit_text').text(why_recruit_text);
+    });
+
+
+</script>

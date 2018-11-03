@@ -9,12 +9,12 @@
     <title>--todo--</title>
     <link rel="stylesheet" href="<?= base_url('assets/css/reset.css') ?>">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-    <link rel="stylesheet" href="<?= base_url('assets/css/all.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/css/fontawesome.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/fontawesome.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/css/style.css') ?>">
     <script src="<?= base_url('assets/js/jquery-3.3.1.min.js') ?>"></script>
-    <script src="<?= base_url('assets/js/all.min.js') ?>"></script>
-    <script src="<?= base_url('assets/js/fontawesome.min.js') ?>"></script>
+    <script src="<?= base_url('assets/fontawesome/js/all.min.js') ?>"></script>
+    <script src="<?= base_url('assets/fontawesome/js/fontawesome.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
 
 </head>

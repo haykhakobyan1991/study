@@ -247,10 +247,16 @@ class Sysadmin extends CI_Controller {
 					`permission`.`status`
 				FROM 
 					`permission`
-				LEFT JOIN `role_permission` ON `role_permission`.`permission_id` = `permission`.`id`	
-				LEFT JOIN `role` ON `role_permission`.`role_id` = `role`.`id`
-				LEFT JOIN `user` ON `user`.`role_id` = `role`.`id`
-				WHERE `user`.`id` = '".$user_id."' AND `permission`.`status` = '1' AND `controller` = '".$controller."' AND `page` = '".$page."'
+				LEFT JOIN `role_permission` 
+				    ON `role_permission`.`permission_id` = `permission`.`id`	
+				LEFT JOIN `role` 
+				    ON `role_permission`.`role_id` = `role`.`id`
+				LEFT JOIN `user` 
+				    ON `user`.`role_id` = `role`.`id`
+				WHERE `user`.`id` = '".$user_id."' 
+				 AND `permission`.`status` = '1' 
+				 AND `controller` = '".$controller."' 
+				 AND `page` = '".$page."'
 		";
 
         $query = $this->db->query($sql);
@@ -382,6 +388,120 @@ class Sysadmin extends CI_Controller {
 
 
 	}
+
+
+    public function basic_settings() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('basic_settings', $data, 'add');
+
+    }
+
+    public function partner_university() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('partner_university', $data, 'add');
+
+    }
+
+    public function grade_converter() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('grade_converter', $data, 'add');
+
+    }
+
+
+    public function courses() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('courses', $data, 'add');
+
+    }
+
+    public function requirements() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('requirements', $data, 'add');
+
+    }
+
+    public function testimonials() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('testimonials', $data, 'add');
+
+    }
+
+    public function events() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('events', $data, 'add');
+
+    }
+
+    public function contact() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('contact', $data, 'add');
+
+    }
 
 
 

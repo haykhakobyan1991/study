@@ -10,7 +10,6 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 ?>
 
 
-<script src="<?= base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js') ?>"></script>
 <!-- Bootstrap tether Core JavaScript -->
 <script src="<?= base_url('assets/admin/assets/libs/popper.js/dist/umd/popper.min.js') ?>"></script>
 <script src="<?= base_url('assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
@@ -33,38 +32,9 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 <script src="<?= base_url('assets/admin/assets/libs/flot/jquery.flot.crosshair.js') ?>"></script>
 <script src="<?= base_url('assets/admin/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') ?>"></script>
 <script src="<?= base_url('assets/admin/dist/js/pages/chart/chart-page-init.js') ?>"></script>
-<script src="<?= base_url('assets/admin/assets/libs/quill/dist/quill.min.js') ?>"></script>
-
-<script>
-    var options = {
-        placeholder: 'Waiting for your precious content',
-        theme: 'snow'
-    };
-
-    var editor = new Quill('#about_us', options);
-
-    editor.on('text-change', function () {
-        var justHtml = editor.root.innerHTML;
-        $('#about_us_text').text(justHtml);
-    });
-
-    var why_apply = new Quill('#why_apply', options);
-
-    why_apply.on('text-change', function () {
-        var why_apply_text = why_apply.root.innerHTML;
-        $('#why_apply_text').text(why_apply_text);
-    });
 
 
-    var why_recruit = new Quill('#why_recruit', options);
 
-    why_recruit.on('text-change', function () {
-        var why_recruit_text = why_recruit.root.innerHTML;
-        $('#why_recruit_text').text(why_recruit_text);
-    });
-
-
-</script>
 
 <script>
     $(document).on('click', '.langs > li.lang:not(.active)', function () {
