@@ -65,6 +65,12 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="content" style="text-align: center;">
+                    More courses available.
+                </div>
+            </div>
+
         </div>
 
     </div>
