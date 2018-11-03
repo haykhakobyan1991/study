@@ -301,8 +301,29 @@ p.testimonial-data span {
     font-weight: bold;
 }
 
+.single_event {
+    text-align: center;
+    background: #ffffff9e;
+    padding: 50px 50px;
+    margin-bottom: 50px;
+    border-radius: 10px;
+}
 
+.single_event li{
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
 
+.more a,.reg a {
+    color: #fff;
+    background: #333;
+    padding: 8px 10px;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+    font-size: 14px;
+}
 
 
 

@@ -16,6 +16,7 @@ $route['^(en|fr|hy)/partner_university'] = "Main/partner_university/";
 $route['^(en|fr|hy)/courses'] = "Main/courses/";
 $route['^(en|fr|hy)/requirements'] = "Main/requirements/";
 $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
+$route['^(en|fr|hy)/events'] = "Main/events/";
 
 //admin
 

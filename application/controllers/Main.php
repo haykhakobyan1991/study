@@ -236,7 +236,23 @@ class Main extends CI_Controller {
         //view
         $this->layout->view('testimonials', $data, 'deff');
 
+    }
 
+    public function events() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('events', $data, 'deff');
 
     }
 
@@ -256,9 +272,8 @@ class Main extends CI_Controller {
         //view
         $this->layout->view('requirements', $data, 'deff');
 
-
-
     }
+
 
 
     /**
