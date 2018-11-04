@@ -325,6 +325,43 @@ p.testimonial-data span {
     font-size: 14px;
 }
 
+.single_inp {
+    padding: 20px 0;
+    width: 60%;
+    text-align: left;
+    margin: 0 auto;
+}
+
+.single_inp span {
+    font-weight: bold;
+    margin-right: 30px;
+}
+
+.single_inp input,.single_inp select{
+    float: right;
+}
+
+.single_inp input,.single_inp select {
+    border: 1px solid #333333e6;
+    padding: 5px 0 5px 10px;
+    color: #000;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.single_inp select {
+    width: 248px;
+    color: #333333e6;
+}
+
+.single_inp button {
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 5px 20px;
+    border: 1px solid #333;
+    cursor: pointer;
+}
 
 
 

@@ -17,6 +17,9 @@ $route['^(en|fr|hy)/courses'] = "Main/courses/";
 $route['^(en|fr|hy)/requirements'] = "Main/requirements/";
 $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
 $route['^(en|fr|hy)/events'] = "Main/events/";
+$route['^(en|fr|hy)/register'] = "Main/register/";
+$route['^(en|fr|hy)/contact'] = "Main/contact/";
+$route['^(en|fr|hy)/single_university'] = "Main/single_university/";
 
 //admin
 

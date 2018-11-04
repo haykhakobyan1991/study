@@ -256,6 +256,62 @@ class Main extends CI_Controller {
 
     }
 
+    public function register() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('register', $data, 'deff');
+
+    }
+
+
+    public function contact() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('contact', $data, 'deff');
+
+    }
+
+
+    public function single_university() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('single_university', $data, 'deff');
+
+    }
+
     public function requirements() {
 
         // helpers
