@@ -312,6 +312,42 @@ class Main extends CI_Controller {
 
     }
 
+    public function grade_convertor() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('grade_convertor', $data, 'deff');
+
+    }
+
+    public function us_school_diploma_conversion() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('us_school_diploma_conversion', $data, 'deff');
+
+    }
+
     public function requirements() {
 
         // helpers
