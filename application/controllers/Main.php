@@ -184,12 +184,14 @@ class Main extends CI_Controller {
         // helpers
         $this->load->helper('url');
         $this->load->helper('form');
-        // language
-        $lng = $this->lng();
         // data
         $data = array();
+        // language
+        $lng = $this->lng();
+        $data['lng'] = $lng;
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
+
 
 
         //view
@@ -294,17 +296,22 @@ class Main extends CI_Controller {
     }
 
 
-    public function single_university() {
+    public function university() {
 
         // helpers
         $this->load->helper('url');
         $this->load->helper('form');
-        // language
-        $lng = $this->lng();
         // data
         $data = array();
+        // language
+        $lng = $this->lng();
+        $data['lng'] = $lng;
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
+
+        if($this->uri->segment('3') != '') :
+            //todo db
+        endif;
 
 
         //view

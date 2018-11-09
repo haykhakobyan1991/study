@@ -19,9 +19,7 @@ $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
 $route['^(en|fr|hy)/events'] = "Main/events/";
 $route['^(en|fr|hy)/register'] = "Main/register/";
 $route['^(en|fr|hy)/contact'] = "Main/contact/";
-$route['^(en|fr|hy)/single_university'] = "Main/single_university/";
-$route['^(en|fr|hy)/grade_convertor'] = "Main/grade_convertor/";
-$route['^(en|fr|hy)/us_school_diploma_conversion'] = "Main/us_school_diploma_conversion/";
+$route['^(en|fr|hy)/university/(:any)'] = "Main/university/$1";
 
 //admin
 

@@ -57,7 +57,7 @@
             <li <?= ($this->router->fetch_method() == 'about' ? 'class="active"' : '') ?> >
                 <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/about') ?>"><?= lang('AboutUs') ?></a>
             </li>
-            <li <?= ($this->router->fetch_method() == 'partner_university' ? 'class="active"' : '') ?> >
+            <li <?= (in_array($this->router->fetch_method(), array('partner_university', 'university')) ? 'class="active"' : '') ?> >
                 <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy') . '/partner_university') ?>"><?= lang('PartnerUniversity') ?></a>
             </li>
             <li <?= ($this->router->fetch_method() == 'courses' ? 'class="active"' : '') ?> >

@@ -16,11 +16,13 @@
     </div>
 
     <div class="container-fluid">
+        <form class="about_us">
+            <div class="row">
 
-        <div class="row">
-            <div class="col-12">
-                <form class="about_us">
-                    <input type="hidden" name="language" value="<?=($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy')?>">
+                <div class="col-8">
+
+                    <input type="hidden" name="language"
+                           value="<?= ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') ?>">
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">About us</h4>
@@ -30,7 +32,7 @@
                             </div>
                         </div>
                     </div>
-                    <textarea hidden name="about_us" id="about_us_text" cols="30" rows="10"><?=$about?></textarea>
+                    <textarea hidden name="about_us" id="about_us_text" cols="30" rows="10"><?= $about ?></textarea>
 
                     <div class="card">
                         <div class="card-body">
@@ -41,7 +43,8 @@
                             </div>
                         </div>
                     </div>
-                    <textarea hidden name="why_apply" id="why_apply_text" cols="30" rows="10"><?=$why_apply?></textarea>
+                    <textarea hidden name="why_apply" id="why_apply_text" cols="30"
+                              rows="10"><?= $why_apply ?></textarea>
 
                     <div class="card">
                         <div class="card-body">
@@ -52,17 +55,38 @@
                             </div>
                         </div>
                     </div>
-                    <textarea hidden name="why_recruit" id="why_recruit_text" cols="30" rows="10"><?=$why_recruit?></textarea>
-                </form>
-            </div>
+                    <textarea hidden name="why_recruit" id="why_recruit_text" cols="30"
+                              rows="10"><?= $why_recruit ?></textarea>
 
-            <div class="border-top col-12">
-                <div class="card-body ">
-                    <button id="submit" type="button" class="btn btn-primary float-right">Submit</button>
+                </div>
+
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Meta keyword</h4>
+                            <textarea placeholder="Meta keyword" rows="5" class="form-control border radius" name="meta_keyword"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Meta description</h4>
+                            <textarea placeholder="Meta description" rows="5" class="form-control border radius" name="meta_description"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="row">
+                <div class="border-top col-12">
+                    <div class="card-body ">
+                        <button id="submit" type="button" class="btn btn-primary float-right">Submit</button>
+                    </div>
                 </div>
             </div>
+        </form>
 
-        </div>
 
     </div>
 
