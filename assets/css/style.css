@@ -364,5 +364,39 @@ p.testimonial-data span {
 }
 
 
+@media screen and (max-width: 769px) {
+    .home_page_title,.about_us {
+        font-size: 30px;
+    }
+    .left_tst h2{
+        font-size: 24px;
+    }
+    .right_tst p{
+        text-align: left;
+        font-size: 15px;
+    }
+    p.testimonial_text {
+        font-size: 16px;
+        letter-spacing: 0;
+        text-align: left;
+    }
+    .single_inp {
+        padding-top: 0;
+        width: 70%;
+        margin: 0 auto;
+    }
+    .single_inp span {
+        text-align: center;
+        display: block;
+        width: 100%;
+        padding: 12px;
+        padding-top: 20px;
+    }
+    .single_inp input,.single_inp select {
+        width: 100%;
+        display: block;
+    }
+}
+
 
 
