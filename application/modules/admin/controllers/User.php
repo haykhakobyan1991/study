@@ -128,7 +128,7 @@ class User extends CI_Controller {
 
 	public function index() {
 
-		//$this->authorisation();
+		$this->authorisation();
 		$this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('session');

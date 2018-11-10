@@ -11,59 +11,42 @@
 
         <div style="width: 90%;text-align: center;margin: 0 auto;">
             <div class="row">
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
+                <?
+                foreach ($result as $value) :
+                    ?>
+                    <div class="content container_cube" style="text-align: center;">
+                        <a href="<?= base_url($lng . '/university/' . $value['alias']) ?>">
+                            <?= $value['short_name'] ?>
+                        </a>
+                    </div>
+                <?
+                endforeach;
+                ?>
             </div>
 
 
             <div class="row">
                 <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
+                    <a href="--><?= base_url($lng . '/university/brunel_university_london') ?>">Brunel University
+                        London</a>
                 </div>
                 <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
-                </div>
-                <div class="content container_cube" style="text-align: center;">
-                    <a href="<?= base_url($lng.'/university/brunel_university_london') ?>">Brunel University London</a>
+                    <a href="--><?= base_url($lng . '/university/brunel_university_london') ?>">Brunel University
+                        London</a>
                 </div>
             </div>
+
+            <div class="row">
+                <div class="content container_cube" style="text-align: center;">
+                    <a href="--><?= base_url($lng . '/university/brunel_university_london') ?>">Brunel University
+                        London</a>
+                </div>
+                <div class="content container_cube" style="text-align: center;">
+                    <a href="--><?= base_url($lng . '/university/brunel_university_london') ?>">Brunel University
+                        London</a>
+                </div>
+            </div>
+
 
         </div>
 

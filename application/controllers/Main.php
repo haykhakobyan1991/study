@@ -193,12 +193,20 @@ class Main extends CI_Controller {
         $data['meta_tags'] = $this->meta_tags();
 
 
+        $sql = "
+            SELECT 
+                `short_name_".$lng."` AS `short_name`, 
+                `alias_".$lng."` AS `alias`  
+              FROM 
+                `partner_university` 
+            WHERE `status` = '1'
+        ";
+
+        $query = $this->db->query($sql);
+        $data['result'] = $query->result_array();
 
         //view
         $this->layout->view('partner_university', $data, 'deff');
-
-
-
     }
 
 
@@ -309,9 +317,44 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
-        if($this->uri->segment('3') != '') :
-            //todo db
-        endif;
+        $alias = $this->uri->segment(3);
+
+        $sql = "
+            SELECT
+              `id`,
+              `short_name_".$lng."` AS `short_name`,
+              `name_".$lng."` AS `name`,
+              `alias_".$lng."` AS `alias`,
+              `overview_".$lng."` AS `overview`,
+              `background_image`,
+              `subject1_".$lng."` AS `subject1`,
+              `subject2_".$lng."` AS `subject2`,
+              `subject3_".$lng."` AS `subject3`,
+              `requirement1_".$lng."` AS `requirement1`,
+              `requirement2_".$lng."` AS `requirement2`,
+              `requirement3_".$lng."` AS `requirement3`,
+              `grade_converter_id` AS `grade_converter`,
+              `meta_keyword_".$lng."` AS `meta_keyword`,
+              `meta_description_".$lng."` AS `meta_description`,
+              `status`
+            FROM 
+              `partner_university`
+            WHERE `status` = '1'
+             AND `alias_".$lng."` = '".$alias."'
+            LIMIT 1 
+        ";
+
+        $query = $this->db->query($sql);
+        $num_rows = $query->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $data['result'] = $query->row_array();
+
 
 
         //view

@@ -17,45 +17,71 @@
     </div>
 
     <div class="container-fluid">
-        <div class="row">
-            <form class="basic_settings col-12">
-                <div class="col-12">
+        <form class="basic_settings">
+            <div class="row">
+                <div class="col-8">
+                    <input type="hidden" name="language"
+                           value="<?= ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') ?>">
                     <div class="col-12">
-                        <div class="form-group row">
-                            <label class="col-md-12">Change your logo</label>
-                            <div class="custom-file">
-                                <input name="logo" type="file" class="custom-file-input" id="logo">
-                                <label class="custom-file-label" for="logo">Choose file...</label>
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <label class="col-md-12">Change your logo</label>
+                                <div class="custom-file">
+                                    <input name="logo" type="file" class="custom-file-input" id="logo">
+                                    <label class="custom-file-label" for="logo">Choose file...</label>
+                                </div>
                             </div>
+                        </div>
+
+                        <div class="col-12">
+                            <img class="radius shadow p-3 bg-gray border" style="width: 200px; height: auto"
+                                 src="<?= ($logo != '' ? base_url('application/uploads/basic_info/' . $logo) : base_url('assets/img/logo.png')) ?>"
+                                 alt="" id="logo_image">
                         </div>
                     </div>
 
+                    <hr class="h4">
+
                     <div class="col-12">
-                        <img class="radius shadow p-3 bg-gray border" style="width: 200px; height: auto"
-                             src="<?= base_url('assets/img/logo.png') ?>" alt="" id="logo_image">
+                        <div class="col-12">
+                            <div class="form-group row">
+                                <label class="col-md-12">Change background image</label>
+                                <div class="custom-file">
+                                    <input name="background_image" type="file" class="custom-file-input"
+                                           id="background">
+                                    <label class="custom-file-label" for="background">Choose file...</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12">
+                            <img class="radius shadow p-4 " style="width: 70%;height: auto"
+                                 src="<?= ($background_image != '' ? base_url('application/uploads/basic_info/' . $background_image) : base_url('assets/img/background.jpg')) ?>"
+                                 alt="" id="background_image">
+                        </div>
                     </div>
                 </div>
 
-                <hr class="h4">
-
-                <div class="col-12">
-                    <div class="col-12">
-                        <div class="form-group row">
-                            <label class="col-md-12">Change background image</label>
-                            <div class="custom-file">
-                                <input name="background_image" type="file" class="custom-file-input" id="background">
-                                <label class="custom-file-label" for="background">Choose file...</label>
-                            </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Meta keyword</h4>
+                            <textarea placeholder="Meta keyword" rows="5" class="form-control border radius"
+                                      name="meta_keyword"><?= $meta_keyword ?></textarea>
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        <img class="radius shadow p-4 " style="width: 70%;height: auto"
-                             src="<?= base_url('assets/img/background.jpg') ?>" alt="" id="background_image">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="card-title">Meta description</h4>
+                            <textarea placeholder="Meta description" rows="5" class="form-control border radius"
+                                      name="meta_description"><?= $meta_description ?></textarea>
+                        </div>
                     </div>
                 </div>
-            </form>
-        </div>
+
+            </div>
+        </form>
     </div>
 
     <div class="border-top col-12">

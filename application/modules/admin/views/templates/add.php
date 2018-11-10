@@ -7,6 +7,10 @@ $page = $this->router->fetch_method();
 //$url=base_url().'admin/'.$controller.'/'.substr($this->uri->segment(3), 4);
 $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . $page;
 
+if ($page = 'add_partner_university') {
+    $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . 'partner_university';
+}
+
 ?>
 
 
@@ -34,8 +38,6 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 <script src="<?= base_url('assets/admin/dist/js/pages/chart/chart-page-init.js') ?>"></script>
 
 
-
-
 <script>
     $(document).on('click', '.langs > li.lang:not(.active)', function () {
         var lang = $(this).data('lang');
@@ -51,6 +53,190 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
             }
         });
     });
+
+
+    function alias() {
+
+        var alias = $('input[name="alias"]');
+
+        var title = $('input[name="title"]').val();
+
+        var name = $('input[name="name"]').val();
+
+
+        if (title !== undefined) {
+            $(alias).val(convert(title));
+        } else if (name !== undefined) {
+            $(alias).val(convert(name));
+        }
+
+    }
+
+    function convert(unsafe) {
+
+        var unsafe = unsafe.toLowerCase();
+
+        return unsafe
+
+        // Rus
+
+            .replace(/а/g, "a")
+
+            .replace(/б/g, "b")
+
+            .replace(/в/g, "v")
+
+            .replace(/г/g, "g")
+
+            .replace(/д/g, "d")
+
+            .replace(/е/g, "e")
+
+            .replace(/ё/g, "yo")
+
+            .replace(/ж/g, "zh")
+
+            .replace(/з/g, "z")
+
+            .replace(/и/g, "i")
+
+            .replace(/й/g, "i")
+
+            .replace(/к/g, "k")
+
+            .replace(/л/g, "l")
+
+            .replace(/м/g, "m")
+
+            .replace(/н/g, "n")
+
+            .replace(/о/g, "o")
+
+            .replace(/п/g, "p")
+
+            .replace(/р/g, "r")
+
+            .replace(/с/g, "s")
+
+            .replace(/т/g, "t")
+
+            .replace(/у/g, "u")
+
+            .replace(/ф/g, "f")
+
+            .replace(/х/g, "kh")
+
+            .replace(/ц/g, "tc")
+
+            .replace(/ч/g, "ch")
+
+            .replace(/ш/g, "sh")
+
+            .replace(/щ/g, "shch")
+
+            .replace(/ы/g, "y")
+
+            .replace(/э/g, "e")
+
+            .replace(/ю/g, "yu")
+
+            .replace(/я/g, "ya")
+
+            // Hy
+
+            .replace(/ա/g, "a")
+
+            .replace(/բ/g, "b")
+
+            .replace(/գ/g, "g")
+
+            .replace(/դ/g, "d")
+
+            .replace(/ե/g, "e")
+
+            .replace(/զ/g, "z")
+
+            .replace(/է/g, "e")
+
+            .replace(/ը/g, "y")
+
+            .replace(/թ/g, "t")
+
+            .replace(/ժ/g, "zh")
+
+            .replace(/ի/g, "i")
+
+            .replace(/լ/g, "l")
+
+            .replace(/խ/g, "kh")
+
+            .replace(/ծ/g, "ts")
+
+            .replace(/կ/g, "k")
+
+            .replace(/հ/g, "h")
+
+            .replace(/ձ/g, "dz")
+
+            .replace(/ղ/g, "gh")
+
+            .replace(/ճ/g, "ch")
+
+            .replace(/մ/g, "m")
+
+            .replace(/յ/g, "y")
+
+            .replace(/ն/g, "n")
+
+            .replace(/շ/g, "sh")
+
+            .replace(/չ/g, "ch")
+
+            .replace(/պ/g, "p")
+
+            .replace(/ջ/g, "j")
+
+            .replace(/ռ/g, "r")
+
+            .replace(/ս/g, "s")
+
+            .replace(/վ/g, "v")
+
+            .replace(/տ/g, "t")
+
+            .replace(/ր/g, "r")
+
+            .replace(/ց/g, "c")
+
+            .replace(/ու/g, "u")
+
+            .replace(/ո/g, "vo")
+
+            .replace(/փ/g, "p")
+
+            .replace(/ք/g, "q")
+
+            .replace(/և/g, "ev")
+
+            .replace(/օ/g, "o")
+
+            .replace(/ֆ/g, "f")
+
+            //Glob
+
+            .replace(/\s\s+/g, ' ')
+
+            .replace(/ /g, "_")
+
+            .replace(/[^\w.-]+/g, "_")
+
+            .replace(/[^a-z0-9_-]+/g, '')
+
+            .replace(/_+/g, "_")
+
+
+    }
+
 </script>
 
 
@@ -84,7 +270,7 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
     function close_message() {
 
         setTimeout(function () {
-            $('.success, .error').addClass('d_none');
+            $('.alert-success, .alert-danger, .alert-info').addClass('d-none');
         }, 3000);
 
     }
@@ -101,23 +287,42 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
         if (e == 'start') {
 
-            $('#submit').addClass('d_none');
-
-            $('#loading, #head_load').removeClass('d_none');
-
-            interval = setInterval('start_load()', 1000);
+            $('.alert-info').removeClass('d-none');
+            $('.alert-info').html('<div style="\n' +
+                '    text-align: center;\n' +
+                '" class="loader loader--style6" title="Loading...">\n' +
+                '  <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"\n' +
+                '     width="24px" height="30px" viewBox="0 0 24 30" style="enable-background:new 0 0 50 50;" xml:space="preserve">\n' +
+                '    <rect x="0" y="13" width="4" height="5" fill="#333">\n' +
+                '      <animate attributeName="height" attributeType="XML"\n' +
+                '        values="5;21;5" \n' +
+                '        begin="0s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '      <animate attributeName="y" attributeType="XML"\n' +
+                '        values="13; 5; 13"\n' +
+                '        begin="0s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '    </rect>\n' +
+                '    <rect x="10" y="13" width="4" height="5" fill="#333">\n' +
+                '      <animate attributeName="height" attributeType="XML"\n' +
+                '        values="5;21;5" \n' +
+                '        begin="0.15s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '      <animate attributeName="y" attributeType="XML"\n' +
+                '        values="13; 5; 13"\n' +
+                '        begin="0.15s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '    </rect>\n' +
+                '    <rect x="20" y="13" width="4" height="5" fill="#333">\n' +
+                '      <animate attributeName="height" attributeType="XML"\n' +
+                '        values="5;21;5" \n' +
+                '        begin="0.3s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '      <animate attributeName="y" attributeType="XML"\n' +
+                '        values="13; 5; 13"\n' +
+                '        begin="0.3s" dur="0.6s" repeatCount="indefinite" />\n' +
+                '    </rect>\n' +
+                '  </svg>\n' +
+                '</div>');
 
         } else {
 
-            $('#loading').addClass('d_none');
-
-            $('#loading').html(loadText);
-
-            $('#submit').removeClass('d_none');
-
-            $('#head_load').addClass('d_none');
-
-            clearInterval(interval);
+            $('.alert-info').addClass('d-none');
 
         }
 
@@ -126,20 +331,12 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
     function progressHandlingFunction(e) {
 
-        if (e.lengthComputable) {
-
-            var percentComplete = e.loaded / e.total * 100;
-
-            $('#head_load').css('width', percentComplete + '%');
-
-        }
-
     }
 
 
     function beforeSendHandler(e) {
 
-        $('.success, .error').addClass('d_none');
+        $('.alert-success, .alert-danger, .alert-info').addClass('d-none');
 
         loading();
 
@@ -150,7 +347,10 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
         var error = '';
 
-        $('.fe_err').removeClass('fe_err');
+        $('input').removeClass('border border-danger');
+        $('input').parent('div').children('label').removeClass('border border-danger');
+        $('div').removeClass('border border-danger');
+        $('select').parent('div').children('span').removeClass('border border-danger');
 
 
         if ($.isArray(e.error.elements)) {
@@ -164,9 +364,11 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
                     if (value != '') {
 
-                        $("input[name='" + index + "']").addClass('fe_err');
+                        $("input[name='" + index + "']").addClass('border border-danger');
+                        $("input[name='" + index + "']").parent('div').children('label').addClass('border border-danger');
+                        $('div#' + index).addClass('border border-danger');
 
-                        $("select[name='" + index + "']").parent('label').children('div').addClass('fe_err');
+                        $("select[name='" + index + "']").parent('div').children('span').addClass('border border-danger');
 
                         error += value + ' ';
 
@@ -190,11 +392,12 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
             scroll_top();
 
-            $('.error').addClass('d_none');
+            $('.alert-danger').addClass('d-none');
+            $('.alert-info').addClass('d-none');
 
-            $('.success').removeClass('d_none');
+            $('.alert-success').removeClass('d-none');
 
-            $('.success').html(e.message);
+            $('.alert-success').html(e.message);
 
             var url = "<?=$url?>";
 
@@ -208,11 +411,11 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
             scroll_top();
 
-            $('.success').addClass('d_none');
+            $('.alert-success').addClass('d-none');
 
-            $('.error').removeClass('d_none');
+            $('.alert-danger').removeClass('d-none');
 
-            $('.error').html(error);
+            $('.alert-danger').html(error);
 
             loading('stop');
 
@@ -225,9 +428,9 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
         scroll_top();
 
-        $('.error').removeClass('d_none');
+        $('.alert-danger').removeClass('d-none');
 
-        $('.error').html(e);
+        $('.alert-danger').html(e);
 
         loading('stop');
 
@@ -239,6 +442,7 @@ $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segme
 
         $('#submit').click(function () {
 
+            alias();
 
             var url = "<?=base_url() . 'admin/' . $controller . '/' . $this->router->fetch_method() . '_ax'?>";
 

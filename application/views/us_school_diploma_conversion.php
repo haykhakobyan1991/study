@@ -1,6 +1,6 @@
 <div class="container">
     <div class="center" style="overflow: hidden;">
-        <h2 class="about_us">Grade Convertor</h2>
+        <h2 class="about_us">Grade Converter</h2>
     </div>
 
     <div class="content">

@@ -25,6 +25,7 @@ $route['^(en|fr|hy)/abitur'] = "Main/abitur/";
 $route['^(en|fr|hy)/business_management'] = "Main/business_management/";
 $route['^(en|fr|hy)/visa_information'] = "Main/visa_information/";
 $route['^(en|fr|hy)/university/(:any)'] = "Main/university/$1";
+$route['^(en|fr|hy)/grade_converter'] = "Main/grade_convertor/";
 
 //admin
 
@@ -34,10 +35,14 @@ $route['^admin/(en|fr|hy)$'] = 'admin/User/index/';
 
 
 
-//about_us
+
 $route['^admin/(en|fr|hy)/about_us$'] = 'admin/Sysadmin/about_us/';
+
+$route['^admin/(en|fr|hy)/add_partner_university'] = 'admin/Sysadmin/add_partner_university/';
 $route['^admin/(en|fr|hy)/partner_university'] = 'admin/Sysadmin/partner_university/';
+
 $route['^admin/(en|fr|hy)/grade_converter'] = 'admin/Sysadmin/grade_converter/';
+
 $route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
 $route['^admin/(en|fr|hy)/requirements'] = 'admin/Sysadmin/requirements/';
 $route['^admin/(en|fr|hy)/testimonials'] = 'admin/Sysadmin/testimonials/';

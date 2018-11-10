@@ -17,6 +17,17 @@
     <script src="<?= base_url('assets/fontawesome/js/fontawesome.min.js') ?>"></script>
     <script src="<?= base_url('assets/js/main.js') ?>"></script>
 
+    <?
+    $sql = "SELECT * FROM `basic_settings` WHERE `id` = 1";
+    $result = $this->db->query($sql);
+    $row = $result->row_array();
+
+    ?>
+    <style>
+        .container {
+            background-image: url(<?=($row['background_image'] != '' ? base_url('application/uploads/basic_info/'.$row['background_image']) :  base_url('assets/img/background.jpg') )?>);
+        }
+    </style>
 </head>
 
 <body>
@@ -25,7 +36,7 @@
     <div class="center" style="text-align: center;">
         <div class="logo pt_15">
             <a href="<?= base_url(($this->uri->segment(1) != '' ? $this->uri->segment(1) : 'hy')) ?>">
-                <img src="<?= base_url('assets/img/logo.png') ?>" alt="logo" title="logo"/>
+                <img src="<?=($row['logo'] != '' ? base_url('application/uploads/basic_info/'.$row['logo']) : base_url('assets/img/logo.png'))?>" alt="logo" title="logo"/>
             </a>
         </div>
 

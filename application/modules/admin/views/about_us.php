@@ -64,14 +64,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Meta keyword</h4>
-                            <textarea placeholder="Meta keyword" rows="5" class="form-control border radius" name="meta_keyword"></textarea>
+                            <textarea placeholder="Meta keyword" rows="5" class="form-control border radius" name="meta_keyword"><?=$meta_keyword?></textarea>
                         </div>
                     </div>
 
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Meta description</h4>
-                            <textarea placeholder="Meta description" rows="5" class="form-control border radius" name="meta_description"></textarea>
+                            <textarea placeholder="Meta description" rows="5" class="form-control border radius" name="meta_description"><?=$meta_description?></textarea>
                         </div>
                     </div>
                 </div>

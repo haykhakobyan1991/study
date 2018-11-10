@@ -282,7 +282,7 @@ class Sysadmin extends CI_Controller {
 
 	public function about_us() {
 
-	//	$this->authorisation();
+		$this->authorisation();
         $this->load->helper('url');
         $this->load->helper('form');
         $lang = $this->uri->segment(2);
@@ -292,7 +292,9 @@ class Sysadmin extends CI_Controller {
             SELECT
                 `about_".$lang."` AS `about`,
                 `why_apply_".$lang."` AS `why_apply`,
-                `why_recruit_".$lang."` AS `why_recruit`
+                `why_recruit_".$lang."` AS `why_recruit`,
+                `meta_keyword_".$lang."`  AS `meta_keyword`,
+                `meta_description_".$lang."`  AS `meta_description`
             FROM
                `about_us`
             WHERE `status` = '1'
@@ -306,6 +308,8 @@ class Sysadmin extends CI_Controller {
         $data['about'] = $row['about'];
         $data['why_apply'] = $row['why_apply'];
         $data['why_recruit'] = $row['why_recruit'];
+        $data['meta_keyword'] = $row['meta_keyword'];
+        $data['meta_description'] = $row['meta_description'];
 
 
 
@@ -353,6 +357,8 @@ class Sysadmin extends CI_Controller {
         $about_us = $this->input->post('about_us');
         $why_apply = $this->input->post('why_apply');
         $why_recruit = $this->input->post('why_recruit');
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
 
 
         if($n == 1) {
@@ -365,7 +371,9 @@ class Sysadmin extends CI_Controller {
 					SET 
 					 `about_".$lang."` = ".$this->db_value($about_us).",
 					 `why_apply_".$lang."` = ".$this->db_value($why_apply).",
-					 `why_recruit_".$lang."` = ".$this->db_value($why_recruit)."
+					 `why_recruit_".$lang."` = ".$this->db_value($why_recruit).",
+					 `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+					 `meta_description_".$lang."` = ".$this->db_value($meta_description)."
 				WHERE `id` = ".$this->db_value($id)."";
 
 
@@ -392,6 +400,131 @@ class Sysadmin extends CI_Controller {
 
     public function basic_settings() {
 
+        $this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+        $sql = "SELECT * FROM `basic_settings` WHERE `id` = 1";
+        $result = $this->db->query($sql);
+        $row = $result->row_array();
+
+        $data['logo'] = $row['logo'];
+        $data['background_image'] = $row['background_image'];
+        $data['meta_keyword'] = $row['meta_keyword_'.$lang];
+        $data['meta_description'] = $row['meta_description_'.$lang];
+
+        $this->layout->view('basic_settings', $data, 'add');
+
+    }
+
+    public function basic_settings_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error']['elements'][] = 'error_message';
+            echo json_encode($messages);
+            return false;
+        }
+
+
+
+        $id = '1';
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+        $background_image = '';
+        $logo = '';
+        $lang = $this->input->post('language');
+        $config = $this->upload_config();
+        $config['upload_path'] = set_realpath('application/uploads/basic_info');
+
+        if(isset($_FILES['logo']['name']) AND $_FILES['logo']['name'] != '') {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('logo')) {
+                $validation_errors = array('logo' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $logo_img = $logo_arr['file_name'];
+
+            $logo = "`logo` = ".$this->db_value($logo_img).",";
+
+        }
+
+
+        if(isset($_FILES['background_image']['name']) AND $_FILES['background_image']['name'] != '') {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('background_image')) {
+                $validation_errors = array('background_image' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $background_img = $logo_arr['file_name'];
+
+            $background_image = "`background_image` = ".$this->db_value($background_img).",";
+
+        }
+
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+        $sql = "UPDATE `basic_settings`
+					SET 
+					 ".$background_image."
+					 ".$logo."
+					 `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+					 `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+					 `status` = '1'
+				WHERE `id` = ".$this->db_value($id)."";
+
+
+        $result = $this->db->query($sql);
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
+
+
+
+    }
+
+    public function add_partner_university() {
+
         //	$this->authorisation();
         $this->load->helper('url');
         $this->load->helper('form');
@@ -400,9 +533,150 @@ class Sysadmin extends CI_Controller {
 
 
 
-        $this->layout->view('basic_settings', $data, 'add');
+        $this->layout->view('add_partner_university', $data, 'add');
 
     }
+
+    public function add_partner_university_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('short_name', 'Short name', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('overview', 'Overview', 'required');
+        $this->form_validation->set_rules('grade_converter', 'Grade Converter', 'required');
+
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'short_name' => form_error('short_name'),
+                'name' => form_error('name'),
+                'overview' => form_error('overview'),
+                'grade_converter' => form_error('grade_converter'),
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $background_image = '';
+
+        $lang = $this->input->post('language');
+        $short_name = $this->input->post('short_name');
+        $name = $this->input->post('name');
+        $alias = $this->input->post('alias');
+        $grade_converter = $this->input->post('grade_converter');
+        $overview = $this->input->post('overview');
+
+        $subject1 = $this->input->post('subject1');
+        $subject2 = $this->input->post('subject2');
+        $subject3 = $this->input->post('subject3');
+
+        $requirement1 = $this->input->post('requirement1');
+        $requirement2 = $this->input->post('requirement2');
+        $requirement3 = $this->input->post('requirement3');
+
+        $why_recruit = $this->input->post('why_recruit');
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+        $config = $this->upload_config();
+        $config['upload_path'] = set_realpath('application/uploads/universities');
+
+        if(isset($_FILES['background_image']['name']) AND $_FILES['background_image']['name'] != '' AND $n != 1) {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('background_image')) {
+                $validation_errors = array('background_image' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $background_img = $logo_arr['file_name'];
+
+            $background_image = "`background_image` = ".$this->db_value($background_img).",";
+
+        } else {
+            $n = 1;
+            $validation_errors = array('background_image' => 'Background image: This field is required.');
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+        $sql = "INSERT INTO `partner_university`
+                    SET 
+                      `short_name_".$lang."` = ".$this->db_value($short_name).",
+                      `name_".$lang."` = ".$this->db_value($name).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      `overview_".$lang."` = ".$this->db_value($overview).",
+                      ".$background_image."
+                      `subject1_".$lang."` = ".$this->db_value($subject1).",
+                      `subject2_".$lang."` = ".$this->db_value($subject2).",
+                      `subject3_".$lang."` = ".$this->db_value($subject3).",
+                      `requirement1_".$lang."` = ".$this->db_value($requirement1).",
+                      `requirement2_".$lang."` = ".$this->db_value($requirement2).",
+                      `requirement3_".$lang."` = ".$this->db_value($requirement3).",
+                      `grade_converter_id` = ".$this->db_value($grade_converter).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                ";
+
+
+        $result = $this->db->query($sql);
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
+
+
+
+    }
+
+
+
 
     public function partner_university() {
 
@@ -412,9 +686,24 @@ class Sysadmin extends CI_Controller {
         $lang = $this->uri->segment(2);
         $data = array();
 
+        $sql = "
+            SELECT
+                `id`,
+                `short_name_".$lang."` AS `short_name`,
+                `name_".$lang."` AS `name`,
+                `grade_converter_id` AS `grade_converter`,
+                `status`
+             FROM
+                `partner_university`
+             WHERE 1      
+        ";
+
+        $query = $this->db->query($sql);
+
+        $data['result'] = $query->result_array();
 
 
-        $this->layout->view('partner_university', $data, 'add');
+        $this->layout->view('partner_university', $data);
 
     }
 
@@ -428,7 +717,7 @@ class Sysadmin extends CI_Controller {
 
 
 
-        $this->layout->view('grade_converter', $data, 'add');
+        $this->layout->view('grade_converter', $data);
 
     }
 
