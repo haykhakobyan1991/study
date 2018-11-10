@@ -19,6 +19,11 @@ $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
 $route['^(en|fr|hy)/events'] = "Main/events/";
 $route['^(en|fr|hy)/register'] = "Main/register/";
 $route['^(en|fr|hy)/contact'] = "Main/contact/";
+$route['^(en|fr|hy)/grade_convertor'] = "Main/grade_convertor/";
+$route['^(en|fr|hy)/us_school_diploma_conversion'] = "Main/us_school_diploma_conversion/";
+$route['^(en|fr|hy)/abitur'] = "Main/abitur/";
+$route['^(en|fr|hy)/business_management'] = "Main/business_management/";
+$route['^(en|fr|hy)/visa_information'] = "Main/visa_information/";
 $route['^(en|fr|hy)/university/(:any)'] = "Main/university/$1";
 
 //admin

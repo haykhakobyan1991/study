@@ -355,6 +355,60 @@ class Main extends CI_Controller {
 
     }
 
+    public function abitur() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('abitur', $data, 'deff');
+
+    }
+
+    public function business_management() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('business_management', $data, 'deff');
+
+    }
+
+    public function visa_information() {
+
+        // helpers
+        $this->load->helper('url');
+        $this->load->helper('form');
+        // language
+        $lng = $this->lng();
+        // data
+        $data = array();
+        // get meta tags
+        $data['meta_tags'] = $this->meta_tags();
+
+
+        //view
+        $this->layout->view('visa_information', $data, 'deff');
+
+    }
+
     public function requirements() {
 
         // helpers
