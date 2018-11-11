@@ -39,8 +39,10 @@ $route['^admin/(en|fr|hy)$'] = 'admin/User/index/';
 $route['^admin/(en|fr|hy)/about_us$'] = 'admin/Sysadmin/about_us/';
 
 $route['^admin/(en|fr|hy)/add_partner_university'] = 'admin/Sysadmin/add_partner_university/';
+$route['^admin/(en|fr|hy)/edit_partner_university/(:num)'] = 'admin/Sysadmin/edit_partner_university/$1';
 $route['^admin/(en|fr|hy)/partner_university'] = 'admin/Sysadmin/partner_university/';
 
+$route['^admin/(en|fr|hy)/add_grade_converter'] = 'admin/Sysadmin/add_grade_converter/';
 $route['^admin/(en|fr|hy)/grade_converter'] = 'admin/Sysadmin/grade_converter/';
 
 $route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';

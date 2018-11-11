@@ -3,7 +3,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Add partner university</h4>
+                <h4 class="page-title">Edit partner university</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -23,13 +23,15 @@
 
         <div class="row">
             <div class="col-12">
-                <form class="add_partner_university">
+                <form class="edit_partner_university">
                     <div class="row">
 
                         <div class="col-8">
 
                             <input type="hidden" name="language"
                                    value="<?= ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') ?>">
+                            <input type="hidden" name="partner_university_id"
+                                   value="<?= $result['id'] ?>">
                             <div class="card">
                                 <div class="card-body">
                                     <div class="form-group row">
@@ -39,6 +41,7 @@
                                             <input type="text" class="form-control"
                                                    id="short_name"
                                                    name="short_name"
+                                                   value="<?= $result['short_name'] ?>"
                                                    placeholder="Short name">
                                         </div>
                                     </div>
@@ -50,6 +53,7 @@
                                             <input type="text" class="form-control"
                                                    id="name"
                                                    name="name"
+                                                   value="<?= $result['name'] ?>"
                                                    placeholder="Name">
                                             <input type="hidden" name="alias">
                                         </div>
@@ -61,13 +65,11 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Overview</h4>
                                     <!-- Create the editor container -->
-                                    <div id="overview" style="height: 300px;">
-                                      <?//=$about?>
-                                    </div>
+                                    <div id="overview" style="height: 300px;"><?= $result['overview'] ?></div>
                                 </div>
                             </div>
                             <textarea hidden name="overview" id="overview_text" cols="30"
-                                      rows="10"></textarea>
+                                      rows="10"><?= $result['overview'] ?></textarea>
 
                             <div class="card">
                                 <div class="card-body">
@@ -86,7 +88,7 @@
 
                                         <div class="col-12">
                                             <img class="radius shadow p-4 " style="width: 70%;height: auto"
-                                                 src="<?= ( /* $background_image != '' ? base_url('application/uploads/basic_info/' . $background_image) : */
+                                                 src="<?= (  $result['background_image'] != '' ? base_url('application/uploads/universities/' . $result['background_image']) :
                                                  base_url('assets/img/background.jpg')) ?>"
                                                  alt="" id="background_image">
                                         </div>
@@ -102,16 +104,19 @@
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="subject1"
+                                                       value="<?= $result['subject1'] ?>"
                                                        placeholder="Subject 1">
                                             </div>
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="subject2"
+                                                       value="<?= $result['subject2'] ?>"
                                                        placeholder="Subject 2">
                                             </div>
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="subject3"
+                                                       value="<?= $result['subject3'] ?>"
                                                        placeholder="Subject 3">
                                             </div>
                                         </div>
@@ -121,16 +126,19 @@
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="requirement1"
+                                                       value="<?= $result['requirement1'] ?>"
                                                        placeholder="Requirement 1">
                                             </div>
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="requirement2"
+                                                       value="<?= $result['requirement2'] ?>"
                                                        placeholder="Requirement 2">
                                             </div>
                                             <div class="form-group row">
                                                 <input type="text" class="form-control"
                                                        name="requirement3"
+                                                       value="<?= $result['requirement3'] ?>"
                                                        placeholder="Requirement 3">
                                             </div>
                                         </div>
@@ -160,6 +168,7 @@
                                             <div class="custom-control custom-checkbox mr-sm-2">
                                                 <input name="status"
                                                        type="checkbox"
+                                                       <?= $result['status'] == -1 ? 'checked' : ''?>
                                                        class="custom-control-input"
                                                        id="customControlAutosizing3"
                                                        value="-1"
@@ -179,7 +188,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Meta keyword</h4>
                                     <textarea placeholder="Meta keyword" rows="6" class="form-control border radius"
-                                              name="meta_keyword"></textarea>
+                                              name="meta_keyword"><?= $result['meta_keyword'] ?></textarea>
                                 </div>
                             </div>
 
@@ -187,7 +196,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Meta description</h4>
                                     <textarea placeholder="Meta description" rows="6" class="form-control border radius"
-                                              name="meta_description"></textarea>
+                                              name="meta_description"><?= $result['meta_description'] ?></textarea>
                                 </div>
                             </div>
                         </div>
@@ -218,9 +227,7 @@
 <script src="<?= base_url('assets/admin/assets/libs/select2/dist/js/select2.min.js')?>"></script>
 <script>
 
-    $(".select2").select2({
-        placeholder: 'Choose...'
-    });
+    $(".select2").select2();
 
     var options = {
         placeholder: 'Waiting for your precious content',
@@ -234,5 +241,32 @@
         $('#overview_text').text(justHtml);
     });
 
+
+</script>
+
+<script>
+    function readURL(input, image_id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#' + image_id).attr('src', e.target.result);
+                $(input).parent('div').children('label').text(input.files[0]['name']);
+                console.log(input.files);
+            };
+
+
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).ready(function () {
+
+        $("#background").change(function () {
+            readURL(this, 'background_image');
+        });
+    })
 
 </script>

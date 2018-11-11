@@ -18,18 +18,50 @@
 
     <div class="container-fluid">
 
-        <div class="row">
-            <div class="col-12">
-                <form class="grade_converter">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title mb-4">List of Grade converter
+                    <a href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/add_grade_converter') ?>">
+                        <button type="button" class="float-right btn btn-secondary">Add</button>
+                    </a>
+                </h5>
 
-                </form>
-            </div>
-            <div class="border-top col-12">
-                <div class="card-body ">
-                    <button id="submit" type="button" class="btn btn-primary float-right">Submit</button>
+                <div class="table-responsive">
+                    <table id="zero_config" class="table table-striped table-bordered">
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Title</th>
+                            <th>Children</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+<!--                        --><?// foreach ($result as $value) : ?>
+<!--                            <tr>-->
+<!--                                <td>--><?//= $value['id'] ?><!--</td>-->
+<!--                                <td>--><?//= $value['short_name'] ?><!--</td>-->
+<!--                                <td>--><?//= $value['name'] ?><!--</td>-->
+<!--                                <td>--><?//= $value['grade_converter'] ?><!--</td>-->
+<!--                                <td>--><?//= ($value['status'] == 1 ? 'Active' : 'Passive') ?><!--</td>-->
+<!--                                <td><a href="--><?//= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/edit_partner_university/'.$value['id']) ?><!--"><i class="fas fa-edit"></i></a></td>-->
+<!--                            </tr>-->
+<!--                        --><?// endforeach; ?>
+                        </tbody>
+                        <tfoot>
+                        <tr>
+                            <th>id</th>
+                            <th>Title</th>
+                            <th>Children</th>
+                            <th>Status</th>
+                            <th>Edit</th>
+                        </tr>
+                        </tfoot>
+                    </table>
                 </div>
-            </div>
 
+            </div>
         </div>
 
     </div>

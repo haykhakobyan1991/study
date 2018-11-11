@@ -7,8 +7,12 @@ $page = $this->router->fetch_method();
 //$url=base_url().'admin/'.$controller.'/'.substr($this->uri->segment(3), 4);
 $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . $page;
 
-if ($page = 'add_partner_university') {
+if ($page == 'add_partner_university' || $page == 'edit_partner_university') {
     $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . 'partner_university';
+}
+
+if($page == 'add_grade_converter' || $page == 'edit_grade_converter') {
+    $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . 'grade_converter';
 }
 
 ?>

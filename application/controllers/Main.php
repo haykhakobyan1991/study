@@ -485,17 +485,44 @@ class Main extends CI_Controller {
 
         $new_lang = $this->input->post('lang');
         $current_url = $this->input->post('current_url');
+        $alias = $this->input->post('alias');
+        $page = $this->input->post('page');
         $start = 0;
         $new_url = '';
         $url_array = explode(base_url(), $current_url);
         $url = array();
         $all_lang_arr = array('hy', 'fr', 'en');
+
         if (isset($url_array[1])) {
             $url = explode('/', $url_array[1]);
         }
+
         if (in_array($url[0], $all_lang_arr)) {
             $start = 1;
         }
+
+
+
+        if($page == 'university') {
+
+            $sql = "
+                SELECT 
+                   `alias_".$new_lang."` AS `new_alias` 
+                  FROM 
+                    `partner_university`
+                WHERE `alias_".$url[0]."` = '".$alias."'
+                 AND `status` = '1'
+            ";
+
+            $query = $this->db->query($sql);
+
+            $row = $query->row_array();
+
+            $url[2] = $row['new_alias'];
+
+        }
+
+
         for ($i = $start; $i < count($url); $i++) {
             $new_url .= '/' . $url[$i];
         }

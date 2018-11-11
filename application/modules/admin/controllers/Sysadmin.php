@@ -591,7 +591,7 @@ class Sysadmin extends CI_Controller {
         $requirement2 = $this->input->post('requirement2');
         $requirement3 = $this->input->post('requirement3');
 
-        $why_recruit = $this->input->post('why_recruit');
+
         $meta_keyword = $this->input->post('meta_keyword');
         $meta_description = $this->input->post('meta_description');
 
@@ -671,12 +671,189 @@ class Sysadmin extends CI_Controller {
         return true;
 
 
+    }
 
+    public function edit_partner_university() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lng = $this->uri->segment(2);
+        $id = $this->uri->segment(4);
+        $data = array();
+
+        $sql = "
+            SELECT
+              `id`,
+              `short_name_".$lng."` AS `short_name`,
+              `name_".$lng."` AS `name`,
+              `alias_".$lng."` AS `alias`,
+              `overview_".$lng."` AS `overview`,
+              `background_image`,
+              `subject1_".$lng."` AS `subject1`,
+              `subject2_".$lng."` AS `subject2`,
+              `subject3_".$lng."` AS `subject3`,
+              `requirement1_".$lng."` AS `requirement1`,
+              `requirement2_".$lng."` AS `requirement2`,
+              `requirement3_".$lng."` AS `requirement3`,
+              `grade_converter_id`,
+              `meta_keyword_".$lng."` AS `meta_keyword`,
+              `meta_description_".$lng."` AS `meta_description`,
+              `status`
+            FROM 
+              `partner_university`
+            WHERE `id` = ".$this->db_value($id)."
+            LIMIT 1
+        ";
+
+        $query = $this->db->query($sql);
+        $num_rows = $query->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $data['result'] = $query->row_array();
+
+        $this->layout->view('edit_partner_university', $data, 'add');
 
     }
 
 
+    public function edit_partner_university_ax() {
 
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('short_name', 'Short name', 'required');
+        $this->form_validation->set_rules('name', 'Name', 'required');
+        $this->form_validation->set_rules('overview', 'Overview', 'required');
+        $this->form_validation->set_rules('grade_converter', 'Grade Converter', 'required');
+
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'short_name' => form_error('short_name'),
+                'name' => form_error('name'),
+                'overview' => form_error('overview'),
+                'grade_converter' => form_error('grade_converter'),
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $background_image = '';
+
+        $lang = $this->input->post('language');
+        $id = $this->input->post('partner_university_id');
+
+
+        $short_name = $this->input->post('short_name');
+        $name = $this->input->post('name');
+        $alias = $this->input->post('alias');
+        $grade_converter = $this->input->post('grade_converter');
+        $overview = $this->input->post('overview');
+
+        $subject1 = $this->input->post('subject1');
+        $subject2 = $this->input->post('subject2');
+        $subject3 = $this->input->post('subject3');
+
+        $requirement1 = $this->input->post('requirement1');
+        $requirement2 = $this->input->post('requirement2');
+        $requirement3 = $this->input->post('requirement3');
+
+
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+        $config = $this->upload_config();
+        $config['upload_path'] = set_realpath('application/uploads/universities');
+
+        if(isset($_FILES['background_image']['name']) AND $_FILES['background_image']['name'] != '') {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('background_image')) {
+                $validation_errors = array('background_image' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $background_img = $logo_arr['file_name'];
+
+            $background_image = "`background_image` = ".$this->db_value($background_img).",";
+
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+        $sql = "UPDATE `partner_university`
+                    SET 
+                      `short_name_".$lang."` = ".$this->db_value($short_name).",
+                      `name_".$lang."` = ".$this->db_value($name).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      `overview_".$lang."` = ".$this->db_value($overview).",
+                      ".$background_image."
+                      `subject1_".$lang."` = ".$this->db_value($subject1).",
+                      `subject2_".$lang."` = ".$this->db_value($subject2).",
+                      `subject3_".$lang."` = ".$this->db_value($subject3).",
+                      `requirement1_".$lang."` = ".$this->db_value($requirement1).",
+                      `requirement2_".$lang."` = ".$this->db_value($requirement2).",
+                      `requirement3_".$lang."` = ".$this->db_value($requirement3).",
+                      `grade_converter_id` = ".$this->db_value($grade_converter).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                  WHERE `id` = ".$this->db_value($id)."  
+                ";
+
+
+        $result = $this->db->query($sql);
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
+    }
 
     public function partner_university() {
 
@@ -704,6 +881,104 @@ class Sysadmin extends CI_Controller {
 
 
         $this->layout->view('partner_university', $data);
+
+    }
+
+
+    public function add_grade_converter() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('add_grade_converter', $data, 'add');
+
+    }
+
+
+    public function add_grade_converter_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'title' => form_error('title')
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $background_image = '';
+
+        $lang = $this->input->post('language');
+        $title = $this->input->post('title');
+        $text = $this->input->post('text');
+        $alias = $this->input->post('alias');
+        $child = (is_array($this->input->post('child')) ? explode(',', $this->input->post('child')) : '');
+
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+        $sql = "INSERT INTO `grade_converter`
+                    SET 
+                      `title_".$lang."` = ".$this->db_value($title).",
+                      `text_".$lang."` = ".$this->db_value($text).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      `child_ids` = ".$this->db_value($child).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                ";
+
+
+        $result = $this->db->query($sql);
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
 
     }
 

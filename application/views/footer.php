@@ -21,11 +21,14 @@
     $(document).on('click', '.langs > li:not(.active)', function () {
         var lang = $(this).data('lang');
         var current_url = '<?=current_url()?>';
+        var alias = '<?=$this->uri->segment(3)?>';
+        var page = '<?=$this->router->fetch_method()?>';
         $.ajax({
             type: 'POST',
             url: '<?=base_url('Main/change_lang')?>',
-            data: {lang: lang, current_url: current_url},
+            data: {lang: lang, current_url: current_url, alias: alias, page: page},
             success: function (url) {
+                console.log(url);
                 if (url != '') {
                     $(location).attr('href', url);
                 }
