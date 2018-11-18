@@ -532,6 +532,20 @@ class Sysadmin extends CI_Controller {
         $data = array();
 
 
+        $sql_gc = "
+            SELECT 
+                `id`,
+                `title_".$lang."` AS `title`
+             FROM
+                `grade_converter` 
+            WHERE `status` = '1'      
+        ";
+
+        $query_gc = $this->db->query($sql_gc);
+        $data['grade_converter'] = $query_gc->result_array();
+
+
+
 
         $this->layout->view('add_partner_university', $data, 'add');
 
@@ -560,7 +574,6 @@ class Sysadmin extends CI_Controller {
         $this->form_validation->set_rules('grade_converter', 'Grade Converter', 'required');
 
 
-
         if($this->form_validation->run() == false){
             //validation errors
             $n = 1;
@@ -575,6 +588,9 @@ class Sysadmin extends CI_Controller {
         }
 
         $background_image = '';
+
+
+
 
         $lang = $this->input->post('language');
         $short_name = $this->input->post('short_name');
@@ -633,6 +649,8 @@ class Sysadmin extends CI_Controller {
             echo json_encode($messages);
             return false;
         }
+
+
 
 
         $sql = "INSERT INTO `partner_university`
@@ -716,6 +734,19 @@ class Sysadmin extends CI_Controller {
         }
 
         $data['result'] = $query->row_array();
+
+        $sql_gc = "
+            SELECT 
+                `id`,
+                `title_".$lng."` AS `title`
+             FROM
+                `grade_converter` 
+            WHERE `status` = '1'      
+        ";
+
+        $query_gc = $this->db->query($sql_gc);
+        $data['grade_converter'] = $query_gc->result_array();
+
 
         $this->layout->view('edit_partner_university', $data, 'add');
 
@@ -865,13 +896,15 @@ class Sysadmin extends CI_Controller {
 
         $sql = "
             SELECT
-                `id`,
-                `short_name_".$lang."` AS `short_name`,
-                `name_".$lang."` AS `name`,
-                `grade_converter_id` AS `grade_converter`,
-                `status`
+                `partner_university`.`id`,
+                `partner_university`.`short_name_".$lang."` AS `short_name`,
+                `partner_university`.`name_".$lang."` AS `name`,
+                `grade_converter`.`title_".$lang."` AS `grade_converter`,
+                `partner_university`.`status`
              FROM
                 `partner_university`
+             LEFT JOIN `grade_converter` 
+                ON `grade_converter`.`id` = `partner_university`.`grade_converter_id`
              WHERE 1      
         ";
 
@@ -893,7 +926,19 @@ class Sysadmin extends CI_Controller {
         $lang = $this->uri->segment(2);
         $data = array();
 
+        $sql = "
+            SELECT 
+                `id`,
+                `title_".$lang."` AS `title`
+             FROM
+                `grade_converter` 
+            WHERE `status` = '1'      
+        ";
 
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+
+        $data['grade_converter'] = $result;
 
         $this->layout->view('add_grade_converter', $data, 'add');
 
@@ -929,13 +974,14 @@ class Sysadmin extends CI_Controller {
             $messages['error']['elements'][] = $validation_errors;
         }
 
-        $background_image = '';
 
         $lang = $this->input->post('language');
         $title = $this->input->post('title');
         $text = $this->input->post('text');
         $alias = $this->input->post('alias');
-        $child = (is_array($this->input->post('child')) ? explode(',', $this->input->post('child')) : '');
+        $child = (is_array($this->input->post('child')) ? implode(',', $this->input->post('child')) : '');
+
+
 
         $meta_keyword = $this->input->post('meta_keyword');
         $meta_description = $this->input->post('meta_description');
@@ -950,6 +996,7 @@ class Sysadmin extends CI_Controller {
             echo json_encode($messages);
             return false;
         }
+
 
 
         $sql = "INSERT INTO `grade_converter`
@@ -982,6 +1029,146 @@ class Sysadmin extends CI_Controller {
 
     }
 
+
+
+    public function edit_grade_converter() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lng = $this->uri->segment(2);
+        $id = $this->uri->segment(4);
+        $data = array();
+
+        $sql = "
+            SELECT
+              `id`,
+              `title_".$lng."` AS `title`,
+              `text_".$lng."` AS `text`,
+              `child_ids`,
+              `meta_keyword_".$lng."` AS `meta_keyword`,
+              `meta_description_".$lng."` AS `meta_description`,
+              `status`
+            FROM 
+              `grade_converter`
+            WHERE `id` = ".$this->db_value($id)."
+            LIMIT 1
+        ";
+
+        $query = $this->db->query($sql);
+        $num_rows = $query->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $data['result'] = $query->row_array();
+
+        $sql_gc = "
+            SELECT 
+                `id`,
+                `title_".$lng."` AS `title`
+             FROM
+                `grade_converter` 
+            WHERE `status` = '1'      
+        ";
+
+        $query_gc = $this->db->query($sql_gc);
+        $data['grade_converter'] = $query_gc->result_array();
+
+
+        $this->layout->view('edit_grade_converter', $data, 'add');
+
+    }
+
+
+    public function edit_grade_converter_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'title' => form_error('title')
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        $lang = $this->input->post('language');
+        $id = $this->input->post('grade_converter_id');
+        $title = $this->input->post('title');
+        $text = $this->input->post('text');
+        $alias = $this->input->post('alias');
+        $child = (is_array($this->input->post('child')) ? implode(',', $this->input->post('child')) : '');
+
+
+
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+
+        $sql = "UPDATE `grade_converter`
+                    SET 
+                      `title_".$lang."` = ".$this->db_value($title).",
+                      `text_".$lang."` = ".$this->db_value($text).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      `child_ids` = ".$this->db_value($child).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                    WHERE `id` = ".$this->db_value($id)."     
+                ";
+
+        $result = $this->db->query($sql);
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
+
+    }
+
     public function grade_converter() {
 
         //	$this->authorisation();
@@ -990,6 +1177,23 @@ class Sysadmin extends CI_Controller {
         $lang = $this->uri->segment(2);
         $data = array();
 
+        $sql = "
+            SELECT 
+                `grade_converter`.`id`,
+                `grade_converter`.`title_".$lang."` AS `title`,
+                GROUP_CONCAT(CONCAT(\"<span class='badge badge-pill badge-primary m-1'>\", `children`.`title_".$lang."`, \"</span>\") SEPARATOR '' ) AS `children`,
+                `grade_converter`.`status`
+              FROM 
+                `grade_converter`
+            LEFT JOIN `grade_converter` AS `children` 
+                ON FIND_IN_SET(`children`.`id`, `grade_converter`.`child_ids`)
+            WHERE `grade_converter`.`status` = '1'  
+             GROUP BY `grade_converter`.`id`     
+        ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        $data['result'] = $result;
 
 
         $this->layout->view('grade_converter', $data);
@@ -1008,6 +1212,20 @@ class Sysadmin extends CI_Controller {
 
 
         $this->layout->view('courses', $data, 'add');
+
+    }
+
+    public function add_courses() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $data = array();
+
+
+
+        $this->layout->view('add_courses', $data, 'add');
 
     }
 
@@ -1097,6 +1315,17 @@ class Sysadmin extends CI_Controller {
             $new_url .= '/' . $url[$i];
         }
         echo base_url('admin/'.$new_lang . $new_url);
+        return true;
+    }
+
+
+    public function search_partner_universities() {
+        $lang = $this->uri->segment(2);
+
+        $sql = "SELECT `id`, `name_".$lang."` AS `name` FROM `partner_university` WHERE `status` = 1";
+        $query = $this->db->query($sql);
+
+        echo json_encode($query->result_array());
         return true;
     }
 

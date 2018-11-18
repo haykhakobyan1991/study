@@ -303,8 +303,8 @@ $account = $query->row_array();
                         <a class="sidebar-link waves-effect waves-dark sidebar-link"
                            href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/grade_converter') ?>"
                            aria-expanded="false">
-                            <i class="fas fa-user-graduate "></i>
-                            <span class="hide-menu">Grade Converter</span>
+                            <i class="fas fa-file"></i>
+                            <span class="hide-menu">Pages</span>
                         </a>
                     </li>
 

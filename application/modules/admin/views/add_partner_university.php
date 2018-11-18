@@ -144,13 +144,10 @@
                                         <label class="col-md-3 m-t-15">Grade Converter</label>
                                         <div class="col-md-12">
                                             <select  name="grade_converter" class="select2 form-control m-t-15" style="height: 36px;width: 100%;">
-                                                <option value="">Choose ...</option>
-                                                <option value="1">Grade Converter 1</option>
-                                                <option value="2">Grade Converter 2</option>
-                                                <option value="3">Grade Converter 3</option>
-                                                <option value="4">Grade Converter 4</option>
-                                                <option value="5">Grade Converter 5</option>
-                                                <option value="6">Grade Converter 6</option>
+                                                <option value="" ></option>
+                                                <? foreach ($grade_converter as $row) { ?>
+                                                    <option value="<?= $row['id']?>"><?= $row['title'] ?></option>
+                                                <? } ?>
                                             </select>
                                         </div>
                                     </div>
@@ -234,5 +231,31 @@
         $('#overview_text').text(justHtml);
     });
 
+
+</script>
+<script>
+    function readURL(input, image_id) {
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#' + image_id).attr('src', e.target.result);
+                $(input).parent('div').children('label').text(input.files[0]['name']);
+                console.log(input.files);
+            };
+
+
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $(document).ready(function () {
+
+        $("#background").change(function () {
+            readURL(this, 'background_image');
+        });
+    })
 
 </script>

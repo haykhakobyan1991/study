@@ -54,7 +54,7 @@
         </div>
 
         <div class="center" style="padding-bottom: 50px;">
-            <a href="<?= base_url($lng . '/grade_converter') ?>">
+            <a href="<?= base_url($lng . '/page/'.$result['grade_converter']) ?>">
                 <button class="register_btn" style="margin-top: 10px;">Grade Converter</button>
         </div>
     </div>

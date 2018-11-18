@@ -321,26 +321,28 @@ class Main extends CI_Controller {
 
         $sql = "
             SELECT
-              `id`,
-              `short_name_".$lng."` AS `short_name`,
-              `name_".$lng."` AS `name`,
-              `alias_".$lng."` AS `alias`,
-              `overview_".$lng."` AS `overview`,
-              `background_image`,
-              `subject1_".$lng."` AS `subject1`,
-              `subject2_".$lng."` AS `subject2`,
-              `subject3_".$lng."` AS `subject3`,
-              `requirement1_".$lng."` AS `requirement1`,
-              `requirement2_".$lng."` AS `requirement2`,
-              `requirement3_".$lng."` AS `requirement3`,
-              `grade_converter_id` AS `grade_converter`,
-              `meta_keyword_".$lng."` AS `meta_keyword`,
-              `meta_description_".$lng."` AS `meta_description`,
-              `status`
-            FROM 
+              `partner_university`.`id`,
+              `partner_university`.`short_name_".$lng."` AS `short_name`,
+              `partner_university`.`name_".$lng."` AS `name`,
+              `partner_university`.`alias_".$lng."` AS `alias`,
+              `partner_university`.`overview_".$lng."` AS `overview`,
+              `partner_university`.`background_image`,
+              `partner_university`.`subject1_".$lng."` AS `subject1`,
+              `partner_university`.`subject2_".$lng."` AS `subject2`,
+              `partner_university`.`subject3_".$lng."` AS `subject3`,
+              `partner_university`.`requirement1_".$lng."` AS `requirement1`,
+              `partner_university`.`requirement2_".$lng."` AS `requirement2`,
+              `partner_university`.`requirement3_".$lng."` AS `requirement3`,
+              `grade_converter`.`alias_".$lng."` AS `grade_converter`,
+              `partner_university`.`meta_keyword_".$lng."` AS `meta_keyword`,
+              `partner_university`.`meta_description_".$lng."` AS `meta_description`,
+              `partner_university`.`status`
+            FROM  
               `partner_university`
-            WHERE `status` = '1'
-             AND `alias_".$lng."` = '".$alias."'
+            LEFT JOIN `grade_converter`
+                ON `grade_converter`.`id` =  `partner_university`.`grade_converter_id`
+            WHERE `partner_university`.`status` = '1'
+             AND `partner_university`.`alias_".$lng."` = '".$alias."'
             LIMIT 1 
         ";
 
@@ -362,21 +364,81 @@ class Main extends CI_Controller {
 
     }
 
-    public function grade_convertor() {
+    public function grade_converter() {
 
         // helpers
         $this->load->helper('url');
         $this->load->helper('form');
-        // language
-        $lng = $this->lng();
         // data
         $data = array();
+        // language
+        $lng = $this->lng();
+        $data['lng'] = $lng;
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $alias = $this->uri->segment(3);
+
+
+        $sql_num = "
+            SELECT
+                `id`
+              FROM
+               `grade_converter`    
+            WHERE `grade_converter`.`status` = '1'  
+             AND `grade_converter`.`alias_".$lng."` = '".$alias."'
+           LIMIT 1  
+        ";
+
+        $query_num = $this->db->query($sql_num);
+        $num_rows = $query_num->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $sql = "
+            SELECT 
+                `grade_converter`.`id`,
+                `grade_converter`.`title_".$lng."` AS `title`,
+                `grade_converter`.`text_".$lng."` AS `text`,
+                `children`.`title_".$lng."` AS `children`,
+                `children`.`alias_".$lng."` AS `children_alias`,
+                `children`.`text_".$lng."` AS `children_text`,
+                `grade_converter`.`status`
+              FROM 
+                `grade_converter`
+            LEFT JOIN `grade_converter` AS `children` 
+                ON FIND_IN_SET(`children`.`id`, `grade_converter`.`child_ids`)
+            WHERE `grade_converter`.`status` = '1'  
+             AND `children`.`status` = '1'
+             AND `grade_converter`.`alias_".$lng."` = '".$alias."'
+        ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+
+        $result_array = array();
+
+        $grade_converter_id = '';
+        foreach ($result as $val) {
+            if($grade_converter_id != $val['id']) {
+                $result_array['result'] = $query->row_array();
+            }
+            $grade_converter_id = $val['id'];
+            $result_array['children']['title'][] = $val['children'];
+            $result_array['children']['alias'][] = $val['children_alias'];
+            $result_array['children']['text'][] = $val['children_text'];
+        }
+
+        $data['result'] = $result_array['result'];
+        $data['children'] = $result_array['children'];
+
 
         //view
-        $this->layout->view('grade_convertor', $data, 'deff');
+        $this->layout->view('grade_converter', $data, 'deff');
 
     }
 

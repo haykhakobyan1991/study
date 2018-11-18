@@ -3,7 +3,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Grade Converter</h4>
+                <h4 class="page-title">Page</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -20,7 +20,7 @@
 
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title mb-4">List of Grade converter
+                <h5 class="card-title mb-4">List of page
                     <a href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/add_grade_converter') ?>">
                         <button type="button" class="float-right btn btn-secondary">Add</button>
                     </a>
@@ -38,16 +38,15 @@
                         </tr>
                         </thead>
                         <tbody>
-<!--                        --><?// foreach ($result as $value) : ?>
-<!--                            <tr>-->
-<!--                                <td>--><?//= $value['id'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['short_name'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['name'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['grade_converter'] ?><!--</td>-->
-<!--                                <td>--><?//= ($value['status'] == 1 ? 'Active' : 'Passive') ?><!--</td>-->
-<!--                                <td><a href="--><?//= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/edit_partner_university/'.$value['id']) ?><!--"><i class="fas fa-edit"></i></a></td>-->
-<!--                            </tr>-->
-<!--                        --><?// endforeach; ?>
+                        <? foreach ($result as $value) : ?>
+                            <tr>
+                                <td><?= $value['id'] ?></td>
+                                <td><?= $value['title'] ?></td>
+                                <td><?= $value['children'] ?></td>
+                                <td><?= ($value['status'] == 1 ? 'Active' : 'Passive') ?></td>
+                                <td><a href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/edit_grade_converter/'.$value['id']) ?>"><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                        <? endforeach; ?>
                         </tbody>
                         <tfoot>
                         <tr>

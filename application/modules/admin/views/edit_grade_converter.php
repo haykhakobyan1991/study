@@ -8,7 +8,7 @@
     <div class="page-breadcrumb">
         <div class="row">
             <div class="col-12 d-flex no-block align-items-center">
-                <h4 class="page-title">Add Page</h4>
+                <h4 class="page-title">Edit page</h4>
                 <div class="ml-auto text-right">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -28,11 +28,12 @@
 
         <div class="row">
             <div class="col-12">
-                <form class="add_grade_converter">
+                <form class="edit_grade_converter">
                     <div class="row">
 
                         <div class="col-8">
-
+                            <input type="hidden" name="grade_converter_id"
+                                   value="<?= $result['id'] ?>">
                             <input type="hidden" name="language"
                                    value="<?= ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') ?>">
                             <div class="card">
@@ -44,6 +45,7 @@
                                             <input type="text" class="form-control"
                                                    id="title"
                                                    name="title"
+                                                   value="<?=$result['title']?>"
                                                    placeholder="Title">
                                             <input type="hidden" name="alias">
                                         </div>
@@ -55,11 +57,11 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Text</h4>
                                     <!-- Create the editor container -->
-                                    <div id="text" style="height: 300px;"></div>
+                                    <div id="text" style="height: 300px;"><?=$result['text']?></div>
                                 </div>
                             </div>
                             <textarea hidden name="text" id="text_text" cols="30"
-                                      rows="10"></textarea>
+                                      rows="10"><?=$result['text']?></textarea>
 
                             <div class="card">
                                 <div class="card-body">
@@ -69,7 +71,12 @@
                                             <select title="Choose..." name="child[]" multiple class="select2 form-control m-t-15"
                                                     style="height: 36px;width: 100%;">
                                                 <? foreach ($grade_converter as $row) { ?>
-                                                    <option value="<?= $row['id']?>"><?= $row['title'] ?></option>
+                                                    <option
+                                                       <?=(in_array($row['id'], explode(',', $result['child_ids'])) ? 'selected' : '')?>
+                                                       value="<?= $row['id']?>"
+                                                    >
+                                                        <?= $row['title'] ?>
+                                                    </option>
                                                 <? } ?>
                                             </select>
                                         </div>
@@ -80,6 +87,7 @@
                                             <div class="custom-control custom-checkbox mr-sm-2">
                                                 <input name="status"
                                                        type="checkbox"
+                                                    <?= $result['status'] == -1 ? 'checked' : ''?>
                                                        class="custom-control-input"
                                                        id="customControlAutosizing3"
                                                        value="-1"
@@ -100,7 +108,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Meta keyword</h4>
                                     <textarea placeholder="Meta keyword" rows="6" class="form-control border radius"
-                                              name="meta_keyword"></textarea>
+                                              name="meta_keyword"><?= $result['meta_keyword'] ?></textarea>
                                 </div>
                             </div>
 
@@ -108,7 +116,7 @@
                                 <div class="card-body">
                                     <h4 class="card-title">Meta description</h4>
                                     <textarea placeholder="Meta description" rows="6" class="form-control border radius"
-                                              name="meta_description"></textarea>
+                                              name="meta_description"><?= $result['meta_description'] ?></textarea>
                                 </div>
                             </div>
                         </div>

@@ -19,13 +19,13 @@ $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
 $route['^(en|fr|hy)/events'] = "Main/events/";
 $route['^(en|fr|hy)/register'] = "Main/register/";
 $route['^(en|fr|hy)/contact'] = "Main/contact/";
-$route['^(en|fr|hy)/grade_convertor'] = "Main/grade_convertor/";
+$route['^(en|fr|hy)/page/(:any)'] = "Main/grade_converter/$1";
 $route['^(en|fr|hy)/us_school_diploma_conversion'] = "Main/us_school_diploma_conversion/";
 $route['^(en|fr|hy)/abitur'] = "Main/abitur/";
 $route['^(en|fr|hy)/business_management'] = "Main/business_management/";
 $route['^(en|fr|hy)/visa_information'] = "Main/visa_information/";
 $route['^(en|fr|hy)/university/(:any)'] = "Main/university/$1";
-$route['^(en|fr|hy)/grade_converter'] = "Main/grade_convertor/";
+
 
 //admin
 
@@ -43,14 +43,20 @@ $route['^admin/(en|fr|hy)/edit_partner_university/(:num)'] = 'admin/Sysadmin/edi
 $route['^admin/(en|fr|hy)/partner_university'] = 'admin/Sysadmin/partner_university/';
 
 $route['^admin/(en|fr|hy)/add_grade_converter'] = 'admin/Sysadmin/add_grade_converter/';
+$route['^admin/(en|fr|hy)/edit_grade_converter/(:num)'] = 'admin/Sysadmin/edit_grade_converter/$1';
 $route['^admin/(en|fr|hy)/grade_converter'] = 'admin/Sysadmin/grade_converter/';
 
 $route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
+$route['^admin/(en|fr|hy)/add_courses'] = 'admin/Sysadmin/add_courses/';
+$route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
+
 $route['^admin/(en|fr|hy)/requirements'] = 'admin/Sysadmin/requirements/';
 $route['^admin/(en|fr|hy)/testimonials'] = 'admin/Sysadmin/testimonials/';
 $route['^admin/(en|fr|hy)/events'] = 'admin/Sysadmin/events/';
 $route['^admin/(en|fr|hy)/contact'] = 'admin/Sysadmin/contact/';
 $route['^admin/(en|fr|hy)/basic_settings'] = 'admin/Sysadmin/basic_settings/';
+
+$route['^admin/(en|fr|hy)/search_partner_universities'] = 'admin/Sysadmin/search_partner_universities/';
 
 
 // login
