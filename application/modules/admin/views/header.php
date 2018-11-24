@@ -87,6 +87,8 @@
     <script src="<?= base_url('assets/admin/assets/libs/jquery/dist/jquery.min.js') ?>"></script>
     <!-- Quill -->
     <script src="<?= base_url('assets/admin/assets/libs/quill/dist/quill.min.js') ?>"></script>
+    <script src="<?= base_url('assets/admin/assets/libs/popper.js/dist/umd/popper.min.js') ?>"></script>
+    <script src="<?= base_url('assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
 </head>
 
 <?

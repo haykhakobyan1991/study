@@ -19,8 +19,7 @@ if($page == 'add_grade_converter' || $page == 'edit_grade_converter') {
 
 
 <!-- Bootstrap tether Core JavaScript -->
-<script src="<?= base_url('assets/admin/assets/libs/popper.js/dist/umd/popper.min.js') ?>"></script>
-<script src="<?= base_url('assets/admin/assets/libs/bootstrap/dist/js/bootstrap.min.js') ?>"></script>
+
 <script src="<?= base_url('assets/admin/assets/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js') ?>"></script>
 <script src="<?= base_url('assets/admin/assets/extra-libs/sparkline/sparkline.js') ?>"></script>
 <!--Wave Effects -->

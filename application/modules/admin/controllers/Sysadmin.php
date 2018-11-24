@@ -89,8 +89,8 @@ class Sysadmin extends CI_Controller {
         $config['allowed_types']        = 'gif|jpg|png';
         $config['max_size'] 			= '4097152'; //4 MB
         $config['file_name']			= $this->uname();
-        $config['max_width']            = '2048';
-        $config['max_height']           = '1200';
+        $config['max_width']            = '2500';
+        $config['max_height']           = '1500';
 
         $this->load->library('upload', $config);	
 
@@ -1226,6 +1226,158 @@ class Sysadmin extends CI_Controller {
 
 
         $this->layout->view('add_courses', $data, 'add');
+
+    }
+
+
+    public function add_courses_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'title' => form_error('title'),
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $background_image = '';
+
+        $lang = $this->input->post('language');
+        $title = $this->input->post('title');
+        $alias = $this->input->post('alias');
+
+        $why1 = $this->input->post('why1');
+        $why2 = $this->input->post('why2');
+        $why3 = $this->input->post('why3');
+
+        $career1 = $this->input->post('career1');
+        $career2 = $this->input->post('career2');
+        $career3 = $this->input->post('career3');
+
+        $specialist_partners = $this->input->post('specialist_partners');
+
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+        $config = $this->upload_config();
+        $config['upload_path'] = set_realpath('application/uploads/courses');
+
+        if(isset($_FILES['background_image']['name']) AND $_FILES['background_image']['name'] != '' AND $n != 1) {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('background_image')) {
+                $validation_errors = array('background_image' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $background_img = $logo_arr['file_name'];
+
+            $background_image = "`background_image` = ".$this->db_value($background_img).",";
+
+        } else {
+            $n = 1;
+            $validation_errors = array('background_image' => 'Background image: This field is required.');
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+
+
+        $sql = "INSERT INTO `courses`
+                    SET
+                      `title_".$lang."` = ".$this->db_value($title).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      ".$background_image."
+                      `why1_".$lang."` = ".$this->db_value($why1).",
+                      `why2_".$lang."` = ".$this->db_value($why2).",
+                      `why3_".$lang."` = ".$this->db_value($why3).",
+                      `career1_".$lang."` = ".$this->db_value($career1).",
+                      `career2_".$lang."` = ".$this->db_value($career2).",
+                      `career3_".$lang."` = ".$this->db_value($career3).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                ";
+
+
+        $result = $this->db->query($sql);
+
+        $courses_id = $this->db->insert_id();
+        $partner_university_id = $this->input->post('partner_universities_id');
+
+        if(!empty($specialist_partners)) {
+            $sql_ = "INSERT INTO `special_partners`
+                        (
+                         `courses_id`,
+                         `title_".$lang."`,
+                         `partner_university_id`,
+                         `status`
+                         )
+                    VALUES ";
+            foreach ($specialist_partners as $key => $title) {
+                $sql_ .= "
+                (
+                     ".$this->db_value($courses_id).",
+                     '".$title."',
+                     ".$this->db_value($partner_university_id[$key]).",
+                     '1'
+                ),";
+            }
+            $sql_ = substr($sql_, 0, -1);
+            $result_ = $this->db->query($sql_);
+        }
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
 
     }
 

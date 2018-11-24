@@ -40,6 +40,7 @@
                                                    id="title"
                                                    name="title"
                                                    placeholder="Title">
+                                            <input type="hidden" name="alias">
                                         </div>
                                     </div>
                                 </div>
@@ -124,6 +125,7 @@
                                                 <tr>
                                                     <th>
                                                         <input placeholder="Specialist Partners"
+                                                               data-provide="typeahead"
                                                                name="specialist_partners[1]" class="form-control"
                                                                type="text"/>
                                                         <input name="partner_universities_id[1]" class="form-control"
@@ -207,7 +209,7 @@
       href="<?= base_url('assets/admin/assets/libs/jquery-minicolors/jquery.minicolors.css') ?>">
 <script src="<?= base_url('assets/admin/assets/libs/select2/dist/js/select2.full.min.js') ?>"></script>
 <script src="<?= base_url('assets/admin/assets/libs/select2/dist/js/select2.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/typeahead.js') ?>"></script>
+<script src="<?= base_url('assets/js/bootstrap3-typeahead.js') ?>"></script>
 
 <script>
     function readURL(input, image_id) {
@@ -258,6 +260,7 @@
             'var url = "<?=base_url('admin/' . $this->uri->segment(2) . '/search_partner_universities/')?>";\n' +
             '\n' +
             '$.get(url, function (data) {\n' +
+            '$(\'input[name="specialist_partners[' + (i - 1) + ']"]\').typeahead(\'destroy\')\n' +
             '// use a data source with \'id\' and \'name\' keys\n' +
             '$(\'input[name="specialist_partners[' + i + ']"]\').typeahead({\n' +
             '\n' +
@@ -272,6 +275,12 @@
             '\n' +
             '                $(\'input[name="partner_universities_id[' + i + ']"]\').val(\'\');\n' +
             '            },\n' +
+                '// number of pixels the scrollable parent container scrolled down\n' +
+            '            scrollHeight: 0,\n' +
+            '            // auto selects the first item\n' +
+            '            autoSelect: true,\n' +
+            '            \n' +
+            '            //showHintOnFocus: true,\n'+
             '            updater: function (item) {\n' +
             '                $(\'input[name="partner_universities_id[' + i + ']"]\').val(map[item].id);\n' +
             '                return item;\n' +
@@ -290,7 +299,7 @@
 
     $.get(url, function (data) {
         // use a data source with 'id' and 'name' keys
-        $("input[name=\"specialist_partners[1]\"]").typeahead({
+        $('input[name="specialist_partners[1]"]').typeahead({
 
             source: function (query, process) {
                 objects = [];
@@ -303,6 +312,16 @@
 
                 $('input[name="partner_universities_id[1]"]').val('');
             },
+
+
+            // number of pixels the scrollable parent container scrolled down
+            scrollHeight: 0,
+            // auto selects the first item
+            autoSelect: true,
+
+            //showHintOnFocus: true,
+
+
             updater: function (item) {
                 $('input[name="partner_universities_id[1]"]').val(map[item].id);
                 return item;

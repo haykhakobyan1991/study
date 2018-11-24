@@ -17,6 +17,9 @@
     </div>
 
     <div class="container-fluid">
+        <div class="alert d-none alert-success" role="alert"></div>
+        <div class="alert d-none alert-info" role="alert"></div>
+        <div class="alert d-none alert-danger" role="alert"></div>
         <form class="basic_settings">
             <div class="row">
                 <div class="col-8">
