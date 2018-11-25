@@ -46,8 +46,8 @@ $route['^admin/(en|fr|hy)/add_grade_converter'] = 'admin/Sysadmin/add_grade_conv
 $route['^admin/(en|fr|hy)/edit_grade_converter/(:num)'] = 'admin/Sysadmin/edit_grade_converter/$1';
 $route['^admin/(en|fr|hy)/grade_converter'] = 'admin/Sysadmin/grade_converter/';
 
-$route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
 $route['^admin/(en|fr|hy)/add_courses'] = 'admin/Sysadmin/add_courses/';
+$route['^admin/(en|fr|hy)/edit_courses/(:num)'] = 'admin/Sysadmin/edit_courses/$1';
 $route['^admin/(en|fr|hy)/courses'] = 'admin/Sysadmin/courses/';
 
 $route['^admin/(en|fr|hy)/requirements'] = 'admin/Sysadmin/requirements/';

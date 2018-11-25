@@ -15,6 +15,10 @@ if($page == 'add_grade_converter' || $page == 'edit_grade_converter') {
     $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . 'grade_converter';
 }
 
+if($page == 'add_courses' || $page == 'edit_courses') {
+    $url = base_url() . 'admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/' . 'courses';
+}
+
 ?>
 
 

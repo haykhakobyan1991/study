@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9511b5e6-24b3-49f8-9d7c-c1f9d9d63739" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/modules/admin/views/add_courses.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/application/modules/admin/views/edit_grade_converter.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/typeahead.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/application/modules/admin/views/edit_courses.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Main.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Main.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/add_grade_converter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/add_grade_converter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/add_partner_university.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/add_partner_university.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/modules/admin/views/courses.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/courses.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/grade_converter.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/grade_converter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/grade_convertor.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/grade_converter.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/partner_university.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/partner_university.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/single_university.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/single_university.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/modules/admin/views/templates/add.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/modules/admin/views/templates/add.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,30 +69,31 @@
     <session id="-1473127720">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="2" />
+          <entry key="project.closed" value="3" />
+          <entry key="project.open.time.10" value="1" />
           <entry key="project.open.time.102" value="1" />
           <entry key="project.open.time.106" value="1" />
           <entry key="project.open.time.54" value="1" />
           <entry key="project.open.time.57" value="1" />
           <entry key="project.open.time.60" value="1" />
           <entry key="project.open.time.72" value="1" />
-          <entry key="project.opened" value="6" />
+          <entry key="project.opened" value="7" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="4" />
-          <entry key="php" value="9296" />
+          <entry key="php" value="11070" />
           <entry key="txt" value="14" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="4" />
-          <entry key="HTML" value="18" />
-          <entry key="PHP" value="9007" />
+          <entry key="HTML" value="22" />
+          <entry key="PHP" value="10766" />
           <entry key="PLAIN_TEXT" value="14" />
-          <entry key="SQL" value="271" />
+          <entry key="SQL" value="282" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -111,14 +101,14 @@
           <entry key="css" value="2" />
           <entry key="htaccess" value="3" />
           <entry key="js" value="3" />
-          <entry key="php" value="87" />
+          <entry key="php" value="128" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CSS" value="2" />
           <entry key="JavaScript" value="3" />
-          <entry key="PHP" value="87" />
+          <entry key="PHP" value="128" />
           <entry key="htaccess" value="3" />
         </counts>
       </usages-collector>
@@ -128,59 +118,23 @@
       <usages-collector id="statistics.js.language.service.starts" />
       <usages-collector id="statistics.vcs.git.usages" />
       <usages-collector id="statistics.php.rename.constructor" />
-      <usages-collector id="statistics.php.new.class" />
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="1" />
+          <entry key="PHP Interface.type" value="1" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="337">
-              <caret line="1328" column="20" selection-start-line="1328" selection-start-column="20" selection-end-line="1328" selection-end-column="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/partner_university.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="52" column="31" lean-forward="true" selection-end-line="75" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/courses.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="136">
-              <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/add_courses.php">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/typeahead.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1398">
-              <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.900/typeahead.jquery.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="32" lean-forward="true" selection-end-line="1537" selection-end-column="3" />
+            <state relative-caret-position="248">
+              <caret line="1574" column="128" selection-start-line="1574" selection-start-column="128" selection-end-line="1574" selection-end-column="128" />
               <folding>
-                <element signature="n#!!doc" expanded="true" />
+                <element signature="e#34918#39960#0#PHP" />
               </folding>
             </state>
           </provider>
@@ -189,8 +143,66 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/config/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="58" column="53" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="53" />
+            <state relative-caret-position="204">
+              <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/add_courses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="317">
+              <caret line="408" column="34" lean-forward="true" selection-start-line="408" selection-start-column="34" selection-end-line="408" selection-end-column="34" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/courses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="663">
+              <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_courses.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1904">
+              <caret line="175" column="49" lean-forward="true" selection-start-line="169" selection-start-column="48" selection-end-line="175" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/templates/add.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="18" column="114" selection-start-line="18" selection-start-column="114" selection-end-line="18" selection-end-column="114" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#svg#0;n#div#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/modules/admin/views/header.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="85">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
             </state>
           </provider>
         </entry>
@@ -199,10 +211,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>jquery.m</find>
-      <find>meta_tags</find>
-      <find>meta_desc</find>
-      <find>data</find>
       <find>date</find>
       <find>timezone</find>
       <find>time</find>
@@ -220,11 +228,25 @@
       <find>change</find>
       <find>select2</find>
       <find>new_items</find>
+      <find>403</find>
+      <find>videos</find>
+      <find>comparisonfunctions.usort.php</find>
+      <find>Grabbing original file location(s) failed.</find>
+      <find>has_ffmpeg</find>
+      <find>Invalid Youtube video ID:</find>
+      <find>Invalid Youtube video ID: scUJbiEmiuc</find>
+      <find>confirmOverlay</find>
+      <find>\n' +</find>
+      <find>GROUP_CONCAT</find>
+      <find>id =</find>
+      <find>$id</find>
+      <find>form</find>
     </findStrings>
     <replaceStrings>
       <replace />
       <replace>_&quot;.$lang.&quot;</replace>
       <replace>_&quot;.$lng.&quot;</replace>
+      <replace />
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -233,10 +255,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/home.php" />
-        <option value="$PROJECT_DIR$/css/style.css" />
-        <option value="$PROJECT_DIR$/about.php" />
-        <option value="$PROJECT_DIR$/application/modules/admin/views/footer.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/dashboard.php" />
         <option value="$PROJECT_DIR$/application/views/basic_settings.php" />
         <option value="$PROJECT_DIR$/application/views/header.php" />
@@ -248,22 +266,46 @@
         <option value="$PROJECT_DIR$/../new.dilemmatik.ru/application/modules/admin/views/templates/add.php" />
         <option value="$PROJECT_DIR$/application/views/footer.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/partner_university.php" />
-        <option value="$PROJECT_DIR$/application/modules/admin/views/templates/add.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/add_partner_university.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php" />
         <option value="$PROJECT_DIR$/application/views/single_university.php" />
         <option value="$PROJECT_DIR$/application/views/partner_university.php" />
         <option value="$PROJECT_DIR$/application/views/grade_converter.php" />
         <option value="$PROJECT_DIR$/application/controllers/Main.php" />
-        <option value="$PROJECT_DIR$/application/modules/admin/views/header.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/add_grade_converter.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/grade_converter.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/edit_grade_converter.php" />
+        <option value="$PROJECT_DIR$/assets/js/typeahead.js" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-2.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-3.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-2.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-1.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-3.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-1.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/youtube-dl.class.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/YouTubeDownloader.class.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/index.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/new/index.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/youtube-dl.config.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-1.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-2.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-3.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-video-1.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/youtube-dl.class.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/ajax.dl.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/yt_downloader.class.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/cnfg.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/youtube-dl.class.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/index.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/eyecatchup-php-yt_downloader-403c053/youtube-dl.config.php" />
+        <option value="$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/eyecatchup-php-yt_downloader-403c053/example-audio-1.php" />
+        <option value="$PROJECT_DIR$/application/modules/admin/views/header.php" />
+        <option value="$PROJECT_DIR$/application/modules/admin/views/add_courses.php" />
+        <option value="$PROJECT_DIR$/application/modules/admin/views/templates/add.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/views/courses.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
+        <option value="$PROJECT_DIR$/application/modules/admin/views/edit_courses.php" />
         <option value="$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php" />
-        <option value="$PROJECT_DIR$/assets/js/typeahead.js" />
-        <option value="$PROJECT_DIR$/application/modules/admin/views/add_courses.php" />
       </list>
     </option>
   </component>
@@ -295,13 +337,69 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
             <path>
               <item name="study" type="b2602c69:ProjectViewProjectNode" />
               <item name="study" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="controllers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="application" type="462c0819:PsiDirectoryNode" />
+              <item name="modules" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="study" type="b2602c69:ProjectViewProjectNode" />
@@ -318,12 +416,28 @@
               <item name="study" type="b2602c69:ProjectViewProjectNode" />
               <item name="study" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="typeahead" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="admin" type="462c0819:PsiDirectoryNode" />
+              <item name="typeahead" type="462c0819:PsiDirectoryNode" />
+              <item name="jquery.typeahead.scss" type="620a8d5e:NestingTreeNode" />
+            </path>
+            <path>
+              <item name="study" type="b2602c69:ProjectViewProjectNode" />
+              <item name="study" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -334,12 +448,13 @@
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.web.browsers" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\OpenServer\domains\localhost\study\application\modules\admin\views" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\localhost\study\assets\admin\typeahead" />
       <recent name="D:\OpenServer\domains\localhost\study\assets\js" />
       <recent name="C:\OSPanel\domains\localhost\study\img" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\OpenServer\domains\localhost\study\application\modules\admin\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -371,7 +486,8 @@
       <workItem from="1541528918074" duration="23249000" />
       <workItem from="1541875945133" duration="19693000" />
       <workItem from="1542454404904" duration="13142000" />
-      <workItem from="1542545325140" duration="10192000" />
+      <workItem from="1542545325140" duration="18357000" />
+      <workItem from="1543069270598" duration="16598000" />
     </task>
     <task id="LOCAL-00001" summary="COMMit MessAge">
       <created>1541194119479</created>
@@ -422,11 +538,32 @@
       <option name="project" value="LOCAL" />
       <updated>1541965316285</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Commit Message">
+      <created>1542580753947</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1542580753947</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Commit Message">
+      <created>1543069398190</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1543069398190</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Commit Message">
+      <created>1543152154545</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1543152154545</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="90682000" />
+    <option name="totallyTimeSpent" value="115445000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -446,7 +583,7 @@
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32903227" />
       <window_info anchor="bottom" id="Terminal" order="10" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" weight="0.32903227" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -464,166 +601,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="Commit Message" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/admin/assets/images/icons/user-graduate-solid.svg" />
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/requirements.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="40" column="6" selection-start-line="40" selection-start-column="6" selection-end-line="40" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/basic_settings.php" />
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/footer.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="100" selection-start-line="3" selection-start-column="92" selection-end-line="3" selection-end-column="100" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/core/MY_Loader.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../test/tilema.tk/tilema/chat.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1989" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../new.dilemmatik.ru/application/modules/admin/controllers/Sysadmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="1676" column="66" selection-start-line="1675" selection-start-column="7" selection-end-line="1676" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/layouts/deff.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/.htaccess">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ysmu/tokernel.framework/lib/mysql.lib.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="52" column="18" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/system/.htaccess">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="23" column="59" selection-start-line="23" selection-start-column="59" selection-end-line="23" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ysmu/tokernel.framework/tokernel.inc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="384">
-          <caret line="116" column="18" selection-start-line="116" selection-start-column="14" selection-end-line="116" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ysmu/index.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.htaccess">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="1" lean-forward="true" selection-start-line="20" selection-start-column="1" selection-end-line="20" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/testimonials.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-975" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/us_school_diploma_conversion.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" selection-start-line="4" selection-end-line="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/business_management.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/abitur.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-204" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/layouts/add.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/controllers/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="130" column="8" selection-start-line="130" selection-start-column="8" selection-end-line="130" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/basic_settings.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1734">
-          <caret line="102" selection-start-line="102" selection-end-line="126" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/dashboard.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="33" selection-end-line="149" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/admin/assets/libs/select2/dist/css/select2.min.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4505">
-          <caret line="265" column="22" selection-start-line="265" selection-start-column="22" selection-end-line="265" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../new.dilemmatik.ru/application/controllers/Main.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-177">
-          <caret line="400" column="9" lean-forward="true" selection-start-line="394" selection-start-column="7" selection-end-line="400" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/about_us.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1340">
-          <caret line="112" lean-forward="true" selection-start-line="112" selection-end-line="112" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../new.dilemmatik.ru/application/modules/admin/views/templates/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="99" lean-forward="true" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../ysmu/website/addons/main/lib/main.addon.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="7783" column="16" lean-forward="true" selection-start-line="7783" selection-start-column="16" selection-end-line="7783" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="42" column="35" selection-start-line="42" selection-start-column="35" selection-end-line="42" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/footer.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="476">
@@ -636,24 +613,10 @@
         <state relative-caret-position="-969" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/templates/add.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5780">
-          <caret line="14" column="107" selection-start-line="14" selection-start-column="107" selection-end-line="14" selection-end-column="107" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/courses.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="44" lean-forward="true" selection-start-line="26" selection-start-column="44" selection-end-line="26" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2601">
-          <caret line="153" column="74" selection-start-line="153" selection-start-column="74" selection-end-line="153" selection-end-column="74" />
         </state>
       </provider>
     </entry>
@@ -678,13 +641,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/header.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="306" column="57" selection-start-line="306" selection-start-column="57" selection-end-line="306" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/grade_converter.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="357">
@@ -696,13 +652,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="56" selection-start-line="22" selection-start-column="56" selection-end-line="22" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_grade_converter.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
         </state>
       </provider>
     </entry>
@@ -720,37 +669,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="58" column="53" selection-start-line="58" selection-start-column="26" selection-end-line="58" selection-end-column="53" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="1328" column="20" selection-start-line="1328" selection-start-column="20" selection-end-line="1328" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.900/typeahead.jquery.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="32" lean-forward="true" selection-end-line="1537" selection-end-column="3" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/typeahead.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1398">
-          <caret line="218" lean-forward="true" selection-start-line="218" selection-end-line="218" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DIa0.900/typeahead.jquery.js" />
+    <entry file="file://$PROJECT_DIR$/assets/js/typeahead.js" />
     <entry file="file://$PROJECT_DIR$/application/modules/admin/views/partner_university.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
@@ -758,15 +678,112 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-2.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-1.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-audio-3.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-2.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-1.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/examples/example-video-3.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/youtube-dl.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/YouTubeDownloader.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/index.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/new/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="28" column="117" selection-start-line="28" selection-start-column="117" selection-end-line="28" selection-end-column="117" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/youtube-dl.config.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-1.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-2.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-audio-3.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/examples/example-video-1.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/PHP-FFMpeg/sami.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/yt_downloader/youtube-dl.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/yt_downloader.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/ajax.dl.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/cnfg.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/youtube-dl.config.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/comparisonfunctions.usort.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/youtube-dl.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/index.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/download.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/eyecatchup-php-yt_downloader-403c053/youtube-dl.config.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/eyecatchup-php-yt_downloader-403c053/youtube-dl.class.php" />
+    <entry file="file://$PROJECT_DIR$/../test/download_youtube_video/php-yt_downloader-gh-pages/eyecatchup-php-yt_downloader-403c053/example-audio-1.php" />
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/header.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/templates/add.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="18" column="114" selection-start-line="18" selection-start-column="114" selection-end-line="18" selection-end-column="114" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#svg#0;n#div#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/admin/views/courses.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="23" column="131" selection-start-line="23" selection-start-column="131" selection-end-line="23" selection-end-column="131" />
+        <state relative-caret-position="663">
+          <caret line="56" column="41" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="49" column="45" selection-start-line="49" selection-start-column="45" selection-end-line="49" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/modules/admin/views/add_courses.php">
-      <provider selected="true" editor-type-id="text-editor" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="408" column="34" lean-forward="true" selection-start-line="408" selection-start-column="34" selection-end-line="408" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_grade_converter.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="25" column="14" selection-start-line="25" selection-start-column="14" selection-end-line="25" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_partner_university.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1904">
+          <caret line="175" column="49" lean-forward="true" selection-start-line="169" selection-start-column="48" selection-end-line="175" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/views/edit_courses.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="35" column="57" selection-start-line="35" selection-start-column="57" selection-end-line="35" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/modules/admin/controllers/Sysadmin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="1574" column="128" selection-start-line="1574" selection-start-column="128" selection-end-line="1574" selection-end-column="128" />
+          <folding>
+            <element signature="e#34918#39960#0#PHP" />
+          </folding>
+        </state>
+      </provider>
     </entry>
   </component>
 </project>

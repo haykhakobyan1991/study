@@ -1209,6 +1209,25 @@ class Sysadmin extends CI_Controller {
         $lang = $this->uri->segment(2);
         $data = array();
 
+        $sql = "
+            SELECT 
+                `courses`.`id`, 
+                `courses`.`title_".$lang."` AS `courses`,
+                GROUP_CONCAT(CONCAT(\"<span class='badge badge-pill badge-primary m-1'>\", `special_partners`.`title_".$lang."`, \"</span>\") SEPARATOR '' ) AS `special_partners`,
+                `courses`.`status`
+              FROM 
+                `courses`
+            LEFT JOIN `special_partners`  
+                ON `special_partners`.`courses_id` = `courses`.`id`
+                AND `special_partners`.`status` = '1'
+            WHERE 1
+            GROUP BY `courses`.`id` 
+        ";
+
+        $query = $this->db->query($sql);
+        $result = $query->result_array();
+        $data['result'] = $result;
+
 
 
         $this->layout->view('courses', $data, 'add');
@@ -1355,6 +1374,222 @@ class Sysadmin extends CI_Controller {
                 $sql_ .= "
                 (
                      ".$this->db_value($courses_id).",
+                     '".$title."',
+                     ".$this->db_value($partner_university_id[$key]).",
+                     '1'
+                ),";
+            }
+            $sql_ = substr($sql_, 0, -1);
+            $result_ = $this->db->query($sql_);
+        }
+
+
+        if ($result){
+            $messages['success'] = 1;
+            $messages['message'] = 'Success';
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+        // Return success or error message
+        echo json_encode($messages);
+        return true;
+
+
+    }
+
+
+    public function edit_courses() {
+
+        //	$this->authorisation();
+        $this->load->helper('url');
+        $this->load->helper('form');
+        $lang = $this->uri->segment(2);
+        $id = $this->uri->segment(4);
+        $data = array();
+
+        $sql = "
+            SELECT 
+              `id`,
+              `title_".$lang ."` AS `title`,
+              `alias_".$lang ."` AS `alias`,
+              `why1_".$lang ."` AS `why1`,
+              `why2_".$lang ."` AS `why2`,
+              `why3_".$lang ."` AS `why3`,
+              `career1_".$lang ."` AS `career1`,
+              `career2_".$lang ."` AS `career2`,
+              `career3_".$lang ."` AS `career3`,
+              `background_image`,
+              `meta_keyword_".$lang ."` AS `meta_keyword`,
+              `meta_description_".$lang ."` AS `meta_description`,
+              `status`
+            FROM 
+              `courses`
+            WHERE `id` = '".$id."'    
+        ";
+
+        $query = $this->db->query($sql);
+        $num_rows = $query->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $data['result'] = $query->row_array();
+
+        $sql_partners = "
+            SELECT 
+              `id`,
+              `title_".$lang."` AS `title`,
+              `partner_university_id`,
+              `status` 
+            FROM
+              `special_partners` 
+            WHERE `status` = 1  
+             AND `courses_id` = '".$id."' 
+        ";
+
+        $query_partners = $this->db->query($sql_partners);
+        $data['result_partners'] = $query_partners->result_array();
+
+        $this->layout->view('edit_courses', $data, 'add');
+
+    }
+
+
+    public function edit_courses_ax() {
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $messages['error'] = 'error_message';
+            $this->access_denied();
+            return false;
+        }
+
+
+
+
+        $this->load->library('form_validation');
+        $this->form_validation->set_error_delimiters('<div>', '</div>');
+        $this->form_validation->set_rules('title', 'Title', 'required');
+
+
+        if($this->form_validation->run() == false){
+            //validation errors
+            $n = 1;
+
+            $validation_errors = array(
+                'title' => form_error('title'),
+            );
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $background_image = '';
+
+        $id = $this->input->post('courses_id');
+
+        $lang = $this->input->post('language');
+        $title = $this->input->post('title');
+        $alias = $this->input->post('alias');
+
+        $why1 = $this->input->post('why1');
+        $why2 = $this->input->post('why2');
+        $why3 = $this->input->post('why3');
+
+        $career1 = $this->input->post('career1');
+        $career2 = $this->input->post('career2');
+        $career3 = $this->input->post('career3');
+
+        $specialist_partners = $this->input->post('specialist_partners');
+
+        $meta_keyword = $this->input->post('meta_keyword');
+        $meta_description = $this->input->post('meta_description');
+
+        $status = '1';
+        if($this->input->post('status') != '') {
+            $status = $this->input->post('status');
+        }
+
+        $config = $this->upload_config();
+        $config['upload_path'] = set_realpath('application/uploads/courses');
+
+        if(isset($_FILES['background_image']['name']) AND $_FILES['background_image']['name'] != '' AND $n != 1) {
+            $this->load->library('upload', $config);
+            $this->upload->initialize($config);
+
+            if (!$this->upload->do_upload('background_image')) {
+                $validation_errors = array('background_image' => $this->upload->display_errors());
+                $messages['error']['elements'][] = $validation_errors;
+                echo json_encode($messages);
+                return false;
+            }
+
+
+
+            $logo_arr = $this->upload->data();
+
+            $background_img = $logo_arr['file_name'];
+
+            $background_image = "`background_image` = ".$this->db_value($background_img).",";
+
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+
+        $sql = "UPDATE `courses`
+                    SET
+                      `title_".$lang."` = ".$this->db_value($title).",
+                      `alias_".$lang."` = ".$this->db_value($alias).",
+                      ".$background_image."
+                      `why1_".$lang."` = ".$this->db_value($why1).",
+                      `why2_".$lang."` = ".$this->db_value($why2).",
+                      `why3_".$lang."` = ".$this->db_value($why3).",
+                      `career1_".$lang."` = ".$this->db_value($career1).",
+                      `career2_".$lang."` = ".$this->db_value($career2).",
+                      `career3_".$lang."` = ".$this->db_value($career3).",
+                      `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",
+                      `meta_description_".$lang."` = ".$this->db_value($meta_description).",
+                      `status` = ".$this->db_value($status)."
+                 WHERE `id` =  ".$this->db_value($id)."   
+                ";
+
+
+        $result = $this->db->query($sql);
+
+
+        $partner_university_id = $this->input->post('partner_universities_id');
+
+        $sql_update = "
+            UPDATE  `special_partners` SET `status` = '-2' WHERE `courses_id` = ".$this->db_value($id)." /*todo a mnacac leunere*/ 
+        ";
+
+        $this->db->query($sql_update);
+
+        if(!empty($specialist_partners)) {
+            $sql_ = "INSERT INTO `special_partners`
+                        (
+                         `courses_id`,
+                         `title_".$lang."`,
+                         `partner_university_id`,
+                         `status`
+                         )
+                    VALUES ";
+            foreach ($specialist_partners as $key => $title) {
+                $sql_ .= "
+                (
+                     ".$this->db_value($id).",
                      '".$title."',
                      ".$this->db_value($partner_university_id[$key]).",
                      '1'

@@ -31,31 +31,28 @@
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Short name</th>
-                            <th>Name</th>
-                            <th>Grade Converter</th>
+                            <th>Title</th>
+                            <th>Special partners</th>
                             <th>Status</th>
                             <th>Edit</th>
                         </tr>
                         </thead>
                         <tbody>
-<!--                        --><?// foreach ($result as $value) : ?>
-<!--                            <tr>-->
-<!--                                <td>--><?//= $value['id'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['short_name'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['name'] ?><!--</td>-->
-<!--                                <td>--><?//= $value['grade_converter'] ?><!--</td>-->
-<!--                                <td>--><?//= ($value['status'] == 1 ? 'Active' : 'Passive') ?><!--</td>-->
-<!--                                <td><a href="--><?//= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/edit_partner_university/'.$value['id']) ?><!--"><i class="fas fa-edit"></i></a></td>-->
-<!--                            </tr>-->
-<!--                        --><?// endforeach; ?>
+                        <? foreach ($result as $value) : ?>
+                            <tr>
+                                <td><?= $value['id'] ?></td>
+                                <td><?= $value['courses'] ?></td>
+                                <td><?= $value['special_partners'] ?></td>
+                                <td><?= ($value['status'] == 1 ? 'Active' : 'Passive') ?></td>
+                                <td><a href="<?= base_url('admin/' . ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') . '/edit_courses/'.$value['id']) ?>"><i class="fas fa-edit"></i></a></td>
+                            </tr>
+                        <? endforeach; ?>
                         </tbody>
                         <tfoot>
                         <tr>
                             <th>id</th>
-                            <th>Short name</th>
-                            <th>Name</th>
-                            <th>Grade Converter</th>
+                            <th>Title</th>
+                            <th>Special partners</th>
                             <th>Status</th>
                             <th>Edit</th>
                         </tr>
