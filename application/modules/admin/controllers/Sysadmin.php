@@ -1320,7 +1320,6 @@ class Sysadmin extends CI_Controller {
 
 
 
-
         $sql = "INSERT INTO `courses`
                     SET
                       `title_".$lang."` = ".$this->db_value($title).",

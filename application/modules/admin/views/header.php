@@ -12,6 +12,8 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?= base_url('assets/admin/assets/images/favicon.png') ?>">
     <title>Admin template</title>
 
+
+
     <!-- Font Awesome  -->
     <link rel="stylesheet" href="<?= base_url('assets/fontawesome/css/all.css') ?>" crossorigin="anonymous">
 

@@ -1,3 +1,5 @@
+<link rel="stylesheet" type="text/css"
+      href="<?= base_url('assets/admin/typeahead/jquery.typeahead.css') ?>">
 <div class="page-wrapper">
 
     <div class="page-breadcrumb">
@@ -119,29 +121,88 @@
                                 <div class="card-body">
                                     <div class="form-group row">
                                         <label class="col-md-3 m-t-15">Specialist Partners</label>
+
                                         <div class="col-md-12">
+
                                             <table class="vehicle table table-striped table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>
-                                                        <input placeholder="Specialist Partners"
-                                                               data-provide="typeahead"
-                                                               name="specialist_partners[1]" class="form-control"
-                                                               type="text"/>
-                                                        <input name="partner_universities_id[1]" class="form-control"
-                                                               type="hidden"/>
-                                                    </th>
-                                                    <th>
-                                                        <button type="button"
-                                                                class="btn btn-outline-secondary add_new_item"><i
-                                                                    class="fa fa-plus"></i></button>
+                                                        <div class="typeahead__container">
+                                                            <div class="typeahead__field">
+                                                                <div class="typeahead__query">
+                                                                    <input class="js-typeahead-countries form-control"
+                                                                           name="specialist_partners[1]"
+                                                                           type="search"
+
+                                                                           autocomplete="off">
+                                                                    <input name="partner_universities_id[1]"
+                                                                           class="form-control"
+                                                                           type="hidden"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </th>
                                                 </tr>
                                                 </thead>
-                                                <tbody id="new_items">
+                                                <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="typeahead__container">
+                                                            <div class="typeahead__field">
+                                                                <div class="typeahead__query">
+                                                                    <input class="js-typeahead-countries form-control"
+                                                                           name="specialist_partners[2]"
+                                                                           type="search"
 
+                                                                           autocomplete="off">
+                                                                    <input name="partner_universities_id[2]"
+                                                                           class="form-control"
+                                                                           type="hidden"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="typeahead__container">
+                                                            <div class="typeahead__field">
+                                                                <div class="typeahead__query">
+                                                                    <input class="js-typeahead-countries form-control"
+                                                                           name="specialist_partners[3]"
+                                                                           type="search"
+
+                                                                           autocomplete="off">
+                                                                    <input name="partner_universities_id[3]"
+                                                                           class="form-control"
+                                                                           type="hidden"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="typeahead__container">
+                                                            <div class="typeahead__field">
+                                                                <div class="typeahead__query">
+                                                                    <input class="js-typeahead-countries form-control"
+                                                                           name="specialist_partners[4]"
+                                                                           type="search"
+
+                                                                           autocomplete="off">
+                                                                    <input name="partner_universities_id[4]"
+                                                                           class="form-control"
+                                                                           type="hidden"/>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                                 </tbody>
                                             </table>
+
                                         </div>
                                     </div>
                                     <div class="form-group row">
@@ -203,13 +264,8 @@
         All Rights Reserved by Matrix-admin. Designed and Developed by <a href="https://wrappixel.com">WrapPixel</a>.
     </footer>
 </div>
-<link rel="stylesheet" type="text/css"
-      href="<?= base_url('assets/admin/assets/libs/select2/dist/css/select2.min.css') ?>">
-<link rel="stylesheet" type="text/css"
-      href="<?= base_url('assets/admin/assets/libs/jquery-minicolors/jquery.minicolors.css') ?>">
-<script src="<?= base_url('assets/admin/assets/libs/select2/dist/js/select2.full.min.js') ?>"></script>
-<script src="<?= base_url('assets/admin/assets/libs/select2/dist/js/select2.min.js') ?>"></script>
-<script src="<?= base_url('assets/js/bootstrap3-typeahead.js') ?>"></script>
+
+<script src="<?= base_url('assets/admin/typeahead/jquery.typeahead.js') ?>"></script>
 
 <script>
     function readURL(input, image_id) {
@@ -236,103 +292,127 @@
 
     });
 
-    var i = 1;
-    $(document).on('click', '.add_new_item', function () {
-        i++;
-        $('#new_items').append(
-            '<tr>' +
-            '<td>' +
-            '<input placeholder="Specialist Partners" name="specialist_partners[' + i + ']" class="form-control" type="text"  />' +
-            '<input name="partner_universities_id[' + i + ']" class="form-control" type="hidden"  />' +
-            '</td>' +
-            '<td>' +
-            '<button type="button" class="btn mt-2 btn-outline-secondary del_item">\n' +
-            '<i class="fa fa-trash"></i>\n' +
-            '</button>' +
-            '</td>' +
-            '<tr/>'
-        );
 
-        $('#new_scripts').append(
-            '<script ' +
-            'data-id="' + i + '">' +
-            '// search in staff\n' +
-            'var url = "<?=base_url('admin/' . $this->uri->segment(2) . '/search_partner_universities/')?>";\n' +
-            '\n' +
-            '$.get(url, function (data) {\n' +
-            '$(\'input[name="specialist_partners[' + (i - 1) + ']"]\').typeahead(\'destroy\')\n' +
-            '// use a data source with \'id\' and \'name\' keys\n' +
-            '$(\'input[name="specialist_partners[' + i + ']"]\').typeahead({\n' +
-            '\n' +
-            '    source: function (query, process) {\n' +
-            '                objects = [];\n' +
-            '                map = {};\n' +
-            '                $.each(data, function (i, object) {\n' +
-            '                    map[object.name] = object;\n' +
-            '                    objects.push(object.name);\n' +
-            '                });\n' +
-            '                process(objects);\n' +
-            '\n' +
-            '                $(\'input[name="partner_universities_id[' + i + ']"]\').val(\'\');\n' +
-            '            },\n' +
-                '// number of pixels the scrollable parent container scrolled down\n' +
-            '            scrollHeight: 0,\n' +
-            '            // auto selects the first item\n' +
-            '            autoSelect: true,\n' +
-            '            \n' +
-            '            //showHintOnFocus: true,\n'+
-            '            updater: function (item) {\n' +
-            '                $(\'input[name="partner_universities_id[' + i + ']"]\').val(map[item].id);\n' +
-            '                return item;\n' +
-            '            }\n' +
-            '        });\n' +
-            '    }, \'json\');\n' +
-            '\n' +
-            '</' +
-            'scri' +
-            'pt>'
-        );
-    });
 
-    // search in staff
     var url = '<?=base_url('admin/' . $this->uri->segment(2) . '/search_partner_universities/')?>';
 
-    $.get(url, function (data) {
-        // use a data source with 'id' and 'name' keys
-        $('input[name="specialist_partners[1]"]').typeahead({
+   $.get(url, function (data) {
 
-            source: function (query, process) {
-                objects = [];
-                map = {};
-                $.each(data, function (i, object) {
-                    map[object.name] = object;
-                    objects.push(object.name);
-                });
-                process(objects);
 
-                $('input[name="partner_universities_id[1]"]').val('');
+        typeof $.typeahead === 'function' && $.typeahead({
+            input: "input[name=\"specialist_partners[1]\"]",
+            minLength: 0,
+            searchOnFocus: true,
+            blurOnTab: false,
+            hint: true,
+            display: ["name"],
+            source:  {
+               data: data
             },
 
+            callback: {
+                onClickBefore: ['window.myClass.typeahead1', ['param1', 'param2']],
+                onSearch: ['window.myClass.cancel1']
+            },
 
-            // number of pixels the scrollable parent container scrolled down
-            scrollHeight: 0,
-            // auto selects the first item
-            autoSelect: true,
-
-            //showHintOnFocus: true,
-
-
-            updater: function (item) {
-                $('input[name="partner_universities_id[1]"]').val(map[item].id);
-                return item;
-            }
+            debug: true
         });
+
+        typeof $.typeahead === 'function' && $.typeahead({
+            input: "input[name=\"specialist_partners[2]\"]",
+            minLength: 0,
+            searchOnFocus: true,
+            blurOnTab: false,
+            hint: true,
+            display: ["name"],
+            source: {
+                data: data
+            },
+
+            callback: {
+                onClickBefore: ['window.myClass.typeahead2', ['param1', 'param2']],
+                onSearch: ['window.myClass.cancel2']
+            },
+
+            debug: true
+        });
+
+
+       typeof $.typeahead === 'function' && $.typeahead({
+           input: "input[name=\"specialist_partners[3]\"]",
+           minLength: 0,
+           searchOnFocus: true,
+           blurOnTab: false,
+           hint: true,
+           display: ["name"],
+           source: {
+               data: data
+           },
+
+           callback: {
+               onClickBefore: ['window.myClass.typeahead3', ['param1', 'param2']],
+               onSearch: ['window.myClass.cancel3']
+           },
+
+           debug: true
+       });
+
+       typeof $.typeahead === 'function' && $.typeahead({
+           input: "input[name=\"specialist_partners[4]\"]",
+           minLength: 0,
+           searchOnFocus: true,
+           blurOnTab: false,
+           hint: true,
+           display: ["name"],
+           source: {
+               data: data
+           },
+
+           callback: {
+               onClickBefore: ['window.myClass.typeahead4', ['param1', 'param2']],
+               onSearch: ['window.myClass.cancel4']
+           },
+
+           debug: true
+       });
+
+        window.myClass = {
+            // Your params will be Prepended to the regular Typeahead onClickBefore params
+            typeahead1: function (param1, param2, node, a, item, event) {
+                $('input[name="partner_universities_id[1]"]').val(item.id);
+            },
+
+            typeahead2: function (param1, param2, node, a, item, event) {
+                $('input[name="partner_universities_id[2]"]').val(item.id);
+            },
+
+            typeahead3: function (param1, param2, node, a, item, event) {
+                $('input[name="partner_universities_id[3]"]').val(item.id);
+            },
+
+            typeahead4: function (param1, param2, node, a, item, event) {
+                $('input[name="partner_universities_id[4]"]').val(item.id);
+            },
+
+            cancel1: function () {
+                $('input[name="partner_universities_id[1]"]').val('')
+            },
+
+            cancel2: function () {
+                $('input[name="partner_universities_id[2]"]').val('')
+            },
+
+            cancel3: function () {
+                $('input[name="partner_universities_id[3]"]').val('')
+            },
+
+            cancel4: function () {
+                $('input[name="partner_universities_id[4]"]').val('')
+            }
+        };
+
+
     }, 'json');
-
-    $(document).on('click', '.del_item', function () {
-        $(this).parent('td').parent('tr').remove();
-    });
-
 </script>
 
 <div id="new_scripts"></div>
