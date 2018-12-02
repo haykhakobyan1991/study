@@ -412,6 +412,7 @@ class Sysadmin extends CI_Controller {
 
         $data['logo'] = $row['logo'];
         $data['background_image'] = $row['background_image'];
+        $data['title'] = $row['title_'.$lang];
         $data['meta_keyword'] = $row['meta_keyword_'.$lang];
         $data['meta_description'] = $row['meta_description_'.$lang];
 
@@ -434,6 +435,7 @@ class Sysadmin extends CI_Controller {
 
 
         $id = '1';
+        $title = $this->input->post('title');
         $meta_keyword = $this->input->post('meta_keyword');
         $meta_description = $this->input->post('meta_description');
         $background_image = '';
@@ -495,6 +497,7 @@ class Sysadmin extends CI_Controller {
 
         $sql = "UPDATE `basic_settings`
 					SET 
+					 `title_".$lang."` = ".$this->db_value($title).",
 					 ".$background_image."
 					 ".$logo."
 					 `meta_keyword_".$lang."` = ".$this->db_value($meta_keyword).",

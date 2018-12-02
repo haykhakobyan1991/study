@@ -348,10 +348,13 @@ p.testimonial-data span {
     font-size: 18px;
     font-weight: bold;
     border-radius: 5px;
+    width: 37%;
+    height: 25px;
 }
 
 .single_inp select {
-    width: 248px;
+    width: 39%;
+    height: 37px;
     color: #333333e6;
 }
 
@@ -362,6 +365,8 @@ p.testimonial-data span {
     border: 1px solid #333;
     cursor: pointer;
 }
+
+
 
 
 @media screen and (max-width: 769px) {

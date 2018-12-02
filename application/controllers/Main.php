@@ -132,6 +132,24 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $sql = "
+            SELECT
+                `id`,
+                `title_".$lng."` AS `title`,
+                `status` 
+             FROM 
+                `basic_settings`  
+            WHERE status = 1
+            LIMIT 1 
+                 
+        ";
+
+        $result = $this->db->query($sql);
+
+        $row = $result->row_array();
+
+        $data['title'] = $row['title'];
+
 
         //view
         $this->layout->view('index', $data, 'deff');
@@ -278,9 +296,181 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $sql = "
+            SELECT 
+                `id`,
+                `title_".$lng."` AS `title`,
+                `status`
+            FROM
+                `country`
+            WHERE `status` = '1'        
+        ";
+
+        $query = $this->db->query($sql);
+        $data['country'] = $query->result_array();
+
 
         //view
         $this->layout->view('register', $data, 'deff');
+
+    }
+
+    public function register_ax() {
+
+        if ($this->input->server('REQUEST_METHOD') != 'POST') {
+            // Return error
+            $this->access_denied();
+            return false;
+        }
+
+        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
+        $n = 0;
+        //todo
+        $first_name = $this->input->post('first_name');
+        $last_name = $this->input->post('last_name');
+        $email = $this->input->post('email');
+        $birthday = $this->input->post('birthday');
+        $username = $this->input->post('username');
+        $password = $this->input->post('password');
+        $reg_code = $this->reg_code();
+
+        $lng = $this->lng();
+        $this->load_lang('translate', $lng);
+
+
+        if ($first_name == '') {
+            $n = 1;
+            $validation_errors = array('first_name' => lang("field_required"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        if ($last_name == '') {
+            $n = 1;
+            $validation_errors = array('last_name' => lang("field_required"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        if ($username == '') {
+            $n = 1;
+            $validation_errors = array('username' => lang("field_required"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        if ($email == '') {
+            $n = 1;
+            $validation_errors = array('email' => lang("field_required"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $n = 1;
+            $validation_errors = array('email' => lang("not_valid_email"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        if ($password == '') {
+            $n = 1;
+            $validation_errors = array('password' => lang("field_required"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        if (strlen($password) < 6) {
+            $n = 1;
+            $validation_errors = array('password' => lang("minimum_6_characters"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+
+        $sql_email_unique = "
+            SELECT `id` FROM `user` WHERE `email` = '".$email."'
+        ";
+
+        $query = $this->db->query($sql_email_unique);
+        $num_rows = $query->num_rows();
+
+        if($num_rows > '0') {
+            $n = 1;
+            $validation_errors = array('email' => lang("email_is_not_unique"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+        $sql_username_unique = "
+            SELECT `id` FROM `user` WHERE `username` = '".$username."'
+        ";
+
+        $query = $this->db->query($sql_username_unique);
+        $num_rows = $query->num_rows();
+
+        if($num_rows > '0') {
+            $n = 1;
+            $validation_errors = array('username' => lang("username_is_not_unique"));
+            $messages['error']['elements'][] = $validation_errors;
+        }
+
+
+        if($n == 1) {
+            echo json_encode($messages);
+            return false;
+        }
+
+
+
+        $this->smtp_mailing();
+
+        $this->email->to($email);
+        $this->email->subject('Активация аккаунта');
+        $this->email->message('
+            <div>
+                <p>Это письмо отправлено с сайта <a href="http://new.dilemmatik.ru/">http://new.dilemmatik.ru/</a></p>
+                <p>------------------------------------------------</p>
+                <p> Ваш логин и пароль на сайте:</p>
+                <p> ------------------------------------------------</p>
+                <p>Логин: '.$username.'</p>
+                <p> Пароль: '.$password.'</p>
+                <p>Для активации Вашего аккаунта, зайдите по следующей ссылке:</p>
+                <p><a href="http://new.dilemmatik.ru/Main/activation/'.$reg_code.'">http://new.dilemmatik.ru/Main/activation/'.$reg_code.'</a></p>
+		    </div>
+		');
+
+        if(!$this->email->send()) {
+            $messages['success'] = 0;
+            $messages['error'] = $this->email->print_debugger();
+            echo json_encode($messages);
+            return false;
+        }
+
+
+        $sql = "INSERT INTO `user`
+					SET 
+					 `role_id` = '4',
+					 `username` = ".$this->db_value($username).",
+					 `first_name` = ".$this->db_value($first_name).",
+					 `last_name` = ".$this->db_value($last_name).",
+					 `email` = ".$this->db_value($email).",
+					 `birthday` = ".$this->db_value($birthday).",
+					 `reg_code` = ".$this->db_value($reg_code).",
+					 `password` = ".$this->db_value($this->hash($password)).",
+					 `status` = '-1'";
+
+
+        $result = $this->db->query($sql);
+
+
+        if($result) {
+            $messages['success'] = 1;
+            $messages['message'] = lang('success_reg');
+
+        } else {
+            $messages['success'] = 0;
+            $messages['error'] = 'Error';
+        }
+
+
+        echo json_encode($messages);
+        return true;
 
     }
 
@@ -595,167 +785,6 @@ class Main extends CI_Controller {
 
 
 
-    /**
-     * @return bool
-     */
-    public function register_ax() {
-
-        if ($this->input->server('REQUEST_METHOD') != 'POST') {
-            // Return error
-            $this->access_denied();
-            return false;
-        }
-
-        $messages = array('success' => '0', 'message' => '', 'error' => '', 'fields' => '');
-        $n = 0;
-
-        $first_name = $this->input->post('first_name');
-        $last_name = $this->input->post('last_name');
-        $email = $this->input->post('email');
-        $birthday = $this->input->post('birthday');
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
-        $reg_code = $this->reg_code();
-
-        $lng = $this->lng();
-        $this->load_lang('translate', $lng);
-
-
-        if ($first_name == '') {
-            $n = 1;
-            $validation_errors = array('first_name' => lang("field_required"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-        if ($last_name == '') {
-            $n = 1;
-            $validation_errors = array('last_name' => lang("field_required"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-        if ($username == '') {
-            $n = 1;
-            $validation_errors = array('username' => lang("field_required"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-        if ($email == '') {
-            $n = 1;
-            $validation_errors = array('email' => lang("field_required"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            $n = 1;
-            $validation_errors = array('email' => lang("not_valid_email"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-
-        if ($password == '') {
-            $n = 1;
-            $validation_errors = array('password' => lang("field_required"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-
-        if (strlen($password) < 6) {
-            $n = 1;
-            $validation_errors = array('password' => lang("minimum_6_characters"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-
-
-        $sql_email_unique = "
-            SELECT `id` FROM `user` WHERE `email` = '".$email."'
-        ";
-
-        $query = $this->db->query($sql_email_unique);
-        $num_rows = $query->num_rows();
-
-        if($num_rows > '0') {
-            $n = 1;
-            $validation_errors = array('email' => lang("email_is_not_unique"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-        $sql_username_unique = "
-            SELECT `id` FROM `user` WHERE `username` = '".$username."'
-        ";
-
-        $query = $this->db->query($sql_username_unique);
-        $num_rows = $query->num_rows();
-
-        if($num_rows > '0') {
-            $n = 1;
-            $validation_errors = array('username' => lang("username_is_not_unique"));
-            $messages['error']['elements'][] = $validation_errors;
-        }
-
-
-        if($n == 1) {
-            echo json_encode($messages);
-            return false;
-        }
-
-
-
-        $this->smtp_mailing();
-
-        $this->email->to($email);
-        $this->email->subject('Активация аккаунта');
-        $this->email->message('
-            <div>
-                <p>Это письмо отправлено с сайта <a href="http://new.dilemmatik.ru/">http://new.dilemmatik.ru/</a></p>
-                <p>------------------------------------------------</p>
-                <p> Ваш логин и пароль на сайте:</p>
-                <p> ------------------------------------------------</p>
-                <p>Логин: '.$username.'</p>
-                <p> Пароль: '.$password.'</p>
-                <p>Для активации Вашего аккаунта, зайдите по следующей ссылке:</p>
-                <p><a href="http://new.dilemmatik.ru/Main/activation/'.$reg_code.'">http://new.dilemmatik.ru/Main/activation/'.$reg_code.'</a></p>
-		    </div>
-		');
-
-        if(!$this->email->send()) {
-            $messages['success'] = 0;
-            $messages['error'] = $this->email->print_debugger();
-            echo json_encode($messages);
-            return false;
-        }
-
-
-        $sql = "INSERT INTO `user`
-					SET 
-					 `role_id` = '4',
-					 `username` = ".$this->db_value($username).",
-					 `first_name` = ".$this->db_value($first_name).",
-					 `last_name` = ".$this->db_value($last_name).",
-					 `email` = ".$this->db_value($email).",
-					 `birthday` = ".$this->db_value($birthday).",
-					 `reg_code` = ".$this->db_value($reg_code).",
-					 `password` = ".$this->db_value($this->hash($password)).",
-					 `status` = '-1'";
-
-
-        $result = $this->db->query($sql);
-
-
-        if($result) {
-            $messages['success'] = 1;
-            $messages['message'] = lang('success_reg');
-
-        } else {
-            $messages['success'] = 0;
-            $messages['error'] = 'Error';
-        }
-
-
-        echo json_encode($messages);
-        return true;
-
-    }
 
 
 

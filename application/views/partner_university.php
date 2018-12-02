@@ -5,9 +5,7 @@
             <h2 class="about_us"><?= lang('PartnerUniversity') ?></h2>
         </div>
 
-        <div class="content" style="text-align: center;">
-            Select a university to find out more.
-        </div>
+        <div class="content" style="text-align: center;"><?=lang('select_a_university_to_find_out_more')?></div>
 
         <div style="width: 90%;text-align: center;margin: 0 auto;">
             <div class="row">

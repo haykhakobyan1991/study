@@ -25,6 +25,16 @@
                 <div class="col-8">
                     <input type="hidden" name="language"
                            value="<?= ($this->uri->segment(2) != '' ? $this->uri->segment(2) : 'hy') ?>">
+
+
+                    <div class="col-12">
+                        <div class="form-group row">
+                            <label class="col-md-12">Title</label>
+                            <input placeholder="Title" name="title" type="text" class="form-control" value="<?=$title?>">
+                        </div>
+                    </div>
+
+
                     <div class="col-12">
                         <div class="col-12">
                             <div class="form-group row">
