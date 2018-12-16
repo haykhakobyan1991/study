@@ -14,6 +14,7 @@ $route['default_controller'] = 'Main';
 $route['^(en|fr|hy)/about$'] = "Main/about/";
 $route['^(en|fr|hy)/partner_university'] = "Main/partner_university/";
 $route['^(en|fr|hy)/courses'] = "Main/courses/";
+$route['^(en|fr|hy)/course/(:any)'] = "Main/business_management/$1";
 $route['^(en|fr|hy)/requirements'] = "Main/requirements/";
 $route['^(en|fr|hy)/testimonials'] = "Main/testimonials/";
 $route['^(en|fr|hy)/events'] = "Main/events/";

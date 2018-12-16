@@ -20,7 +20,6 @@ class Main extends CI_Controller {
     }
 
 
-
     /**
      * @return bool
      */
@@ -100,13 +99,11 @@ class Main extends CI_Controller {
 
     public function meta_tags() { // todo change
 
-
-
         /*meta tags*/
         $data = array();
         $data['meta_tags'] = meta('description', 'description');
         $data['meta_tags'] .= meta('keywords', 'keywords');
-        $data['meta_tags'] .= meta('og:site_name', 'og:site_name');
+        $data['meta_tags'] .= meta('og:site_name', 'og:site_name'); //constant
         $data['meta_tags'] .= meta('og:type', 'og:type');
         $data['meta_tags'] .= meta('og:title', 'og:title');
         $data['meta_tags'] .= meta('og:url', current_url());
@@ -115,16 +112,15 @@ class Main extends CI_Controller {
 
         return $data['meta_tags'];
 
-
     }
 
 
     public function index() {
 
-
         // helpers
         $this->load->helper('url');
         $this->load->helper('form');
+        $this->load->helper('html');
         // language
         $lng = $this->lng();
         // data
@@ -140,21 +136,18 @@ class Main extends CI_Controller {
              FROM 
                 `basic_settings`  
             WHERE status = 1
-            LIMIT 1 
-                 
+            LIMIT 1   
         ";
 
         $result = $this->db->query($sql);
 
         $row = $result->row_array();
 
+        $this->layout->set_title($row['title']);
         $data['title'] = $row['title'];
-
 
         //view
         $this->layout->view('index', $data, 'deff');
-
-
     }
 
 
@@ -189,11 +182,11 @@ class Main extends CI_Controller {
         $data['why_apply'] = $row['why_apply'];
         $data['why_recruit'] = $row['why_recruit'];
 
+        $this->layout->set_title(lang('AboutUs'));
+
 
         //view
         $this->layout->view('about', $data, 'deff');
-
-
 
     }
 
@@ -223,6 +216,8 @@ class Main extends CI_Controller {
         $query = $this->db->query($sql);
         $data['result'] = $query->result_array();
 
+        $this->layout->set_title(lang('PartnerUniversity'));
+
         //view
         $this->layout->view('partner_university', $data, 'deff');
     }
@@ -235,16 +230,29 @@ class Main extends CI_Controller {
         $this->load->helper('form');
         // language
         $lng = $this->lng();
+
         // data
         $data = array();
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $sql = "
+            SELECT 
+                `title_".$lng."` AS `title`, 
+                `alias_".$lng."` AS `alias`  
+              FROM 
+                `courses` 
+            WHERE `status` = '1'
+        ";
+
+        $query = $this->db->query($sql);
+        $data['result'] = $query->result_array();
+
+        $this->layout->set_title(lang('Courses'));
+        $data['lng'] = $this->lng();
 
         //view
         $this->layout->view('courses', $data, 'deff');
-
-
 
     }
 
@@ -260,6 +268,8 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+
+        $this->layout->set_title(lang('Testimonials'));
 
         //view
         $this->layout->view('testimonials', $data, 'deff');
@@ -278,7 +288,7 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
-
+        $this->layout->set_title(lang('Events'));
         //view
         $this->layout->view('events', $data, 'deff');
 
@@ -309,7 +319,7 @@ class Main extends CI_Controller {
         $query = $this->db->query($sql);
         $data['country'] = $query->result_array();
 
-
+        $this->layout->set_title(lang('Register'));
         //view
         $this->layout->view('register', $data, 'deff');
 
@@ -487,6 +497,7 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $this->layout->set_title(lang('Contact'));
 
         //view
         $this->layout->view('contact', $data, 'deff');
@@ -546,7 +557,6 @@ class Main extends CI_Controller {
         }
 
         $data['result'] = $query->row_array();
-
 
 
         //view
@@ -673,12 +683,63 @@ class Main extends CI_Controller {
         // helpers
         $this->load->helper('url');
         $this->load->helper('form');
-        // language
-        $lng = $this->lng();
         // data
         $data = array();
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
+        // language
+        $lng = $this->lng();
+        $data['language'] = $lng;
+
+        $alias = $this->uri->segment(3);
+
+        $sql = "
+            SELECT 
+              `id`,
+              `title_".$lng."` AS `title`,
+              `alias_".$lng."` AS `alias`,
+              `why1_".$lng."` AS `why1`,
+              `why2_".$lng."` AS `why2`,
+              `why3_".$lng."` AS `why3`,
+              `career1_".$lng."` AS `career1`,
+              `career2_".$lng."` AS `career2`,
+              `career3_".$lng."` AS `career3`,
+              `meta_keyword_".$lng."` AS `meta_keyword`,
+              `meta_description_".$lng."` AS `meta_description`,
+              `background_image`,
+              `status` 
+            FROM 
+              `courses`
+            WHERE `status` = '1' 
+              AND `alias_".$lng."` = '".$alias."' 
+            LIMIT 1 
+        ";
+
+        $query = $this->db->query($sql);
+        $num_rows = $query->num_rows();
+
+        if($num_rows != 1) {
+            $message = 'Page not found';
+            show_error($message, '404', $heading = '404');
+            return false;
+        }
+
+        $data['result'] = $query->row_array();
+
+        $sql_child = "
+            SELECT 
+              `special_partners`.`title_".$lng."` AS `title`,
+              `partner_university`.`alias_".$lng."` AS `alias` 
+            FROM
+              `special_partners` 
+              LEFT JOIN `partner_university` 
+                ON `partner_university`.`id` = `special_partners`.`partner_university_id` 
+            WHERE `special_partners`.`courses_id` = '".$data['result']['id']."' 
+              AND `special_partners`.`status` = '1' 
+        ";
+
+        $query_child = $this->db->query($sql_child);
+        $data['result_child'] = $query_child->result_array();
 
 
         //view
@@ -716,6 +777,7 @@ class Main extends CI_Controller {
         // get meta tags
         $data['meta_tags'] = $this->meta_tags();
 
+        $this->layout->set_title(lang('Requirements'));
 
         //view
         $this->layout->view('requirements', $data, 'deff');
@@ -772,6 +834,21 @@ class Main extends CI_Controller {
 
             $url[2] = $row['new_alias'];
 
+        } elseif ($page == 'business_management') {
+            $sql = "
+                SELECT 
+                   `alias_".$new_lang."` AS `new_alias` 
+                  FROM 
+                    `courses`
+                WHERE `alias_".$url[0]."` = '".$alias."'
+                 AND `status` = '1'
+            ";
+
+            $query = $this->db->query($sql);
+
+            $row = $query->row_array();
+
+            $url[2] = $row['new_alias'];
         }
 
 
@@ -781,15 +858,6 @@ class Main extends CI_Controller {
         echo base_url($new_lang . $new_url);
         return true;
     }
-
-
-
-
-
-
-
-
-
 
 }
 //end of class

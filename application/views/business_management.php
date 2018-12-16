@@ -1,32 +1,32 @@
-<div class="container">
-    <div class="center" style="overflow: hidden;">
-        <h2 class="about_us">Business And Management</h2>
+<div class="container" style="background-image: url('<?= base_url('application/uploads/courses/' . $result['background_image']) ?>')">
+    <div class="center" style="/*overflow: hidden;*/">
+        <h2 class="about_us"><?=$result['title']?></h2>
     </div>
 
     <div  style="width: 90%;text-align: center;margin: 0 auto;">
         <div class="row" style="width: 45%;">
-            <h2 style="font-size: 28px;" class="about_us">Business And Management</h2>
+            <h2 style="font-size: 28px;" class="about_us">What does the course entail?</h2>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['why1']?></a>
             </div>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['why2']?></a>
             </div>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['why3']?></a>
             </div>
         </div>
 
         <div class="row" style="width: 45%;">
-            <h2 style="font-size: 28px;" class="about_us">Business And Management</h2>
+            <h2 style="font-size: 28px;" class="about_us">Career Opporunities</h2>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['career1']?></a>
             </div>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['career2']?></a>
             </div>
             <div class="content container_cube" style="text-align: center;min-height: 10px;margin-bottom: 0;">
-                <a style="padding-top: 0;" href="#">Aberdeen</a>
+                <a style="padding-top: 0;" href="#"><?=$result['career3']?></a>
             </div>
         </div>
     </div>
@@ -35,23 +35,19 @@
         <h2 class="about_us" style="font-size: 30px;">Specialist Partners</h2>
     </div>
 
-    <div  style="width: 90%;text-align: center;margin: 0 auto;">
-        <div class="row">
-            <div class="content container_cube" style="text-align: center;">
-                <a href="#">Aberdeen</a>
-            </div>
-        </div>
+    <div  style="width: 90%;text-align: center;margin: 0 auto;"><?
+        foreach ($result_child AS $row) :
+            if($row['title'] != '') :
+        ?>
 
         <div class="row">
             <div class="content container_cube" style="text-align: center;">
-                <a href="#">Aberdeen</a>
+                <a href="<?=($row['alias'] != '' ?  base_url($language . '/university/'.$row['alias']) : '#')?>"><?=$row['title']?></a>
             </div>
         </div>
 
-        <div class="row">
-            <div class="content container_cube" style="text-align: center;">
-                <a href="#">Aberdeen</a>
-            </div>
-        </div>
+       <?
+       endif;
+       endforeach;?>
     </div>
 </div>

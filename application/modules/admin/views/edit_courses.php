@@ -133,10 +133,16 @@
 
                                         <div class="col-md-12">
 
+
                                             <table class="vehicle table table-striped table-hover">
                                                 <thead>
                                                 <tr>
                                                     <th>
+                                                        <input type="hidden" name="child_id[0]" value="<?= (isset($result_partners[0]['id']) ? $result_partners[0]['id'] : '') ?>">
+                                                        <input type="hidden" name="child_id[1]" value="<?= (isset($result_partners[1]['id']) ? $result_partners[1]['id'] : '') ?>">
+                                                        <input type="hidden" name="child_id[2]" value="<?= (isset($result_partners[2]['id']) ? $result_partners[2]['id'] : '') ?>">
+                                                        <input type="hidden" name="child_id[3]" value="<?= (isset($result_partners[3]['id']) ? $result_partners[3]['id'] : '') ?>">
+
                                                         <div class="typeahead__container">
                                                             <div class="typeahead__field">
                                                                 <div class="typeahead__query">

@@ -1573,34 +1573,113 @@ class Sysadmin extends CI_Controller {
 
 
         $partner_university_id = $this->input->post('partner_universities_id');
+        $specialist_partners = $this->input->post('specialist_partners');
 
-        $sql_update = "
-            UPDATE  `special_partners` SET `status` = '-2' WHERE `courses_id` = ".$this->db_value($id)." /*todo a mnacac leunere*/ 
-        ";
+        $child = $this->input->post('child_id');
 
-        $this->db->query($sql_update);
 
-        if(!empty($specialist_partners)) {
-            $sql_ = "INSERT INTO `special_partners`
-                        (
-                         `courses_id`,
-                         `title_".$lang."`,
-                         `partner_university_id`,
-                         `status`
-                         )
-                    VALUES ";
-            foreach ($specialist_partners as $key => $title) {
-                $sql_ .= "
-                (
-                     ".$this->db_value($id).",
-                     '".$title."',
-                     ".$this->db_value($partner_university_id[$key]).",
-                     '1'
-                ),";
-            }
-            $sql_ = substr($sql_, 0, -1);
-            $result_ = $this->db->query($sql_);
+        if($child[0] != '') {
+            $sql_0 = "
+                UPDATE 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[1]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[1]).",
+                   `status` = '1'
+                WHERE `id` =  ".$child[0]." 
+            ";
+        } else {
+            $sql_0 = "
+                INSERT INTO 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[1]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[1]).",
+                   `status` = '1'
+            ";
         }
+
+        $result_0 = $this->db->query($sql_0);
+
+        if($child[1] != '') {
+            $sql_1 = "
+                UPDATE 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[2]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[2]).",
+                   `status` = '1'
+                WHERE `id` =  ".$child[1]." 
+            ";
+        } else {
+            $sql_1 = "
+                INSERT INTO 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[2]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[2]).",
+                   `status` = '1'
+            ";
+        }
+
+        $result_1 = $this->db->query($sql_1);
+
+
+        if($child[2] != '') {
+            $sql_2 = "
+                UPDATE 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[3]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[3]).",
+                   `status` = '1'
+                WHERE `id` =  ".$child[2]." 
+            ";
+        } else {
+            $sql_2 = "
+                INSERT INTO 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[3]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[3]).",
+                   `status` = '1'
+            ";
+        }
+
+        $result_2 = $this->db->query($sql_2);
+
+
+        if($child[3] != '') {
+            $sql_3 = "
+                UPDATE 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[4]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[4]).",
+                   `status` = '1'
+                WHERE `id` =  ".$child[3]." 
+            ";
+        } else {
+            $sql_3 = "
+                INSERT INTO 
+                  `special_partners`
+                SET 
+                   `courses_id` =  ".$this->db_value($id).",
+                   `title_".$lang."` = '".$specialist_partners[4]."',
+                   `partner_university_id` = ".$this->db_value($partner_university_id[4]).",
+                   `status` = '1'
+            ";
+        }
+
+        $result_3 = $this->db->query($sql_3);
+
 
 
         if ($result){

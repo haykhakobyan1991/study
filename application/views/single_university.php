@@ -4,7 +4,7 @@
         <h2 class="about_us"> <?= $result['name'] ?></h2>
     </div>
 
-    <div class="center" style="overflow: hidden;">
+    <div class="center" style="/*overflow: hidden;*/">
         <h2 class="about_us" style="font-size: 36px;font-weight: normal;">Overview</h2>
     </div>
 
