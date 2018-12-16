@@ -15,6 +15,9 @@ $lang['select_a_university_to_find_out_more'] = 'Select a university to find out
 $lang['select_a_course_to_find_out_more'] = 'Select a course to find out more.';
 $lang['more_courses_available'] = 'More courses available.';
 
+$lang['why_apply_with_us'] = 'Why apply with us?';
+$lang['why_recruit_with_us'] = 'Why recruit with us?';
+
 $lang['Register_title'] = 'Complete the form below to register for UCAS support, visa guidance and exclusive partial scholarships.';
 $lang['first_name'] = 'First name';
 $lang['middle_name'] = 'Middle name';

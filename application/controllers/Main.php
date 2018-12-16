@@ -97,17 +97,36 @@ class Main extends CI_Controller {
 
     }
 
-    public function meta_tags() { // todo change
+    public function meta_tags($description, $keywords, $title, $image) { // todo change
+
+        // language
+        $lng = $this->lng();
+
+
+        $sql = "
+            SELECT
+                `title_".$lng."` AS `title`
+             FROM 
+                `basic_settings`  
+            WHERE status = 1
+            LIMIT 1   
+        ";
+
+        $result = $this->db->query($sql);
+
+        $row = $result->row_array();
+
+        $site_name = $row['title'];
 
         /*meta tags*/
         $data = array();
-        $data['meta_tags'] = meta('description', 'description');
-        $data['meta_tags'] .= meta('keywords', 'keywords');
-        $data['meta_tags'] .= meta('og:site_name', 'og:site_name'); //constant
-        $data['meta_tags'] .= meta('og:type', 'og:type');
-        $data['meta_tags'] .= meta('og:title', 'og:title');
+        $data['meta_tags'] = meta('description', $description);
+        $data['meta_tags'] .= meta('keywords', $keywords);
+        $data['meta_tags'] .= meta('og:site_name', $site_name); //constant
+       // $data['meta_tags'] .= meta('og:type', 'og:type');
+        $data['meta_tags'] .= meta('og:title', $title);
         $data['meta_tags'] .= meta('og:url', current_url());
-        $data['meta_tags'] .= meta('og:image', 'og:image');
+        $data['meta_tags'] .= meta('og:image', $image);
 
 
         return $data['meta_tags'];
@@ -121,17 +140,19 @@ class Main extends CI_Controller {
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->helper('html');
-        // language
-        $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+        // language
+        $lng = $this->lng();
+        $data['lng'] = $lng;
+
 
         $sql = "
             SELECT
                 `id`,
                 `title_".$lng."` AS `title`,
+                `meta_keyword_".$lng."` AS keyword,
+                `meta_description_".$lng."` AS description,
                 `status` 
              FROM 
                 `basic_settings`  
@@ -145,6 +166,9 @@ class Main extends CI_Controller {
 
         $this->layout->set_title($row['title']);
         $data['title'] = $row['title'];
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags($row['description'], $row['keyword'], $row['title'], base_url($lng.'/img/background.jpg'));
 
         //view
         $this->layout->view('index', $data, 'deff');
@@ -160,14 +184,14 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
 
         $sql = "
             SELECT
                 `about_".$lng."` AS `about`,
                 `why_apply_".$lng."` AS `why_apply`,
-                `why_recruit_".$lng."` AS `why_recruit`
+                `why_recruit_".$lng."` AS `why_recruit`,
+                `meta_keyword_".$lng."` AS keyword,
+                `meta_description_".$lng."` AS description
             FROM
                `about_us`
             WHERE `status` = '1'
@@ -183,6 +207,9 @@ class Main extends CI_Controller {
         $data['why_recruit'] = $row['why_recruit'];
 
         $this->layout->set_title(lang('AboutUs'));
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags($row['description'], $row['keyword'], lang('AboutUs'), base_url($lng.'/img/background.jpg'));
 
 
         //view
@@ -200,8 +227,7 @@ class Main extends CI_Controller {
         // language
         $lng = $this->lng();
         $data['lng'] = $lng;
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
 
         $sql = "
@@ -218,6 +244,10 @@ class Main extends CI_Controller {
 
         $this->layout->set_title(lang('PartnerUniversity'));
 
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('PartnerUniversity'), base_url($lng.'/img/background.jpg'));
+
+
         //view
         $this->layout->view('partner_university', $data, 'deff');
     }
@@ -233,8 +263,7 @@ class Main extends CI_Controller {
 
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
         $sql = "
             SELECT 
@@ -251,6 +280,10 @@ class Main extends CI_Controller {
         $this->layout->set_title(lang('Courses'));
         $data['lng'] = $this->lng();
 
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Courses'), base_url($lng.'/img/background.jpg'));
+
+
         //view
         $this->layout->view('courses', $data, 'deff');
 
@@ -265,11 +298,14 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
 
         $this->layout->set_title(lang('Testimonials'));
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Testimonials'), base_url($lng.'/img/background.jpg'));
+
 
         //view
         $this->layout->view('testimonials', $data, 'deff');
@@ -285,8 +321,11 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Events'), base_url($lng.'/img/background.jpg'));
+
+
 
         $this->layout->set_title(lang('Events'));
         //view
@@ -303,8 +342,7 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
         $sql = "
             SELECT 
@@ -318,6 +356,11 @@ class Main extends CI_Controller {
 
         $query = $this->db->query($sql);
         $data['country'] = $query->result_array();
+
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Register'), base_url($lng.'/img/background.jpg'));
+
 
         $this->layout->set_title(lang('Register'));
         //view
@@ -494,8 +537,9 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Contact'), base_url($lng.'/img/background.jpg'));
 
         $this->layout->set_title(lang('Contact'));
 
@@ -515,8 +559,7 @@ class Main extends CI_Controller {
         // language
         $lng = $this->lng();
         $data['lng'] = $lng;
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
         $alias = $this->uri->segment(3);
 
@@ -558,6 +601,10 @@ class Main extends CI_Controller {
 
         $data['result'] = $query->row_array();
 
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags($data['result']['meta_description'], $data['result']['meta_keyword'], $data['result']['name'], base_url('application/uploads/universities/' . $data['result']['background_image']));
+
+
 
         //view
         $this->layout->view('single_university', $data, 'deff');
@@ -574,8 +621,7 @@ class Main extends CI_Controller {
         // language
         $lng = $this->lng();
         $data['lng'] = $lng;
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
 
         $alias = $this->uri->segment(3);
 
@@ -604,6 +650,8 @@ class Main extends CI_Controller {
                 `grade_converter`.`id`,
                 `grade_converter`.`title_".$lng."` AS `title`,
                 `grade_converter`.`text_".$lng."` AS `text`,
+                `grade_converter`.`meta_keyword_".$lng."` AS `meta_keyword`,
+                `grade_converter`.`meta_description_".$lng."` AS `meta_description`,
                 `children`.`title_".$lng."` AS `children`,
                 `children`.`alias_".$lng."` AS `children_alias`,
                 `children`.`text_".$lng."` AS `children_text`,
@@ -637,6 +685,11 @@ class Main extends CI_Controller {
         $data['children'] = $result_array['children'];
 
 
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags($data['result']['meta_description'], $data['result']['meta_keyword'], $data['result']['title'],  base_url($lng.'/img/background.jpg'));
+
+
+
         //view
         $this->layout->view('grade_converter', $data, 'deff');
 
@@ -651,8 +704,8 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
+        //meta tags todo
 
 
         //view
@@ -669,9 +722,8 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
 
+       // meta desc todo
 
         //view
         $this->layout->view('abitur', $data, 'deff');
@@ -685,8 +737,7 @@ class Main extends CI_Controller {
         $this->load->helper('form');
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
         // language
         $lng = $this->lng();
         $data['language'] = $lng;
@@ -741,6 +792,10 @@ class Main extends CI_Controller {
         $query_child = $this->db->query($sql_child);
         $data['result_child'] = $query_child->result_array();
 
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags($data['result']['meta_description'], $data['result']['meta_keyword'], $data['result']['title'],  base_url('application/uploads/courses/' . $data['result']['background_image']));
+
+
 
         //view
         $this->layout->view('business_management', $data, 'deff');
@@ -756,8 +811,9 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', '', base_url($lng.'/img/background.jpg'));
 
 
         //view
@@ -774,8 +830,10 @@ class Main extends CI_Controller {
         $lng = $this->lng();
         // data
         $data = array();
-        // get meta tags
-        $data['meta_tags'] = $this->meta_tags();
+
+
+        // meta tags
+        $data['meta_tags'] = $this->meta_tags('', '', lang('Requirements'), base_url($lng.'/img/background.jpg'));
 
         $this->layout->set_title(lang('Requirements'));
 

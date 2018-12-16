@@ -40,9 +40,9 @@
             if($row['title'] != '') :
         ?>
 
-        <div class="row">
+        <div class="row" style="vertical-align: middle">
             <div class="content container_cube" style="text-align: center;">
-                <a href="<?=($row['alias'] != '' ?  base_url($language . '/university/'.$row['alias']) : '#')?>"><?=$row['title']?></a>
+                <a style="padding: 5% !important;" href="<?=($row['alias'] != '' ?  base_url($language . '/university/'.$row['alias']) : '#')?>"><?=$row['title']?></a>
             </div>
         </div>
 

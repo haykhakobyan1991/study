@@ -15,6 +15,8 @@ $lang['select_a_university_to_find_out_more'] = 'Ընտրեք համալսարա
 $lang['select_a_course_to_find_out_more'] = 'Ընտրեք դասընթացը ավելին իմանալու համար';
 $lang['more_courses_available'] = 'Լրացուցիչ դասընթացներ առկա են';
 
+$lang['why_apply_with_us'] = 'Ինչո՞ւ դիմել մեզ';
+$lang['why_recruit_with_us'] = 'Ինչո՞ւ հավաքագրվել մեզ մոտ';
 
 $lang['Register_title'] = 'Complete the form below to register for UCAS support, visa guidance and exclusive partial scholarships.';
 $lang['first_name'] = 'Անուն';
