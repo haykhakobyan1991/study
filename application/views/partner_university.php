@@ -1,7 +1,19 @@
+<style>
+    .row {
+        display: inline-block;
+        width: 100%;
+    }
+    .row .container_cube {
+        width: 30%;
+        display: inline-block;
+        min-height: 100px;
+        vertical-align: middle;
+    }
+</style>
 <div class="container">
     <div class="center" style="overflow: hidden;">
 
-        <div class="center container_cube" style="overflow: hidden;">
+        <div class="center container_cube" style="">
             <h2 class="about_us"><?= lang('PartnerUniversity') ?></h2>
         </div>
 

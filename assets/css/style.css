@@ -228,6 +228,7 @@ li.active > a {
 }
 
 .row .container_cube {
+    display: inline-block;
     min-height: 100px;
     vertical-align: middle;
 }

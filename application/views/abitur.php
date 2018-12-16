@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="center" style="overflow: hidden;">
+    <div class="center">
         <h2 class="about_us">Abitur</h2>
     </div>
 

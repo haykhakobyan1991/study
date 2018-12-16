@@ -1,6 +1,12 @@
+<style>
+    .row {
+        min-height: 422px;
+        overflow: hidden;
+    }
+</style>
 <div style='background-image: url("<?= base_url('application/uploads/universities/' . $result['background_image']) ?>");'
      class="container">
-    <div class="center" style="overflow: hidden;">
+    <div class="center">
         <h2 class="about_us"> <?= $result['name'] ?></h2>
     </div>
 
